@@ -40,25 +40,17 @@ int main(int argc, char* argv[])
   QStringList param;
 
   CommandLineWidget *input = new CommandLineWidget();
-//   QLabel *log_label = new QLabel("Sa&lida");
-//   QCheckBox *log_toggle = new QCheckBox();
-//   log_toggle->setCheckState(Qt::Unchecked);
-//   log_toggle->setTristate(false);
-//   log_label->setBuddy(log_toggle);
   QTextEdit *log = new QTextEdit();
   log->setDisabled(true);
-  //log->setVisible(false);
   QPushButton *start_button = new QPushButton("Iniciar VMD");
   QPushButton *end_button = new QPushButton("Terminar VMD");
   QPushButton *quit_button = new QPushButton("Salir");
   QStatusBar *status_bar = new QStatusBar();
 
-  CommandProcess *vmdprocess = new CommandProcess("../vmd", "menu main off", "exit", param);
+  CommandProcess *vmdprocess = new CommandProcess("../vmd", "", "exit", param);
 
   QObject::connect(input, SIGNAL(commitCommand(QString)),
 		   vmdprocess, SLOT(sendCommand(QString)));
-//   QObject::connect(log_toggle, SIGNAL(stateChanged(int)),
-// 		   log, SLOT(setVisible(bool)));
   QObject::connect(vmdprocess, SIGNAL(outputProduced(QString)),
 		   log, SLOT(append(QString)));
   QObject::connect(start_button, SIGNAL(clicked()),
