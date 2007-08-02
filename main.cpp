@@ -27,37 +27,61 @@
 #include <QLabel>
 #include <QCheckBox>
 #include <QVBoxLayout>
+#include <QPalette>
 #include "widgets/widgets.h"
 #include "lib/CommandProcess.h"
+
+QWidget *CreateWidgetByName(QString name)
+{
+  QStringList widgetlist;
+  widgetlist << "CommandLine";
+  widgetlist <<  "Output";
+
+  int index = widgetlist.indexOf(name);
+  QWidget* widget=NULL;
+  switch (index)
+    {
+    case 0:
+      widget = new CommandLineWidget();
+      break;
+    case 1:
+      widget = new OutputWidget();
+      break;
+    case -1:
+      break;
+    }
+  return widget;
+}
+
 
 int main(int argc, char* argv[])
 {
   int exit_code=0;
   QApplication vmdguiapp(argc,argv);
   QWidget *window = new QWidget;
-  QString command;
-  QStringList param;
 
-  CommandLineWidget *input = new CommandLineWidget();
-  QTextEdit *log = new QTextEdit();
-  log->setDisabled(true);
+  QWidget *input = CreateWidgetByName("CommandLine");
+  QWidget *log = CreateWidgetByName("Output");
   QPushButton *start_button = new QPushButton("Iniciar VMD");
   QPushButton *end_button = new QPushButton("Terminar VMD");
   QPushButton *quit_button = new QPushButton("Salir");
   QStatusBar *status_bar = new QStatusBar();
 
+  QStringList param;
   CommandProcess *vmdprocess = new CommandProcess("./bin/vmd", "", "exit", param);
 
   QObject::connect(input, SIGNAL(commitCommand(QString)),
 		   vmdprocess, SLOT(sendCommand(QString)));
   QObject::connect(vmdprocess, SIGNAL(outputProduced(QString)),
-		   log, SLOT(append(QString)));
+		   input, SLOT(processOutput(QString)));
+  QObject::connect(log, SIGNAL(commitCommand(QString)),
+		   vmdprocess, SLOT(sendCommand(QString)));
+  QObject::connect(vmdprocess, SIGNAL(outputProduced(QString)),
+		   log, SLOT(processOutput(QString)));
   QObject::connect(start_button, SIGNAL(clicked()),
 		   vmdprocess, SLOT(startProcess()));
   QObject::connect(end_button, SIGNAL(clicked()),
 		   vmdprocess, SLOT(endProcess()));
-  QObject::connect(vmdprocess, SIGNAL(commandFailed()),
-		   status_bar, SLOT(show()));
   QObject::connect(quit_button, SIGNAL(clicked()),
 		   &vmdguiapp, SLOT(quit()));
 
@@ -65,8 +89,8 @@ int main(int argc, char* argv[])
 
   layout->addWidget(start_button);
   layout->addWidget(end_button);
-  layout->addWidget(input);
   layout->addWidget(quit_button);
+  layout->addWidget(input);
   layout->addWidget(log);
   layout->addWidget(status_bar);
 
