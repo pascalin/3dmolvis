@@ -34,6 +34,7 @@ public:
     CommandLineWidget(QWidget *parent = 0);
 public slots:
   void inputReceived();
+  void processOutput(QString) {}
 signals:
   void commitCommand(QString comm);
 };
