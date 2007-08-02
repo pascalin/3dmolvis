@@ -1,0 +1,158 @@
+<ui version="4.0" >
+ <class>OutputWidget</class>
+ <widget class="QWidget" name="OutputWidget" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" >
+   <property name="margin" >
+    <number>9</number>
+   </property>
+   <property name="spacing" >
+    <number>6</number>
+   </property>
+   <item>
+    <layout class="QHBoxLayout" >
+     <property name="margin" >
+      <number>0</number>
+     </property>
+     <property name="spacing" >
+      <number>6</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="label" >
+       <property name="text" >
+        <string>Registr&amp;o:</string>
+       </property>
+       <property name="buddy" >
+        <cstring>textEdit</cstring>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="zoomInButton" >
+       <property name="toolTip" >
+        <string>Aumentar</string>
+       </property>
+       <property name="statusTip" >
+        <string>Aumenta el tamaño del texto</string>
+       </property>
+       <property name="text" >
+        <string/>
+       </property>
+       <property name="icon" >
+        <iconset resource="../resource/default.qrc" >:/icons/default/icons/zoom_in.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="zoomOutButton" >
+       <property name="toolTip" >
+        <string>Reducir</string>
+       </property>
+       <property name="statusTip" >
+        <string>Reduce el tamaño del texto</string>
+       </property>
+       <property name="text" >
+        <string/>
+       </property>
+       <property name="icon" >
+        <iconset resource="../resource/default.qrc" >:/icons/default/icons/zoom_out.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="clearButton" >
+       <property name="toolTip" >
+        <string>Limpiar</string>
+       </property>
+       <property name="statusTip" >
+        <string>Borra todo el registro</string>
+       </property>
+       <property name="text" >
+        <string/>
+       </property>
+       <property name="icon" >
+        <iconset resource="../resource/default.qrc" >:/icons/default/icons/cancel.png</iconset>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QTextEdit" name="textEdit" >
+     <property name="enabled" >
+      <bool>false</bool>
+     </property>
+     <property name="font" >
+      <font>
+       <family>Monospace</family>
+       <pointsize>7</pointsize>
+      </font>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../resource/default.qrc" />
+ </resources>
+ <connections>
+  <connection>
+   <sender>zoomInButton</sender>
+   <signal>clicked()</signal>
+   <receiver>textEdit</receiver>
+   <slot>zoomIn()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>338</x>
+     <y>96</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>232</x>
+     <y>99</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>zoomOutButton</sender>
+   <signal>clicked()</signal>
+   <receiver>textEdit</receiver>
+   <slot>zoomOut()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>351</x>
+     <y>156</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>244</x>
+     <y>160</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>clearButton</sender>
+   <signal>clicked()</signal>
+   <receiver>textEdit</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>331</x>
+     <y>236</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>248</x>
+     <y>209</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

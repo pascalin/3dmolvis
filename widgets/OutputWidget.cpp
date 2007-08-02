@@ -1,4 +1,4 @@
-// File : widgets.h
+// File : OutputWidget.cpp
 
 
 //	Copyright (C) 2007 David Suarez Pascal
@@ -16,9 +16,20 @@
 //	GNU General Public License for more details.
 //
 //	You should have received a copy of the GNU General Public License
-//	along with VMDGui; if not, write to the Free Software Foundation, Inc., //	59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+//	along with VMDGui; if not, write to the Free Software Foundation, Inc.,
+//	59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 //
 
 
-#include "CommandLineWidget.h"
+#include <QtGui>
 #include "OutputWidget.h"
+
+OutputWidget::OutputWidget(QWidget *parent) : QWidget(parent)
+{
+  setupUi(this);
+}
+
+void OutputWidget::processOutput(QString output)
+{
+  textEdit->append(output);
+}

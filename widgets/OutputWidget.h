@@ -1,4 +1,4 @@
-// File : widgets.h
+// File : OutputWidget.h
 
 
 //	Copyright (C) 2007 David Suarez Pascal
@@ -16,9 +16,25 @@
 //	GNU General Public License for more details.
 //
 //	You should have received a copy of the GNU General Public License
-//	along with VMDGui; if not, write to the Free Software Foundation, Inc., //	59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+//	along with VMDGui; if not, write to the Free Software Foundation, Inc.,
+//	59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 //
 
 
-#include "CommandLineWidget.h"
-#include "OutputWidget.h"
+#ifndef OUTPUTWIDGET_H
+#define OUTPUTWIDGET_H
+
+#include <QWidget>
+#include "ui_OutputWidget.h"
+
+class OutputWidget : public QWidget, public Ui::OutputWidget
+{
+    Q_OBJECT
+public:
+    OutputWidget(QWidget *parent = 0);
+public slots:
+  void processOutput(QString output);
+signals:
+  void commitCommand(QString command);
+};
+#endif
