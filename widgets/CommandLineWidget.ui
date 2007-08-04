@@ -29,7 +29,7 @@
    <item>
     <widget class="QPushButton" name="pushButton" >
      <property name="text" >
-      <string>Enviar</string>
+      <string>En&amp;viar</string>
      </property>
     </widget>
    </item>
