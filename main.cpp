@@ -23,17 +23,15 @@
 #include <QApplication>
 #include <QStringList>
 #include <QStatusBar>
-#include <QTextEdit>
-#include <QLabel>
-#include <QCheckBox>
 #include <QVBoxLayout>
-#include <QPalette>
+#include <QMainWindow>
 #include "widgets/widgets.h"
 #include "lib/CommandProcess.h"
 
+/* This function returns a widget of the specified type */
 QWidget *CreateWidgetByName(QString name)
 {
-  QStringList widgetlist;
+  QStringList widgetlist;/* This list contains names of all widget classes */
   widgetlist << "CommandLine";
   widgetlist <<  "Output";
 
@@ -58,26 +56,21 @@ int main(int argc, char* argv[])
 {
   int exit_code=0;
   QApplication vmdguiapp(argc,argv);
-  QWidget *window = new QWidget;
+  QMainWindow *window = new QMainWindow();
+  QWidget *main_widget = new QWidget();/* This will contain all widgets requested */
+  QVBoxLayout *layout = new QVBoxLayout;
 
-  QWidget *input = CreateWidgetByName("CommandLine");
-  QWidget *log = CreateWidgetByName("Output");
+  QWidget *wp;
+  QStatusBar *status_bar;
+
+  QStringList param, widget_list;
+  CommandProcess *vmdprocess = new CommandProcess("./bin/vmd", "", "exit", param);
+
+  /* Sets 3 buttons for controlling of VMD process */
   QPushButton *start_button = new QPushButton("Iniciar VMD");
   QPushButton *end_button = new QPushButton("Terminar VMD");
   QPushButton *quit_button = new QPushButton("Salir");
-  QStatusBar *status_bar = new QStatusBar();
 
-  QStringList param;
-  CommandProcess *vmdprocess = new CommandProcess("./bin/vmd", "", "exit", param);
-
-  QObject::connect(input, SIGNAL(commitCommand(QString)),
-		   vmdprocess, SLOT(sendCommand(QString)));
-  QObject::connect(vmdprocess, SIGNAL(outputProduced(QString)),
-		   input, SLOT(processOutput(QString)));
-  QObject::connect(log, SIGNAL(commitCommand(QString)),
-		   vmdprocess, SLOT(sendCommand(QString)));
-  QObject::connect(vmdprocess, SIGNAL(outputProduced(QString)),
-		   log, SLOT(processOutput(QString)));
   QObject::connect(start_button, SIGNAL(clicked()),
 		   vmdprocess, SLOT(startProcess()));
   QObject::connect(end_button, SIGNAL(clicked()),
@@ -85,23 +78,49 @@ int main(int argc, char* argv[])
   QObject::connect(quit_button, SIGNAL(clicked()),
 		   &vmdguiapp, SLOT(quit()));
 
-  QVBoxLayout *layout = new QVBoxLayout;
-
   layout->addWidget(start_button);
   layout->addWidget(end_button);
   layout->addWidget(quit_button);
-  layout->addWidget(input);
-  layout->addWidget(log);
-  layout->addWidget(status_bar);
 
-  window->setLayout(layout);
-  window->setWindowTitle("VMD");
+  /* Command line options processing */
+  for (int i=0;i<argc;i++)
+    {
+      if (strcmp(argv[i],"-widgets")==0 && i+1<argc)
+	{
+	  widget_list = QString(argv[i+1]).split(",");
+	  break;
+	}
+    }
+
+  /* Creates all widgets requested */
+  if (!widget_list.isEmpty())
+    {
+      QStringList::const_iterator i;
+      for (i=widget_list.begin();i!=widget_list.end();i++)
+	{
+	  wp = CreateWidgetByName(*i);
+	  if (wp!=NULL)
+	    {
+	      QObject::connect(wp, SIGNAL(commitCommand(QString)),
+			       vmdprocess, SLOT(sendCommand(QString)));
+	      QObject::connect(vmdprocess, SIGNAL(outputProduced(QString)),
+			       wp, SLOT(processOutput(QString)));
+	      layout->addWidget(wp);
+	    }
+	}
+    }
+
+  /* Finish main window setup */
+  main_widget->setLayout(layout);
+  window->setCentralWidget(main_widget);
+  status_bar = window->statusBar();
   window->show();
 
+  /* Start the app */
   exit_code = vmdguiapp.exec();
 
+  /* Shutdown VMD process */
   vmdprocess->endProcess();
-
   if ( !vmdprocess->waitForFinished() )
     {
       vmdprocess->terminate();
