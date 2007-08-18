@@ -38,6 +38,7 @@ int main(int argc, char* argv[])
   QWidget *main_widget = new QWidget();/* This will contain all widgets requested */
   QVBoxLayout *layout = new QVBoxLayout;
 
+  WidgetManager wm;
   QWidget *wp;
   QStatusBar *status_bar;
 
@@ -80,7 +81,7 @@ int main(int argc, char* argv[])
       QStringList::const_iterator i;
       for (i=widget_list.begin();i!=widget_list.end();i++)
 	{
-	  wp = CreateWidgetByName(*i);
+	  wp = wm.createWidgetByName(*i);
 	  if (wp!=NULL)
 	    {
 	      QObject::connect(wp, SIGNAL(commitCommand(QString)),

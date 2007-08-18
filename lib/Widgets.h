@@ -24,4 +24,10 @@
 #include "widgets/CommandLineWidget.h"
 #include "widgets/OutputWidget.h"
 
-QWidget *CreateWidgetByName(QString);
+class WidgetManager
+{
+  QStringList widgetlist;// This list contains names of all widget classes
+public:
+  WidgetManager();
+  QWidget *createWidgetByName(QString);// This method returns a widget of the specified type
+};

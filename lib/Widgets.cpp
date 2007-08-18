@@ -23,13 +23,15 @@
 
 #include "Widgets.h"
 
-/* This function returns a widget of the specified type */
-QWidget *CreateWidgetByName(QString name)
+WidgetManager::WidgetManager()
 {
-  QStringList widgetlist;/* This list contains names of all widget classes */
   widgetlist << "CommandLine";
   widgetlist <<  "Output";
+}
 
+
+QWidget *WidgetManager::createWidgetByName(QString name)
+{
   int index = widgetlist.indexOf(name);
   QWidget* widget=NULL;
   switch (index)
