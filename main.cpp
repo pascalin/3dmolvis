@@ -26,31 +26,8 @@
 #include <QStatusBar>
 #include <QVBoxLayout>
 #include <QMainWindow>
-#include "lib/widgets/widgets.h"
+#include "lib/Widgets.h"
 #include "lib/CommandProcess.h"
-
-/* This function returns a widget of the specified type */
-QWidget *CreateWidgetByName(QString name)
-{
-  QStringList widgetlist;/* This list contains names of all widget classes */
-  widgetlist << "CommandLine";
-  widgetlist <<  "Output";
-
-  int index = widgetlist.indexOf(name);
-  QWidget* widget=NULL;
-  switch (index)
-    {
-    case 0:
-      widget = new CommandLineWidget();
-      break;
-    case 1:
-      widget = new OutputWidget();
-      break;
-    case -1:
-      break;
-    }
-  return widget;
-}
 
 
 int main(int argc, char* argv[])
@@ -89,7 +66,11 @@ int main(int argc, char* argv[])
       if (strcmp(argv[i],"-widgets")==0 && i+1<argc)
 	{
 	  widget_list = QString(argv[i+1]).split(",");
-	  break;
+	  i++;
+	}
+      else
+	{
+	  
 	}
     }
 

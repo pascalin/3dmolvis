@@ -1,4 +1,4 @@
-// File : widgets.h
+// File : Widgets.h
 
 
 //	Copyright (C) 2007 David Suarez Pascal
@@ -20,5 +20,8 @@
 //
 
 
-#include "CommandLineWidget.h"
-#include "OutputWidget.h"
+#include <QStringList>
+#include "widgets/CommandLineWidget.h"
+#include "widgets/OutputWidget.h"
+
+QWidget *CreateWidgetByName(QString);
