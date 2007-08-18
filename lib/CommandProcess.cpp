@@ -35,7 +35,9 @@ void * CommandInquirer::getReturnValue(QString &command, CommandInquirer::Return
 
 CommandProcess::CommandProcess(QString progname, QString begin_command, QString end_command, QStringList param): QProcess(), program_name(progname),begin_command(begin_command),end_command(end_command),param(param)
 {
-  command_sep = "\n";
+  std::ostringstream tempsstream;
+  tempsstream << std::endl;
+  command_sep = tempsstream.str().c_str();
   connect(this, SIGNAL(readyReadStandardOutput()), this, SLOT(processOutput()));
 }
 

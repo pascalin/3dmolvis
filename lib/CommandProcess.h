@@ -26,6 +26,7 @@
 
 #include <QProcess>
 #include <QString>
+#include <sstream>
 
 class CommandProcess;
 class CommandInquirer;
