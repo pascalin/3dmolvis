@@ -26,7 +26,7 @@
 
 class WidgetManager
 {
-  QStringList widgetlist;// This list contains names of all widget classes
+  QStringList widget_list;// This list contains names of all widget classes
 public:
   WidgetManager();
   QWidget *createWidgetByName(QString);// This method returns a widget of the specified type

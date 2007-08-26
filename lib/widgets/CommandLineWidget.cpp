@@ -33,5 +33,5 @@ CommandLineWidget::CommandLineWidget(QWidget *parent) : QWidget(parent)
 
 void CommandLineWidget::inputReceived()
 {
-  emit commitCommand(lineEdit->text());
+  emit commandRaised(lineEdit->text());
 }

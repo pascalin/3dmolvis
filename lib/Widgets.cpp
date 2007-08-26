@@ -25,14 +25,14 @@
 
 WidgetManager::WidgetManager()
 {
-  widgetlist << "CommandLine";
-  widgetlist <<  "Output";
+  widget_list << "CommandLine";
+  widget_list <<  "Output";
 }
 
 
 QWidget *WidgetManager::createWidgetByName(QString name)
 {
-  int index = widgetlist.indexOf(name);
+  int index = widget_list.indexOf(name);
   QWidget* widget=NULL;
   switch (index)
     {

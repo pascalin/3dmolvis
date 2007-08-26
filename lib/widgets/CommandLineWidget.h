@@ -35,7 +35,9 @@ public:
 public slots:
   void inputReceived();
   void processOutput(QString) {}
+  void sendInitCode() { emit initCodeRequested(""); }
 signals:
-  void commitCommand(QString comm);
+  void commandRaised(QString comm);
+  void initCodeRequested(QString code);
 };
 #endif

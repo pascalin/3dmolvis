@@ -32,9 +32,12 @@ class OutputWidget : public QWidget, public Ui::OutputWidget
     Q_OBJECT
 public:
     OutputWidget(QWidget *parent = 0);
+    QString getInitCode() { return ""; }
 public slots:
   void processOutput(QString output);
+  void sendInitCode() { emit initCodeRequested(""); }
 signals:
-  void commitCommand(QString command);
+  void commandRaised(QString command);
+  void initCodeRequested(QString code);
 };
 #endif

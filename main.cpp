@@ -26,6 +26,7 @@
 #include <QStatusBar>
 #include <QVBoxLayout>
 #include <QMainWindow>
+#include <iostream>
 #include "lib/Widgets.h"
 #include "lib/CommandProcess.h"
 
@@ -43,6 +44,7 @@ int main(int argc, char* argv[])
   QStatusBar *status_bar;
 
   QStringList param, widget_list;
+  QString tcl_init;
   CommandProcess *vmdprocess = new CommandProcess("./bin/vmd", "", "exit", param);
 
   /* Sets 3 buttons for controlling of VMD process */
@@ -62,7 +64,7 @@ int main(int argc, char* argv[])
   layout->addWidget(quit_button);
 
   /* Command line options processing */
-  for (int i=0;i<argc;i++)
+  for (int i=1;i<argc;i++)
     {
       if (strcmp(argv[i],"-widgets")==0 && i+1<argc)
 	{
@@ -71,7 +73,7 @@ int main(int argc, char* argv[])
 	}
       else
 	{
-	  
+	  std::cerr << argv[i] << " is not a valid command-line option" << std::endl;
 	}
     }
 
@@ -84,7 +86,7 @@ int main(int argc, char* argv[])
 	  wp = wm.createWidgetByName(*i);
 	  if (wp!=NULL)
 	    {
-	      QObject::connect(wp, SIGNAL(commitCommand(QString)),
+	      QObject::connect(wp, SIGNAL(commandRaised(QString)),
 			       vmdprocess, SLOT(sendCommand(QString)));
 	      QObject::connect(vmdprocess, SIGNAL(outputProduced(QString)),
 			       wp, SLOT(processOutput(QString)));
