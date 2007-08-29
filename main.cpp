@@ -26,42 +26,43 @@
 #include <QStatusBar>
 #include <QVBoxLayout>
 #include <QMainWindow>
+#include <QFile>
 #include <iostream>
-#include "lib/Widgets.h"
-#include "lib/CommandProcess.h"
+#include "lib/VmdMainWindow.h"
 
 
 int main(int argc, char* argv[])
 {
   int exit_code=0;
+  QFile *tcl_file = NULL;
   QApplication vmdguiapp(argc,argv);
-  QMainWindow *window = new QMainWindow();
-  QWidget *main_widget = new QWidget();/* This will contain all widgets requested */
-  QVBoxLayout *layout = new QVBoxLayout;
+  VmdMainWindow *window = new VmdMainWindow();
+//   QWidget *main_widget = new QWidget();/* This will contain all widgets requested */
+//   QVBoxLayout *layout = new QVBoxLayout;
 
-  WidgetManager wm;
-  QWidget *wp;
-  QStatusBar *status_bar;
+//   WidgetManager wm;
+//   QWidget *wp;
+//   QStatusBar *status_bar;
 
   QStringList param, widget_list;
-  QString tcl_init;
-  CommandProcess *vmdprocess = new CommandProcess("./bin/vmd", "", "exit", param);
+//   QString tcl_init;
+//   CommandProcess *vmdprocess = new CommandProcess("./bin/vmd", "", "exit", param);
 
   /* Sets 3 buttons for controlling of VMD process */
-  QPushButton *start_button = new QPushButton("Iniciar VMD");
-  QPushButton *end_button = new QPushButton("Terminar VMD");
-  QPushButton *quit_button = new QPushButton("Salir");
+//   QPushButton *start_button = new QPushButton("Iniciar VMD");
+//   QPushButton *end_button = new QPushButton("Terminar VMD");
+//   QPushButton *quit_button = new QPushButton("Salir");
 
-  QObject::connect(start_button, SIGNAL(clicked()),
-		   vmdprocess, SLOT(startProcess()));
-  QObject::connect(end_button, SIGNAL(clicked()),
-		   vmdprocess, SLOT(endProcess()));
-  QObject::connect(quit_button, SIGNAL(clicked()),
-		   &vmdguiapp, SLOT(quit()));
+//   QObject::connect(start_button, SIGNAL(clicked()),
+// 		   vmdprocess, SLOT(startProcess()));
+//   QObject::connect(end_button, SIGNAL(clicked()),
+// 		   vmdprocess, SLOT(endProcess()));
+//   QObject::connect(quit_button, SIGNAL(clicked()),
+// 		   &vmdguiapp, SLOT(quit()));
 
-  layout->addWidget(start_button);
-  layout->addWidget(end_button);
-  layout->addWidget(quit_button);
+//   layout->addWidget(start_button);
+//   layout->addWidget(end_button);
+//   layout->addWidget(quit_button);
 
   /* Command line options processing */
   for (int i=1;i<argc;i++)
@@ -71,6 +72,17 @@ int main(int argc, char* argv[])
 	  widget_list = QString(argv[i+1]).split(",");
 	  i++;
 	}
+      else if (strcmp(argv[i],"-tcl")==0 && i+1<argc)
+	{
+	  tcl_file = new QFile(argv[i+1]);
+	  if (!tcl_file->open(QIODevice::ReadOnly | QIODevice::Text))
+	    {
+	      std::cerr << argv[i+1] << " is not a valid file name" << std::endl;
+	      tcl_file = NULL;
+	    }
+	  i++;
+	  std::cout << "employing file " << argv[i] << std::endl;
+	}
       else
 	{
 	  std::cerr << argv[i] << " is not a valid command-line option" << std::endl;
@@ -78,40 +90,46 @@ int main(int argc, char* argv[])
     }
 
   /* Creates all widgets requested */
-  if (!widget_list.isEmpty())
-    {
-      QStringList::const_iterator i;
-      for (i=widget_list.begin();i!=widget_list.end();i++)
-	{
-	  wp = wm.createWidgetByName(*i);
-	  if (wp!=NULL)
-	    {
-	      QObject::connect(wp, SIGNAL(commandRaised(QString)),
-			       vmdprocess, SLOT(sendCommand(QString)));
-	      QObject::connect(vmdprocess, SIGNAL(outputProduced(QString)),
-			       wp, SLOT(processOutput(QString)));
-	      layout->addWidget(wp);
-	    }
-	}
-    }
+//   if (!widget_list.isEmpty())
+//     {
+//       QStringList::const_iterator i;
+//       for (i=widget_list.begin();i!=widget_list.end();i++)
+// 	{
+// 	  wp = wm.createWidgetByName(*i);
+// 	  if (wp!=NULL)
+// 	    {
+// 	      QObject::connect(wp, SIGNAL(commandRaised(QString)),
+// 			       vmdprocess, SLOT(sendCommand(QString)));
+// 	      QObject::connect(vmdprocess, SIGNAL(outputProduced(QString)),
+// 			       wp, SLOT(processOutput(QString)));
+// 	      layout->addWidget(wp);
+// 	    }
+// 	}
+//     }
 
   /* Finish main window setup */
-  main_widget->setLayout(layout);
-  window->setCentralWidget(main_widget);
-  status_bar = window->statusBar();
+//   main_widget->setLayout(layout);
+//   window->setCentralWidget(main_widget);
+//   status_bar = window->statusBar();
+  if (tcl_file != NULL)
+    {
+      QTextStream tcl(tcl_file);
+      window->setTclCode(tcl);
+    }
+  window->setWidgets(widget_list);
   window->show();
 
   /* Start the app */
   exit_code = vmdguiapp.exec();
 
   /* Shutdown VMD process */
-  vmdprocess->endProcess();
-  if ( !vmdprocess->waitForFinished() )
-    {
-      vmdprocess->terminate();
-      if ( !vmdprocess->waitForFinished() )
-	vmdprocess->kill();
-    }
+//   vmdprocess->endProcess();
+//   if ( !vmdprocess->waitForFinished() )
+//     {
+//       vmdprocess->terminate();
+//       if ( !vmdprocess->waitForFinished() )
+// 	vmdprocess->kill();
+//     }
   
   return exit_code;
 }
