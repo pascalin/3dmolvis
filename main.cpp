@@ -81,7 +81,6 @@ int main(int argc, char* argv[])
 	      tcl_file = NULL;
 	    }
 	  i++;
-	  std::cout << "employing file " << argv[i] << std::endl;
 	}
       else
 	{

@@ -32,7 +32,6 @@ VmdMainWindow::VmdMainWindow()
   tcl_out = new QTextStream(temp_file);
   param << "-e";
   param << temp_file->fileName();
-  std::cout << "employing temporary file: " << temp_file->fileName().toStdString() << std::endl;
   vmd_process = new CommandProcess("./bin/vmd", "", "exit", param);
 }
 
