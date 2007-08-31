@@ -1,4 +1,4 @@
-// File : Widgets.cpp
+// File : RotationWidget.h
 
 
 //	Copyright (C) 2007 David Suarez Pascal
@@ -21,33 +21,28 @@
 //
 
 
-#include "Widgets.h"
+#ifndef ROTATIONWIDGET_H
+#define ROTATIONWIDGET_H
 
-WidgetManager::WidgetManager()
+#include <QWidget>
+#include <sstream>
+#include "ui_RotationWidget.h"
+
+class RotationWidget : public QWidget, public Ui::RotationWidget
 {
-  widget_list << "CommandLine";
-  widget_list <<  "Output";
-  widget_list <<  "Rotation";
-}
-
-
-QWidget *WidgetManager::createWidgetByName(QString name)
-{
-  int index = widget_list.indexOf(name);
-  QWidget* widget=NULL;
-  switch (index)
-    {
-    case 0:
-      widget = new CommandLineWidget();
-      break;
-    case 1:
-      widget = new OutputWidget();
-      break;
-    case 2:
-      widget = new RotationWidget();
-      break;
-    case -1:
-      break;
-    }
-  return widget;
-}
+    Q_OBJECT
+private:
+    int x_angle, y_angle, z_angle;
+public:
+    RotationWidget(QWidget *parent = 0);
+public slots:
+  void rotateX(int);
+  void rotateY(int);
+  void rotateZ(int);
+  void processOutput(QString) {}
+  void sendInitCode() { emit initCodeRequested(""); }
+signals:
+  void commandRaised(QString comm);
+  void initCodeRequested(QString code);
+};
+#endif

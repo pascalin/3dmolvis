@@ -23,6 +23,7 @@
 #include <QStringList>
 #include "widgets/CommandLineWidget.h"
 #include "widgets/OutputWidget.h"
+#include "widgets/RotationWidget.h"
 
 class WidgetManager
 {
