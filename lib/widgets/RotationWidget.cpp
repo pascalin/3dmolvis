@@ -24,22 +24,26 @@
 #include <QtGui>
 #include "RotationWidget.h"
 
+/* El constructor de la clase principal */
 RotationWidget::RotationWidget(QWidget *parent) : QWidget(parent)
 {
-  setupUi(this);
+  setupUi(this); // Llama la funcion Ui::RotationWidget::setupUi que agrega todas las propiedades definidas en el designer
+  /* Conecta el control QDial para rotacion sobre X,Y y Z con el slot rotateX , rotateY y rotateZ, segun corresponda*/
   connect(x_dial, SIGNAL(valueChanged(int)), this, SLOT(rotateX(int)));
   connect(y_dial, SIGNAL(valueChanged(int)), this, SLOT(rotateY(int)));
   connect(z_dial, SIGNAL(valueChanged(int)), this, SLOT(rotateZ(int)));
 }
 
+/* Implementa las funciones de rotacion sobre el eje X */
 void RotationWidget::rotateX(int degrees)
 {
-  std::ostringstream command;
-  command << "rotate X by " << degrees-x_angle;
-  emit commandRaised(QString(command.str().c_str()));
-  x_angle = degrees;
+  std::ostringstream command; // Crea una cadena temporal con la clase std::ostringstream de la biblioteca estandar de C++
+  command << "rotate X by " << degrees-x_angle; // Agrega a la cadena temporal el comando Tcl para VMD que indica cuantos grados hay que rotar
+  emit commandRaised(QString(command.str().c_str())); // Envia el comando contenido en la cadena temporal a VMD
+  x_angle = degrees; // Actualiza el valor de la variable privada x_angle
 }
 
+/* Implementa las funciones de rotacion sobre el eje Y */
 void RotationWidget::rotateY(int degrees)
 {
   std::ostringstream command;
@@ -48,6 +52,7 @@ void RotationWidget::rotateY(int degrees)
   y_angle = degrees;
 }
 
+/* Implementa las funciones de rotacion sobre el eje Z */
 void RotationWidget::rotateZ(int degrees)
 {
   std::ostringstream command;
