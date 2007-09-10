@@ -115,7 +115,8 @@ int main(int argc, char* argv[])
       QTextStream tcl(tcl_file);
       window->setTclCode(tcl);
     }
-  window->setWidgets(widget_list);
+  if (!widget_list.isEmpty())
+    window->setWidgets(widget_list);
   window->show();
 
   /* Start the app */

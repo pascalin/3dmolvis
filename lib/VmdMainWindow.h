@@ -31,6 +31,7 @@
 #include <iostream>
 #include "Widgets.h"
 #include "CommandProcess.h"
+#include "AppHandler.h"
 
 class VmdMainWindow : public QMainWindow
 {
@@ -44,9 +45,10 @@ protected:
    void closeEvent(QCloseEvent *event);
 private slots:
   void appendToTclCommands(QString code);
-//   void about();
+  void about();
+  void requestAction(QTreeWidgetItem *item, int column);
 //   void newFile();
-//   void open();
+  void open();
 //   bool save();
 //   bool saveAs();
 //   void openRecentFile();
@@ -55,18 +57,22 @@ signals:
 void startupFinished();
 private:
   QWidget *main_widget;
+  QSplitter *splitter;
+  QTreeWidget *tree;
+  QList<QWidget*> widgets;
   QStringList param, widget_list;
   CommandProcess *vmd_process;
   QStringList recentFiles;
   WidgetManager wm;
   QTemporaryFile *temp_file;
   QTextStream *tcl_out;
+  void newVmdProcess();
   void createWidgets();
-//   void createActions();
-//   void createMenus();
-//   void createContextMenu();
-//   void createToolBars();
-//   void createStatusBar();
+  void createActions();
+  void createMenus();
+  void createContextMenu();
+  void createToolBars();
+  void createStatusBar();
 //   void readSettings();
 //   void writeSettings();
   bool loadFile(const QString &file_name);
@@ -81,23 +87,23 @@ private:
 //   QAction *recentFileActions[MaxRecentFiles];
 //   QAction *separatorAction;
 
-//   QMenu *fileMenu;
+  QMenu *fileMenu;
 //   QMenu *editMenu;
-//   QMenu *helpMenu;
+  QMenu *helpMenu;
 
-//   QToolBar *fileToolBar;
+  QToolBar *fileToolBar;
 //   QToolBar *editToolBar;
 
 //   QAction *newAction;
-//   QAction *openAction;
+  QAction *openAction;
 //   QAction *saveAction;
 //   QAction *saveAsAction;
-//   QAction *exitAction;
+  QAction *exitAction;
 //   QAction *cutAction;
 //   QAction *copyAction;
 //   QAction *pasteAction;
-//   QAction *aboutAction;
-//   QAction *aboutQtAction;
+  QAction *aboutAction;
+  QAction *aboutQtAction;
 
 };
 
