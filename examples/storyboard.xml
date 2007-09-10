@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<application xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://vmdgui.sourceforge.net">
+  <rdf:Description>
+    <dc:title>Biomoléculas</dc:title>
+    <dc:publisher>David Suárez Pascal</dc:publisher>
+  </rdf:Description>
+  <storyboard>
+    <group name="Aminoácidos">
+      <group name="Alifáticos">
+	<action command="" title="Alanina"/>
+	<action command="" title="Glicina"/>
+	<action command="" title="Isoleucina"/>
+	<action command="" title="Leucina"/>
+	<action command="" title="Valina"/>
+      </group>
+      <group name="Aromáticos">
+	<action command="" title="Fenilalanina"/>
+	<action command="" title="Prolina"/>
+	<action command="" title="Tirosina"/>
+	<action command="" title="Triptofano"/>
+      </group>
+      <group name="Azufrados">
+	<action command="" title="Cisteina"/>
+	<action command="" title="Metionina"/>
+      </group>
+      <group name="Hidroxilados">
+	<action command="" title="Serina"/>
+	<action command="" title="Treonina"/>
+      </group>
+      <group name="Básicos">
+	<action command="" title="Arginina"/>
+	<action command="" title="Lisina"/>
+	<action command="" title="Histidina"/>
+      </group>
+      <group name="Ácidos">
+	<action command="" title="Ácido aspártico"/>
+	<action command="" title="Ácido glutámico"/>
+	<action command="" title="Asparragina"/>
+	<action command="" title="Glutamina"/>
+      </group>
+    </group>
+    <group name="Nucleótidos">
+      <action command="" title="Adenina"/>
+      <action command="" title="Citosina"/>
+      <action command="" title="Guanina"/>
+      <action command="" title="Timina"/>
+      <action command="" title="Uracilo"/>
+    </group>
+  </storyboard>
+  <controls>
+    <control name="Rotation"/>
+    <control name="Output"/>
+  </controls>
+  <tclcode>
+    
+  </tclcode>
+</application>

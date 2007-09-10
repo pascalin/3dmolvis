@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<application xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://vmdgui.sourceforge.net">
+  <rdf:Description>
+    <dc:title>Aplicación simple</dc:title>
+    <dc:publisher>David Suárez Pascal</dc:publisher>
+  </rdf:Description>
+  <controls>
+    <control name="Rotation"/>
+    <control name="CommandLine"/>
+    <control name="Output"/>
+  </controls>
+  <tclcode>
+  </tclcode>
+</application>
