@@ -20,6 +20,15 @@
 //	59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 //
 
+/*
+ * AppHandler es una subclase de QXmlDefaultHandler que implementa el
+ * manejo de las llamadas startElement y endElement en el estilo de
+ * SAX, extrayendo la informacion requerida de los archivos de
+ * aplicacion XML que contiene los widgets que se requieren, un
+ * storyboard y una seccion de opciones que pueden ser o no requeridos
+ * por una aplicacion. Esta clase tambien extrae el codigo de
+ * inicializacion Tcl incluido con la aplicacion.
+ */
 
 #ifndef APPHANDLER_H
 #define APPHANDLER_H
@@ -28,11 +37,12 @@
 #include <QXmlDefaultHandler>
 #include <QTreeWidget>
 #include <QIcon>
+#include "OptionBox.h"
 
 class AppHandler : public QXmlDefaultHandler
 {
 public:
-    AppHandler(QTreeWidget *tree);
+    AppHandler(QTreeWidget *tree, OptionBox *obox);
     bool startElement(const QString &namespaceURI, const QString &localName,
                       const QString &qName, const QXmlAttributes &attributes);
     bool endElement(const QString &namespaceURI, const QString &localName,
@@ -46,6 +56,8 @@ public:
     QString getStoryboard();
     bool hasControls();
     QStringList getControlList();
+    bool hasOptions();
+    QString getOptions();
 
 private:
     QStringList controls;
@@ -53,8 +65,10 @@ private:
     QString current_text;
     QString error_str;
     QTreeWidget *tree_widget;
-    QTreeWidgetItem *cur_group, *cur_item;
-    int tree_level;
+    OptionBox *obox_widget;
+    QTreeWidgetItem *story_group, *story_item;
+    QVBoxLayout *opt_layout;
+    QString optgr_title;
     QIcon folder_icon, action_icon;
 };
 

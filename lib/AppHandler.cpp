@@ -23,7 +23,7 @@
 
 #include "AppHandler.h"
 
-AppHandler::AppHandler(QTreeWidget *tree) : tree_widget(tree)
+AppHandler::AppHandler(QTreeWidget *tree, OptionBox *obox) : tree_widget(tree), obox_widget(obox)
 {
   QStyle *style = tree_widget->style();
   
@@ -32,7 +32,7 @@ AppHandler::AppHandler(QTreeWidget *tree) : tree_widget(tree)
   folder_icon.addPixmap(style->standardPixmap(QStyle::SP_DirOpenIcon),
 		       QIcon::Normal, QIcon::On);
   action_icon.addPixmap(style->standardPixmap(QStyle::SP_FileIcon));
-  cur_group = NULL;
+  story_group = NULL;
 }
 
 bool AppHandler::startElement(const QString &namespaceURI,
@@ -40,6 +40,8 @@ bool AppHandler::startElement(const QString &namespaceURI,
                                const QString &qName,
                                const QXmlAttributes &attributes)
 {
+  OptionButton *ob;
+
   if (namespaceURI == "http://vmdgui.sourceforge.net")
     {
       if (localName == "storyboard")
@@ -48,22 +50,21 @@ bool AppHandler::startElement(const QString &namespaceURI,
 	}
       else if (localName == "group")
 	{
-	  if (cur_group == NULL)
-	    cur_group = new QTreeWidgetItem(tree_widget);
+	  if (story_group == NULL)
+	    story_group = new QTreeWidgetItem(tree_widget);
 	  else
-	    cur_group = new QTreeWidgetItem(cur_group);
-	  cur_group->setIcon(0, folder_icon);
-	  cur_group->setData(0, Qt::DisplayRole, attributes.value("name"));
-	  cur_group->setData(0, Qt::UserRole, "group");
-	  tree_level++;
+	    story_group = new QTreeWidgetItem(story_group);
+	  story_group->setIcon(0, folder_icon);
+	  story_group->setData(0, Qt::DisplayRole, attributes.value("name"));
+	  story_group->setData(0, Qt::UserRole, "group");
 	}
       else if (localName == "action")
 	{
-	  cur_item = new QTreeWidgetItem(cur_group);
-	  cur_item->setIcon(0, action_icon);
-	  cur_item->setData(0, Qt::DisplayRole, attributes.value("title"));
-	  cur_item->setData(0, Qt::UserRole, "action");
-	  cur_item->setData(0, Qt::UserRole+1, attributes.value("command"));
+	  story_item = new QTreeWidgetItem(story_group);
+	  story_item->setIcon(0, action_icon);
+	  story_item->setData(0, Qt::DisplayRole, attributes.value("title"));
+	  story_item->setData(0, Qt::UserRole, "action");
+	  story_item->setData(0, Qt::UserRole+1, attributes.value("command"));
 	}
       else if (localName == "controls")
 	{
@@ -73,9 +74,24 @@ bool AppHandler::startElement(const QString &namespaceURI,
 	{
 	  controls << attributes.value("name");
 	}
-      else if (localName == "tclcode")
+      else if (localName == "options")
 	{
 	  
+	}
+      else if (localName == "optgroup")
+	{
+	  opt_layout = new QVBoxLayout();
+	  optgr_title = attributes.value("title");
+	}
+      else if (localName == "option")
+	{
+	  ob = new OptionButton(attributes.value("name"), attributes.value("command"));
+	  QObject::connect(ob, SIGNAL(commandRaised(QString)), obox_widget, SLOT(sendCommand(QString)));
+	  opt_layout->addWidget(ob);
+	}
+      else if (localName == "tclcode")
+	{
+	  current_text = "";
 	}
     }
 
@@ -86,6 +102,8 @@ bool AppHandler::endElement(const QString & namespaceURI,
                              const QString & localName,
                              const QString &qName)
 {
+  QWidget *wp;
+
   if (namespaceURI == "http://vmdgui.sourceforge.net")
     {
       if (localName == "storyboard")
@@ -94,11 +112,7 @@ bool AppHandler::endElement(const QString & namespaceURI,
 	}
       else if (localName == "group")
 	{
-	  //if (tree_level > 0)
-	  cur_group = cur_group->parent();
-	  //else
-	  //  cur_group = NULL;
-	  tree_level--;
+	  story_group = story_group->parent();
 	}
       else if (localName == "action")
 	{
@@ -109,6 +123,20 @@ bool AppHandler::endElement(const QString & namespaceURI,
 	  
 	}
       else if (localName == "control")
+	{
+	  
+	}
+      else if (localName == "options")
+	{
+	  
+	}
+      else if (localName == "optgroup")
+	{
+	  wp = new QWidget();
+	  wp->setLayout(opt_layout);
+	  obox_widget->addItem(wp, optgr_title);
+	}
+      else if (localName == "option")
 	{
 	  
 	}
@@ -143,18 +171,6 @@ QString AppHandler::errorString() const
   return error_str;
 }
 
-// QTreeWidgetItem *AppHandler::createChildItem(const QString &tagName)
-// {
-//     QTreeWidgetItem *childItem;
-//     if (item) {
-//         childItem = new QTreeWidgetItem(item);
-//     } else {
-//         childItem = new QTreeWidgetItem(treeWidget);
-//     }
-//     childItem->setData(0, Qt::UserRole, tagName);
-//     return childItem;
-// }
-
 bool AppHandler::hasTclCode()
 {
   return !tcl_code.isEmpty();
@@ -171,6 +187,16 @@ bool AppHandler::hasStoryboard()
 }
 
 QString AppHandler::getStoryboard()
+{
+  return "";
+}
+
+bool AppHandler::hasOptions()
+{
+  return false;
+}
+
+QString AppHandler::getOptions()
 {
   return "";
 }

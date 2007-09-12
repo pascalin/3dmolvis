@@ -25,15 +25,27 @@
 
 VmdMainWindow::VmdMainWindow()
 {
-  splitter = new QSplitter();
+  QSplitter *splitter1, *splitter2;
+
+  splitter1 = new QSplitter(Qt::Vertical);
+  splitter2 = new QSplitter(Qt::Horizontal);
+
   tree = new QTreeWidget();
+  obox = new OptionBox();
   main_widget = new QWidget();
 
-  splitter->addWidget(tree);
-  splitter->addWidget(main_widget);
-  setCentralWidget(splitter);
+  splitter2->addWidget(tree);
+  splitter2->addWidget(main_widget);
+
+  splitter1->addWidget(splitter2);
+  splitter1->addWidget(obox);
+
+  setCentralWidget(splitter1);
   
+  obox->setHidden(true);
+
   tree->setHeaderLabel("Contenido");
+  tree->setHidden(true);
   QObject::connect(tree, SIGNAL(itemActivated(QTreeWidgetItem *, int)),
 		   this, SLOT(requestAction(QTreeWidgetItem *, int)));
 
@@ -141,9 +153,13 @@ void VmdMainWindow::open()
         return;
 
     tree->clear();
+    obox->clear();
     newVmdProcess();
 
-    AppHandler handler(tree);
+    QObject::connect(obox, SIGNAL(commandRaised(QString)),
+		     vmd_process, SLOT(sendCommand(QString)));
+
+    AppHandler handler(tree, obox);
     QXmlSimpleReader reader;
     reader.setContentHandler(&handler);
     reader.setErrorHandler(&handler);
@@ -163,13 +179,21 @@ void VmdMainWindow::open()
 
     if (handler.hasTclCode())
       setTclCode(handler.getTclCode());
+
     if (handler.hasControls())
       setWidgets(handler.getControlList());
+
     vmd_process->startProcess();
+
     if (tree->topLevelItemCount() > 0)
       tree->setHidden(false);
     else
       tree->setHidden(true);
+
+    if (obox->count() > 0)
+      obox->setHidden(false);
+    else
+      obox->setHidden(true);
 }
 
 void VmdMainWindow::about()
@@ -202,9 +226,9 @@ void VmdMainWindow::createActions()
 //   newAct->setStatusTip(tr("Create a new file"));
 //   connect(newAct, SIGNAL(triggered()), this, SLOT(newFile()));
 
-  openAction = new QAction(QIcon(":/icons/default/icons/folder.png"), tr("&Open..."), this);
+  openAction = new QAction(QIcon(":/icons/default/icons/folder.png"), "&Abrir...", this);
   openAction->setShortcut(tr("Ctrl+O"));
-  openAction->setStatusTip(tr("Open an existing file"));
+  openAction->setStatusTip("Abre un archivo existente");
   connect(openAction, SIGNAL(triggered()), this, SLOT(open()));
 
 //   saveAct = new QAction(QIcon(":/images/save.png"), tr("&Save"), this);
@@ -216,9 +240,9 @@ void VmdMainWindow::createActions()
 //   saveAsAct->setStatusTip(tr("Save the document under a new name"));
 //   connect(saveAsAct, SIGNAL(triggered()), this, SLOT(saveAs()));
 
-  exitAction = new QAction(tr("E&xit"), this);
+  exitAction = new QAction("Sa&lir", this);
   exitAction->setShortcut(tr("Ctrl+Q"));
-  exitAction->setStatusTip(tr("Exit the application"));
+  exitAction->setStatusTip("Sale de VMDGui");
   connect(exitAction, SIGNAL(triggered()), this, SLOT(close()));
 
 //   cutAct = new QAction(QIcon(":/images/cut.png"), tr("Cu&t"), this);
@@ -239,12 +263,12 @@ void VmdMainWindow::createActions()
 // 			    "selection"));
 //   connect(pasteAct, SIGNAL(triggered()), textEdit, SLOT(paste()));
 
-  aboutAction = new QAction(tr("&About"), this);
-  aboutAction->setStatusTip(tr("Show the application's About box"));
+  aboutAction = new QAction("&Acerca de...", this);
+  aboutAction->setStatusTip("Muestra informacion sobre VMDGui");
   connect(aboutAction, SIGNAL(triggered()), this, SLOT(about()));
 
-  aboutQtAction = new QAction(tr("About &Qt"), this);
-  aboutQtAction->setStatusTip(tr("Show the Qt library's About box"));
+  aboutQtAction = new QAction("Acerca de &Qt", this);
+  aboutQtAction->setStatusTip("Muestra la informacion sobre la biblioteca Qt");
   connect(aboutQtAction, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
 
 //   cutAct->setEnabled(false);
@@ -257,7 +281,7 @@ void VmdMainWindow::createActions()
 
 void VmdMainWindow::createMenus()
 {
-  fileMenu = menuBar()->addMenu(tr("&File"));
+  fileMenu = menuBar()->addMenu("&Archivo");
 //   fileMenu->addAction(newAct);
   fileMenu->addAction(openAction);
 //   fileMenu->addAction(saveAct);
@@ -272,7 +296,7 @@ void VmdMainWindow::createMenus()
 
   menuBar()->addSeparator();
 
-  helpMenu = menuBar()->addMenu(tr("&Help"));
+  helpMenu = menuBar()->addMenu("A&yuda");
   helpMenu->addAction(aboutAction);
   helpMenu->addAction(aboutQtAction);
 }
@@ -292,5 +316,5 @@ void VmdMainWindow::createToolBars()
 
 void VmdMainWindow::createStatusBar()
 {
-  statusBar()->showMessage(tr("Ready"));
+  statusBar()->showMessage("Listo");
 }

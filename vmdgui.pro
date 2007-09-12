@@ -10,6 +10,7 @@ INCLUDEPATH += . lib lib/widgets
 # Input
 HEADERS += lib/AppHandler.h \
            lib/CommandProcess.h \
+           lib/OptionBox.h \
            lib/VmdMainWindow.h \
            lib/Widgets.h \
            lib/widgets/CommandLineWidget.h \
@@ -21,6 +22,7 @@ FORMS += lib/widgets/CommandLineWidget.ui \
 SOURCES += main.cpp \
            lib/AppHandler.cpp \
            lib/CommandProcess.cpp \
+           lib/OptionBox.cpp \
            lib/VmdMainWindow.cpp \
            lib/Widgets.cpp \
            lib/widgets/CommandLineWidget.cpp \
