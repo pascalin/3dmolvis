@@ -25,6 +25,7 @@
 #include <QStringList>
 #include <QStatusBar>
 #include <QVBoxLayout>
+#include <QHBoxLayout>
 #include <QMainWindow>
 #include <QFile>
 #include <iostream>
