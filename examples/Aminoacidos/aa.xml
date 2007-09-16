@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+
+<application xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://vmdgui.sourceforge.net">
+  <rdf:Description>
+    <dc:title>Aplicación simple</dc:title>
+    <dc:publisher>David Suárez Pascal</dc:publisher>
+  </rdf:Description>
+  <controls>
+    <control name="Rotation"/>
+    <control name="CommandLine"/>
+    <control name="Output"/>
+  </controls>
+  <options>
+    <optgroup title="Anatomía de un aminoácido">
+      <option name="Carbono Alfa" command="carep" />
+      <option name="Grupo Carboxilo (COO-)" command="coorep"/>
+      <option name="Grupo Amino (NH3+)" command="nh3rep"/>
+      <option name="Grupo R (Cadena Lateral)" command="siderep"/>
+      <option name="Grupo H (Hidrógeno)" command="harep"/>
+      <option name="Azufre" command="sdrep"/>
+    </optgroup>
+  </options>
+  <tclcode>
+# Display settings
+display eyesep       0.065000
+display focallength  2.000000
+display height       6.000000
+display distance     -2.000000
+display projection   Orthographic
+display nearclip set 0.010000
+display farclip  set 10.000000
+display depthcue   off
+display cuestart   0.500000
+display cueend     10.000000
+display cuedensity 0.400000
+display cuemode    Exp2
+axes location off
+menu main on
+color scale method RGB
+
+cd examples/Aminoacidos/
+mol new ./met.pdb
+
+mol delrep 0 top
+mol representation CPK 1.00 0.7000 20.00 20.00
+mol color Name
+mol selection {all}
+mol material Opaque
+mol addrep top
+
+mol color Throb
+mol selection {name CA}
+mol representation Dotted 0.35000 40.0
+mol material Opaque
+mol addrep top
+mol modstyle 1 top off
+
+mol color ColorID 1
+mol selection {name C O OXT}
+mol representation CPK 1.1 0.8 20.0 20.0
+mol material Opaque
+mol addrep top
+mol modstyle 2 top off
+
+mol color ColorID 23
+mol selection {name N HT1 HT2 HT3}
+mol representation CPK 1.1 0.8 20.0 20.0
+mol material Opaque
+mol addrep top
+mol modstyle 3 top off
+
+mol color ColorID 18
+mol selection {sidechain}
+mol representation CPK 1.1 0.8 20.0 20.0
+mol material Opaque
+mol addrep top
+mol modstyle 4 top off
+
+mol color ColorID 8
+mol selection {name HA}
+mol representation CPK 1.1 0.8 20.0 20.0
+mol material Opaque
+mol addrep top
+mol modstyle 5 top off
+
+mol color ColorID 32
+mol selection {name SD}
+mol representation CPK 1.2 0.9 20.0 20.0
+mol material Opaque
+mol addrep top
+mol modstyle 6 top off
+
+	proc rotaX { rotx } {
+		global ::Aminoacidos::varx
+		if { $varx == $rotx  } {
+			puts "ZERO...$varx $rotx" }
+		if { $varx &lt; $rotx  } {
+			set varx $rotx
+			rotate x by 2  }
+		if { $varx &gt; $rotx  } {
+			set varx $rotx
+			rotate x by -2 }
+	}
+	proc rotaY { roty } {
+		global ::Aminoacidos::vary
+		if { $vary == $roty  } {
+			puts "ZERO...$vary $roty" }
+		if { $vary &lt; $roty  } {
+			set vary $roty
+			rotate y by 2  }
+		if { $vary &gt; $roty  } {
+			set vary $roty
+			rotate y by -2 }
+	}
+	proc rotaZ { rotx } {
+		global ::Aminoacidos::varx
+		if { $varx == $rotx  } {
+			puts "ZERO...$varx $rotx" }
+		if { $varx &lt; $rotx  } {
+			set varx $rotx
+			rotate z by 2  }
+		if { $varx &gt; $rotx  } {
+			set varx $rotx
+			rotate z by -2 }
+	}
+	proc autorotY { } {
+		global rockY
+		if { $rockY == 1 } { rock y by 0.15 }
+		if { $rockY == 0 } { rock off     } }
+
+	proc resize { zoomv }	{ scale to  [expr 0.01 * $zoomv] }
+
+  #####################
+  ## REPRESENTATION PROCS
+  #####################
+
+	proc carep {cav} {
+#		global cav
+		if { $cav == 1 } { mol showrep top 1 on }
+		if { $cav == 0 } { mol showrep top 1 off } }
+
+	proc coorep {coov} {
+#		global coov
+		if { $coov == 1 } { mol showrep top 2 on }
+		if { $coov == 0 } { mol showrep top 2 off } }
+
+	proc nh3rep {nh3v} {
+#		global nh3v
+		if { $nh3v == 1 } { mol showrep top 3 on }
+		if { $nh3v == 0 } { mol showrep top 3 off } }
+
+	proc siderep {sidev} {
+#		global sidev
+		if { $sidev == 1 } { mol showrep top 4 on }
+		if { $sidev == 0 } { mol showrep top 4 off } }
+
+	proc harep {hav} {
+#		global hav
+		if { $hav == 1 } { mol showrep top 5 on }
+		if { $hav == 0 } { mol showrep top 5 off } }
+
+	proc sdrep {sdrep} {
+#		global sdv
+		if { $sdv == 1 } { mol showrep top 6 on }
+		if { $sdv == 0 } { mol showrep top 6 off } }
+
+
+#source ./aa1.tcl
+
+#aminoacidos
+display resetview
+  </tclcode>
+</application>

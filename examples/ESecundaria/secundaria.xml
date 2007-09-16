@@ -1,0 +1,303 @@
+<?xml version="1.0"?>
+
+<application xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://vmdgui.sourceforge.net">
+  <rdf:Description>
+    <dc:title>Estructura secundaria</dc:title>
+    <dc:publisher>Luis Rosales</dc:publisher>
+  </rdf:Description>
+  <controls>
+    <control name="Rotation"/>
+    <control name="CommandLine"/>
+    <control name="Output"/>
+  </controls>
+  <options>
+    <optgroup title="Representaciones simplificadas">
+      <option name="Todos los átomos (esferas y bastones)" command="allrep"/>
+      <option name="Cadena principal (listón circular)" command="licrep"/>
+      <option name="Cadena principal (representación esquemática)" command="carrep"/>
+    </optgroup>
+    <optgroup title="Estructura secundaria: Hélice Alfa">
+      <option name="Resaltar SS" command="rssrep"/>
+      <option name="Representación esquemática" command="calrep"/>
+      <option name="Esqueleto" command="cpbrep"/>
+      <option name="Cadenas laterales" command="cpsrep"/>
+      <option name="Puentes de hidrógeno" command="hbrep"/>
+      <option name="Átomos entre puentes de hidrógeno" command="hbarep"/>
+      <option name="Plano de enlace peptídico" command="peprep"/>
+    </optgroup>
+    <optgroup title="Estructura secundaria: Hebras Beta">
+      <option name="Resaltar SS" command="rssrep"/>
+      <option name="Representación esquemática" command="bcalrep"/>
+      <option name="Esqueleto" command="bcpbrep"/>
+      <option name="Cadenas laterales" command="bcpsrep"/>
+      <option name="Puentes de hidrógeno" command="bhbrep"/>
+      <option name="Plano de enlace peptídico" command="bpeprep"/>
+    </optgroup>
+  </options>
+  <tclcode>
+# Display settings
+display eyesep       0.065000
+display focallength  2.000000
+display height       6.000000
+display distance     -2.000000
+display projection   Orthographic
+display nearclip set 0.010000
+display farclip  set 10.000000
+display depthcue   off
+display cuestart   0.500000
+display cueend     10.000000
+display cuedensity 0.400000
+display cuemode    Exp2
+axes location off
+menu main on
+color scale method RGB
+
+cd ./examples/ESecundaria
+mol new ./Ovalbumin.pdb type pdb first 0 last -1 step 1 filebonds 1 autobonds 1 waitfor all
+mol addfile ./Ovalbumin.psf type psf first 0 last -1 step 1 filebonds 1 autobonds 1 waitfor all
+
+mol delrep 0 top
+
+mol representation CPK 1.00 0.7000 12.00 12.00
+mol color Name
+mol selection {all}
+mol material Opaque
+mol addrep top
+
+mol representation NewRibbons 1.4 20.0 1.0 0
+mol color Index
+mol selection {all}
+mol material Opaque
+mol addrep top
+mol showrep top 1 off
+
+mol representation NewCartoon 0.3 20.0 4.1 0
+mol color Structure
+mol selection {all}
+mol material Opaque
+mol addrep top
+mol showrep top 2 off
+
+mol representation CPK 1.00 0.70 12.00 12.00
+mol color Name
+mol selection { resid 26 to 45 and (name CA N C O HA HN) }
+mol material Opaque
+mol addrep top
+mol showrep top 3 off
+mol representation CPK 1.00 0.70 12.00 12.00
+mol color Name
+mol selection { resid 26 to 45 and noh and (name CA or (not name C N O HA HN)) }
+mol material Opaque
+mol addrep top
+mol showrep top 4 off
+
+mol representation HBonds 3.7 40.0 4.00
+mol color Index
+mol selection { resid 26 to 45 and (name CA N C O HA HN) }
+mol material Opaque
+mol addrep top
+mol showrep top 5 off
+
+mol representation CPK 1.1 0.8 20.0 20.0
+mol color Throb
+mol selection { index 138 139 140 142 158 160 162 170 172 174 186 188 189 }
+mol material Opaque
+mol addrep top
+mol showrep top 6 off
+
+mol representation NewCartoon 0.3 20.0 4.1 0
+mol color Structure
+mol selection { resid 26 to 45 }
+mol material Opaque
+mol addrep top
+mol showrep top 7 off
+
+mol representation CPK 1.00 0.70 12.00 12.00
+mol color Name
+mol selection { resid 119 to 132 194 to 206 347 to 358 and (name CA N C O HA HN) }
+mol material Opaque
+mol addrep top
+mol showrep top 8 off
+mol representation CPK 1.00 0.70 12.00 12.00
+mol color Name
+mol selection { resid 119 to 132 194 to 206 347 to 358 and noh and (name CA or (not name C N O HA HN)) }
+mol material Opaque
+mol addrep top
+mol showrep top 9 off
+
+mol representation HBonds 3.1 54.0 4.00
+mol color Index
+mol selection { resid 119 to 132 194 to 206 347 to 358 and (name CA N C O HA HN) }
+mol material Opaque
+mol addrep top
+mol showrep top 10 off
+
+mol representation NewCartoon 0.3 20.0 4.1 0
+mol color Structure
+mol selection { resid 119 to 132 194 to 206 347 to 358 }
+mol material Opaque
+mol addrep top
+mol showrep top 11 off
+
+
+proc drawplanes {molid resin resfin} {
+	for {set i $resin} {$i &lt; $resfin} {incr i} {
+				set o [expr $i+1]
+		set seltext1 "name CA and resid $i"
+		set seltext2 "name O  and resid $i"
+		set seltext3 "name CA and resid $o"
+		set seltext4 "name HN and resid $o"
+		  set ac [atomselect $molid $seltext1]
+		  set bc [atomselect $molid $seltext2]
+		  set cc [atomselect $molid $seltext3]
+		  set dc [atomselect $molid $seltext4]
+		  lassign [$ac get {x y z}] coord1
+		  lassign [$bc get {x y z}] coord2
+		  lassign [$cc get {x y z}] coord3
+		  lassign [$dc get {x y z}] coord4
+  graphics $molid triangle $coord1 $coord2 $coord3
+  graphics $molid triangle $coord1 $coord3 $coord4
+	}
+}
+
+	proc rotaX { rotx } {
+		global ::EstrucSecnd::varx
+		if { $varx == $rotx  } {
+			puts "ZERO...$varx $rotx" }
+		if { $varx &lt; $rotx  } {
+			set varx $rotx
+			rotate x by 2  }
+		if { $varx &gt; $rotx  } {
+			set varx $rotx
+			rotate x by -2 }
+	}
+	proc rotaY { roty } {
+		global ::EstrucSecnd::vary
+		if { $vary == $roty  } {
+			puts "ZERO...$vary $roty" }
+		if { $vary &lt; $roty  } {
+			set vary $roty
+			rotate y by 2  }
+		if { $vary &gt; $roty  } {
+			set vary $roty
+			rotate y by -2 }
+	}
+	proc rotaZ { rotx } {
+		global ::EstrucSecnd::varx
+		if { $varx == $rotx  } {
+			puts "ZERO...$varx $rotx" }
+		if { $varx &lt; $rotx  } {
+			set varx $rotx
+			rotate z by 2  }
+		if { $varx &gt; $rotx  } {
+			set varx $rotx
+			rotate z by -2 }
+	}
+	proc autorotY { } {
+		global rockY
+		if { $rockY == 1 } { rock y by 0.15 }
+		if { $rockY == 0 } { rock off     } }
+
+	proc resize { zoomv }	{ scale to  [expr 0.01 * $zoomv] }
+
+  #####################
+  ## REPRESENTATION PROCS
+  #####################
+	proc allrep {allv} {
+#		global allv
+		if { $allv == 1 } { mol showrep top 0 on }
+		if { $allv == 0 } { mol showrep top 0 off } }
+
+	proc licrep {licv} {
+#		global licv
+		if { $licv == 1 } { mol showrep top 1 on }
+		if { $licv == 0 } { mol showrep top 1 off } }
+
+	proc carrep {carv} {
+#		global carv
+		if { $carv == 1 } { mol showrep top 2 on }
+		if { $carv == 0 } { mol showrep top 2 off } }
+		
+	proc cpbrep {cpbv} {
+#		global cpbv
+		if { $cpbv == 1 } { mol showrep top 3 on }
+		if { $cpbv == 0 } { mol showrep top 3 off } }
+
+	proc cpsrep {cpsv} {
+#		global cpsv
+		if { $cpsv == 1 } { mol showrep top 4 on }
+		if { $cpsv == 0 } { mol showrep top 4 off } }
+
+	proc hbrep {hbv} {
+#		global hbv
+		if { $hbv == 1 } { mol showrep top 5 on }
+		if { $hbv == 0 } { mol showrep top 5 off } }
+
+	proc hbarep {hbav} {
+#		global hbav
+		if { $hbav == 1 } { mol showrep top 6 on }
+		if { $hbav == 0 } { mol showrep top 6 off } }
+
+	proc calrep {calv} {
+#		global calv
+		if { $calv == 1 } { mol showrep top 7 on }
+		if { $calv == 0 } { mol showrep top 7 off } }
+
+	proc rssrep {rssv} {
+#		global rssv
+		if { $rssv == 1 } { mol modmaterial 0 top Glass1
+		 					mol modmaterial 1 top Glass1
+		 					mol modmaterial 2 top Glass1 }
+		if { $rssv == 0 } { mol modmaterial 0 top Opaque
+		 					mol modmaterial 1 top Opaque
+		 					mol modmaterial 2 top Opaque } }
+		 					
+	proc peprep {pepv} {
+#		global pepv
+		if { $pepv == 1 } { graphics top color white
+							graphics top materials on
+							graphics top material Transparent	
+							drawplanes top 26 45 }
+		if { $pepv == 0 } { graphics top delete all } }
+
+
+	proc bcpbrep {bcpbv} {
+#		global bcpbv
+		if { $bcpbv == 1 } { mol showrep top 8 on }
+		if { $bcpbv == 0 } { mol showrep top 8 off } }
+
+	proc bcpsrep {bcpsv} {
+#		global bcpsv
+		if { $bcpsv == 1 } { mol showrep top 9 on }
+		if { $bcpsv == 0 } { mol showrep top 9 off } }
+
+	proc bhbrep {bhbv} {
+#		global bhbv
+		if { $bhbv == 1 } { mol showrep top 10 on }
+		if { $bhbv == 0 } { mol showrep top 10 off } }
+
+	proc bcalrep {bcalv} {
+#		global bcalv
+		if { $bcalv == 1 } { mol showrep top 11 on }
+		if { $bcalv == 0 } { mol showrep top 11 off } }
+
+		 					
+	proc bpeprep {bpepv} {
+#		global bpepv
+		if { $bpepv == 1 } { graphics top color white
+							graphics top materials on
+							graphics top material Transparent	
+							drawplanes top 119 132
+							drawplanes top 194 206
+							drawplanes top 347 358 }
+		if { $bpepv == 0 } { graphics top delete all } }
+
+
+
+
+#source ./ss1.tcl
+
+#estrucsecnd
+display resetview
+  </tclcode>
+</application>
