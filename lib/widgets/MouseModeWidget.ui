@@ -1,0 +1,51 @@
+<ui version="4.0" >
+ <class>MouseModeWidget</class>
+ <widget class="QWidget" name="MouseModeWidget" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>127</width>
+    <height>123</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" >
+   <item>
+    <widget class="QLabel" name="label" >
+     <property name="text" >
+      <string>Función del ratón</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QRadioButton" name="radio_rotate" >
+     <property name="text" >
+      <string>&amp;Rotar</string>
+     </property>
+     <property name="checked" >
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QRadioButton" name="radio_scale" >
+     <property name="text" >
+      <string>E&amp;scalar</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QRadioButton" name="radio_translate" >
+     <property name="text" >
+      <string>&amp;Transladar</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

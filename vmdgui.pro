@@ -15,10 +15,16 @@ HEADERS += lib/AppHandler.h \
            lib/Widgets.h \
            lib/widgets/CommandLineWidget.h \
            lib/widgets/OutputWidget.h \
-           lib/widgets/RotationWidget.h
+           lib/widgets/RotationWidget.h \
+           lib/widgets/RotaWidget.h \
+           lib/widgets/ScaleWidget.h \
+           lib/widgets/MouseModeWidget.h
 FORMS += lib/widgets/CommandLineWidget.ui \
          lib/widgets/OutputWidget.ui \
-         lib/widgets/RotationWidget.ui
+         lib/widgets/RotationWidget.ui \
+         lib/widgets/RotaWidget.ui \
+         lib/widgets/ScaleWidget.ui \
+         lib/widgets/MouseModeWidget.ui
 SOURCES += main.cpp \
            lib/AppHandler.cpp \
            lib/CommandProcess.cpp \
@@ -27,7 +33,10 @@ SOURCES += main.cpp \
            lib/Widgets.cpp \
            lib/widgets/CommandLineWidget.cpp \
            lib/widgets/OutputWidget.cpp \
-           lib/widgets/RotationWidget.cpp
+           lib/widgets/RotationWidget.cpp \
+           lib/widgets/RotaWidget.cpp \
+           lib/widgets/ScaleWidget.cpp \
+           lib/widgets/MouseModeWidget.cpp
 RESOURCES += resource/default.qrc
 
 QT += xml

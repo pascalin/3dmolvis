@@ -30,6 +30,7 @@ WidgetManager::WidgetManager()
   widget_list <<  "Rotation";
   widget_list <<  "Scale";
   widget_list <<  "Rota";
+  widget_list <<  "MouseMode";
 }
 
 
@@ -53,6 +54,9 @@ QWidget *WidgetManager::createWidgetByName(QString name)
       break;
     case 4:
       widget = new RotaWidget();
+      break;
+    case 5:
+      widget = new MouseModeWidget();
       break;
     }
   return widget;

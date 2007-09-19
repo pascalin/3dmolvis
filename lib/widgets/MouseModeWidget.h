@@ -1,4 +1,4 @@
-// File : Widgets.h
+// File : MouseModeWidget.h
 
 
 //	Copyright (C) 2007 David Suarez Pascal
@@ -21,19 +21,26 @@
 //
 
 
-#include <QStringList>
-#include "widgets/CommandLineWidget.h"
-#include "widgets/OutputWidget.h"
-#include "widgets/RotationWidget.h"
-#include "widgets/ScaleWidget.h"
-#include "widgets/RotaWidget.h"
-#include "widgets/MouseModeWidget.h"
+#ifndef MOUSEMODEWIDGET_H
+#define MOUSEMODEWIDGET_H
 
+#include <QWidget>
+#include "ui_MouseModeWidget.h"
 
-class WidgetManager
+class MouseModeWidget : public QWidget, public Ui::MouseModeWidget
 {
-  QStringList widget_list;// This list contains names of all widget classes
+    Q_OBJECT
 public:
-  WidgetManager();
-  QWidget *createWidgetByName(QString);// This method returns a widget of the specified type
+    MouseModeWidget(QWidget *parent = 0);
+private slots:
+  void enableRotateMode();
+  void enableScaleMode();
+  void enableTranslateMode();
+public slots:
+  void processOutput(QString) {}
+  void sendInitCode() { emit initCodeRequested(""); }
+signals:
+  void commandRaised(QString comm);
+  void initCodeRequested(QString code);
 };
+#endif
