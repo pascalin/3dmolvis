@@ -12,9 +12,9 @@
   </controls>
   <options>
     <optgroup title="Representaciones simplificadas">
-      <option name="Todos los átomos (esferas y bastones)" command="allrep"/>
-      <option name="Cadena principal (listón circular)" command="licrep"/>
-      <option name="Cadena principal (representación esquemática)" command="carrep"/>
+      <option name="Todos los átomos" command="allrep"/>
+      <option name="Cadena principal (tubular)" command="licrep"/>
+      <option name="Cadena principal (esquemática)" command="carrep"/>
     </optgroup>
     <optgroup title="Estructura secundaria: Hélice Alfa">
       <option name="Resaltar SS" command="rssrep"/>
@@ -36,12 +36,13 @@
   </options>
   <tclcode>
 # Display settings
+menu main off
 display eyesep       0.065000
 display focallength  2.000000
 display height       6.000000
 display distance     -2.000000
 display projection   Orthographic
-display nearclip set 0.010000
+display nearclip set 0.0000010
 display farclip  set 10.000000
 display depthcue   off
 display cuestart   0.500000
@@ -49,7 +50,6 @@ display cueend     10.000000
 display cuedensity 0.400000
 display cuemode    Exp2
 axes location off
-menu main on
 color scale method RGB
 
 cd ./examples/ESecundaria
@@ -92,7 +92,7 @@ mol addrep top
 mol showrep top 4 off
 
 mol representation HBonds 3.7 40.0 4.00
-mol color Index
+mol color ColorID 4
 mol selection { resid 26 to 45 and (name CA N C O HA HN) }
 mol material Opaque
 mol addrep top
@@ -126,7 +126,7 @@ mol addrep top
 mol showrep top 9 off
 
 mol representation HBonds 3.1 54.0 4.00
-mol color Index
+mol color ColorID 4
 mol selection { resid 119 to 132 194 to 206 347 to 358 and (name CA N C O HA HN) }
 mol material Opaque
 mol addrep top
@@ -138,7 +138,6 @@ mol selection { resid 119 to 132 194 to 206 347 to 358 }
 mol material Opaque
 mol addrep top
 mol showrep top 11 off
-
 
 proc drawplanes {molid resin resfin} {
 	for {set i $resin} {$i &lt; $resfin} {incr i} {
@@ -160,91 +159,42 @@ proc drawplanes {molid resin resfin} {
 	}
 }
 
-	proc rotaX { rotx } {
-		global ::EstrucSecnd::varx
-		if { $varx == $rotx  } {
-			puts "ZERO...$varx $rotx" }
-		if { $varx &lt; $rotx  } {
-			set varx $rotx
-			rotate x by 2  }
-		if { $varx &gt; $rotx  } {
-			set varx $rotx
-			rotate x by -2 }
-	}
-	proc rotaY { roty } {
-		global ::EstrucSecnd::vary
-		if { $vary == $roty  } {
-			puts "ZERO...$vary $roty" }
-		if { $vary &lt; $roty  } {
-			set vary $roty
-			rotate y by 2  }
-		if { $vary &gt; $roty  } {
-			set vary $roty
-			rotate y by -2 }
-	}
-	proc rotaZ { rotx } {
-		global ::EstrucSecnd::varx
-		if { $varx == $rotx  } {
-			puts "ZERO...$varx $rotx" }
-		if { $varx &lt; $rotx  } {
-			set varx $rotx
-			rotate z by 2  }
-		if { $varx &gt; $rotx  } {
-			set varx $rotx
-			rotate z by -2 }
-	}
-	proc autorotY { } {
-		global rockY
-		if { $rockY == 1 } { rock y by 0.15 }
-		if { $rockY == 0 } { rock off     } }
-
-	proc resize { zoomv }	{ scale to  [expr 0.01 * $zoomv] }
-
   #####################
   ## REPRESENTATION PROCS
   #####################
 	proc allrep {allv} {
-#		global allv
 		if { $allv == 1 } { mol showrep top 0 on }
 		if { $allv == 0 } { mol showrep top 0 off } }
 
 	proc licrep {licv} {
-#		global licv
 		if { $licv == 1 } { mol showrep top 1 on }
 		if { $licv == 0 } { mol showrep top 1 off } }
 
 	proc carrep {carv} {
-#		global carv
 		if { $carv == 1 } { mol showrep top 2 on }
 		if { $carv == 0 } { mol showrep top 2 off } }
 		
 	proc cpbrep {cpbv} {
-#		global cpbv
 		if { $cpbv == 1 } { mol showrep top 3 on }
 		if { $cpbv == 0 } { mol showrep top 3 off } }
 
 	proc cpsrep {cpsv} {
-#		global cpsv
 		if { $cpsv == 1 } { mol showrep top 4 on }
 		if { $cpsv == 0 } { mol showrep top 4 off } }
 
 	proc hbrep {hbv} {
-#		global hbv
 		if { $hbv == 1 } { mol showrep top 5 on }
 		if { $hbv == 0 } { mol showrep top 5 off } }
 
 	proc hbarep {hbav} {
-#		global hbav
 		if { $hbav == 1 } { mol showrep top 6 on }
 		if { $hbav == 0 } { mol showrep top 6 off } }
 
 	proc calrep {calv} {
-#		global calv
 		if { $calv == 1 } { mol showrep top 7 on }
 		if { $calv == 0 } { mol showrep top 7 off } }
 
 	proc rssrep {rssv} {
-#		global rssv
 		if { $rssv == 1 } { mol modmaterial 0 top Glass1
 		 					mol modmaterial 1 top Glass1
 		 					mol modmaterial 2 top Glass1 }
@@ -253,7 +203,6 @@ proc drawplanes {molid resin resfin} {
 		 					mol modmaterial 2 top Opaque } }
 		 					
 	proc peprep {pepv} {
-#		global pepv
 		if { $pepv == 1 } { graphics top color white
 							graphics top materials on
 							graphics top material Transparent	
@@ -262,28 +211,23 @@ proc drawplanes {molid resin resfin} {
 
 
 	proc bcpbrep {bcpbv} {
-#		global bcpbv
 		if { $bcpbv == 1 } { mol showrep top 8 on }
 		if { $bcpbv == 0 } { mol showrep top 8 off } }
 
 	proc bcpsrep {bcpsv} {
-#		global bcpsv
 		if { $bcpsv == 1 } { mol showrep top 9 on }
 		if { $bcpsv == 0 } { mol showrep top 9 off } }
 
 	proc bhbrep {bhbv} {
-#		global bhbv
 		if { $bhbv == 1 } { mol showrep top 10 on }
 		if { $bhbv == 0 } { mol showrep top 10 off } }
 
 	proc bcalrep {bcalv} {
-#		global bcalv
 		if { $bcalv == 1 } { mol showrep top 11 on }
 		if { $bcalv == 0 } { mol showrep top 11 off } }
 
 		 					
 	proc bpeprep {bpepv} {
-#		global bpepv
 		if { $bpepv == 1 } { graphics top color white
 							graphics top materials on
 							graphics top material Transparent	
