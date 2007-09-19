@@ -1,0 +1,101 @@
+<ui version="4.0" >
+ <class>ScaleWidget</class>
+ <widget class="QWidget" name="ScaleWidget" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>186</width>
+    <height>125</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" >
+   <item>
+    <widget class="QLabel" name="label" >
+     <property name="text" >
+      <string>Zoom</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QSlider" name="Slider" >
+     <property name="minimum" >
+      <number>-20</number>
+     </property>
+     <property name="maximum" >
+      <number>99</number>
+     </property>
+     <property name="sliderPosition" >
+      <number>0</number>
+     </property>
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" >
+     <item>
+      <widget class="QPushButton" name="pushButton_dec" >
+       <property name="text" >
+        <string>&amp;Decrementa</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_inc" >
+       <property name="text" >
+        <string>&amp;Incrementa</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QPushButton" name="pushButton_res" >
+     <property name="text" >
+      <string>&amp;Reset</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>pushButton_inc</sender>
+   <signal>clicked()</signal>
+   <receiver>Slider</receiver>
+   <slot>addStep()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>148</x>
+     <y>57</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>73</x>
+     <y>15</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_dec</sender>
+   <signal>clicked()</signal>
+   <receiver>Slider</receiver>
+   <slot>subtractStep()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>89</x>
+     <y>57</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>134</x>
+     <y>16</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

@@ -24,6 +24,9 @@
 #include "widgets/CommandLineWidget.h"
 #include "widgets/OutputWidget.h"
 #include "widgets/RotationWidget.h"
+#include "widgets/ScaleWidget.h"
+#include "widgets/RotaWidget.h"
+
 
 class WidgetManager
 {

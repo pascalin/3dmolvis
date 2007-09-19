@@ -1,7 +1,7 @@
-// File : Widgets.cpp
+// File : RotaWidget.h
 
 
-//	Copyright (C) 2007 David Suarez Pascal
+//	Copyright (C) 2007 Natalia Pérez Escutia
 //
 //	This file is part of VMDGui
 //
@@ -21,39 +21,28 @@
 //
 
 
-#include "Widgets.h"
+#ifndef ROTAWIDGET_H
+#define ROTAWIDGET_H
 
-WidgetManager::WidgetManager()
+#include <QWidget>
+#include <sstream>
+#include "ui_RotaWidget.h"
+
+class RotaWidget : public QWidget, public Ui::RotaWidget
 {
-  widget_list << "CommandLine";
-  widget_list <<  "Output";
-  widget_list <<  "Rotation";
-  widget_list <<  "Scale";
-  widget_list <<  "Rota";
-}
-
-
-QWidget *WidgetManager::createWidgetByName(QString name)
-{
-  int index = widget_list.indexOf(name);
-  QWidget* widget=NULL;
-  switch (index)
-    {
-    case 0:
-      widget = new CommandLineWidget();
-      break;
-    case 1:
-      widget = new OutputWidget();
-      break;
-    case 2:
-      widget = new RotationWidget();
-      break;
-    case 3:
-      widget = new ScaleWidget();
-      break;
-    case 4:
-      widget = new RotaWidget();
-      break;
-    }
-  return widget;
-}
+    Q_OBJECT
+private:
+    
+public:
+    RotaWidget(QWidget *parent = 0);
+public slots:
+  void reset();
+  void rotaon();
+  void rotaoff();
+  void processOutput(QString) {}
+  void sendInitCode() { emit initCodeRequested(""); }
+signals:
+  void commandRaised(QString comm);
+  void initCodeRequested(QString code);
+};
+#endif
