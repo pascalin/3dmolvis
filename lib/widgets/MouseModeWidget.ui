@@ -22,6 +22,12 @@
    </item>
    <item>
     <widget class="QRadioButton" name="radio_rotate" >
+     <property name="toolTip" >
+      <string/>
+     </property>
+     <property name="statusTip" >
+      <string>Permite rotar los objetos con el ratón</string>
+     </property>
      <property name="text" >
       <string>&amp;Rotar</string>
      </property>
@@ -32,6 +38,9 @@
    </item>
    <item>
     <widget class="QRadioButton" name="radio_scale" >
+     <property name="statusTip" >
+      <string>Permite hacer cambios de escala con el ratón</string>
+     </property>
      <property name="text" >
       <string>E&amp;scalar</string>
      </property>
@@ -39,6 +48,9 @@
    </item>
    <item>
     <widget class="QRadioButton" name="radio_translate" >
+     <property name="statusTip" >
+      <string>Permite cambiar la posición de los objetos en pantalla</string>
+     </property>
      <property name="text" >
       <string>&amp;Transladar</string>
      </property>

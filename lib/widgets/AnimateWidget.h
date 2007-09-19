@@ -1,4 +1,4 @@
-// File : Widgets.h
+// File : AnimateWidget.h
 
 
 //	Copyright (C) 2007 David Suarez Pascal
@@ -21,20 +21,32 @@
 //
 
 
-#include <QStringList>
-#include "widgets/CommandLineWidget.h"
-#include "widgets/OutputWidget.h"
-#include "widgets/RotationWidget.h"
-#include "widgets/ScaleWidget.h"
-#include "widgets/RotaWidget.h"
-#include "widgets/MouseModeWidget.h"
-#include "widgets/AnimateWidget.h"
+#ifndef ANIMATEWIDGET_H
+#define ANIMATEWIDGET_H
 
+#include <QWidget>
+#include "ui_AnimateWidget.h"
 
-class WidgetManager
+class AnimateWidget : public QWidget, public Ui::AnimateWidget
 {
-  QStringList widget_list;// This list contains names of all widget classes
+    Q_OBJECT
 public:
-  WidgetManager();
-  QWidget *createWidgetByName(QString);// This method returns a widget of the specified type
+    AnimateWidget(QWidget *parent = 0);
+private:
+    bool fw_dir; // Indica si la direccion de reproduccion es hacia delante
+private slots:
+  void gotoStart();
+  void gotoEnd();
+  void setPause(bool);
+  void setRepeat(bool);
+  void reverse();
+  void forward();
+  void setSpeed(int);
+public slots:
+  void processOutput(QString) {}
+  void sendInitCode() { emit initCodeRequested("animate style once;animate goto start"); }
+signals:
+  void commandRaised(QString comm);
+  void initCodeRequested(QString code);
 };
+#endif
