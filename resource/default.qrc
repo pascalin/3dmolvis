@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/icons" >
+        <file>default.qrc</file>
         <file>default/icons/accept.png</file>
         <file>default/icons/add.png</file>
         <file>default/icons/anchor.png</file>

@@ -1,0 +1,291 @@
+#!/bin/csh
+set defaultvmddir="/usr/local/lib/vmd"
+set vmdbasename=vmd
+
+
+
+
+if ($?VMDDIR == "0") then
+  setenv VMDDIR "$defaultvmddir"
+endif
+
+if ($?MASTERVMDDIR == "0") then
+  setenv MASTERVMDDIR "$defaultvmddir"
+endif
+
+if ($?VMDDISPLAYDEVICE == "0") then
+  setenv VMDDISPLAYDEVICE win
+endif
+
+
+if ($?VMDSCRPOS == "0") then
+  setenv VMDSCRPOS "596 190"
+endif
+
+if ($?VMDSCRSIZE == "0") then
+  setenv VMDSCRSIZE "669 834"
+endif
+
+if ($?VMDSCRHEIGHT == "0") then
+  setenv VMDSCRHEIGHT 6.0
+endif
+
+if ($?VMDSCRDIST == "0") then
+  setenv VMDSCRDIST -2.0
+endif
+
+if ($?VMDTITLE == "0") then
+  setenv VMDTITLE on
+endif
+
+if ($?VMD_WINGEOM == "0") then
+  setenv VMD_WINGEOM "-geometry 80x11-0-0"
+endif
+
+
+setenv TCL_LIBRARY "$VMDDIR/scripts/tcl"
+
+if ($?PYTHONPATH == "0") then
+  setenv PYTHONPATH "$VMDDIR/scripts/python"
+else
+  setenv PYTHONPATH "$PYTHONPATH/:$VMDDIR/scripts/python"
+endif
+
+if ($?VMDBABELBIN == "0") then
+  foreach i ($path)
+    if (-x $i/babel) then
+        setenv VMDBABELBIN "$i/babel"
+        break
+    endif
+  end
+endif
+
+if ($?VMDBABELBIN == "0") then
+  if ($?BABEL_DIR) then
+    if (-x "$BABEL_DIR/babel") then
+      setenv VMDBABELBIN "$BABEL_DIR/babel"
+    endif
+  endif
+endif
+
+
+set VMDWEBHELPER=0
+set VMDRUNDEBUGGER=0
+@ parmcount = 0
+foreach i ( $* )
+  @ parmcount++
+  if ( "$argv[$parmcount]" == "-webhelper") then
+    set VMDWEBHELPER=1
+  endif
+
+  if ( "$argv[$parmcount]" == "-debug") then
+    set VMDRUNDEBUGGER=1
+  endif
+
+  if ( "$argv[$parmcount]" == "-node") then
+    @ parm = $parmcount + 1
+    if ( $parm <= $#argv ) then
+      setenv VMDSLAVENODE "$argv[$parm]"
+    endif
+    if ($?DISPLAY) then
+      unsetenv DISPLAY
+    endif
+  endif
+
+  if ( "$argv[$parmcount]" == "-h" || "$argv[$parmcount]" == "--help" ) then
+    if ($?DISPLAY) then
+      unsetenv DISPLAY
+    endif
+  endif
+
+  if ( "$argv[$parmcount]" == "-dispdev") then
+    @ parm = $parmcount + 1
+    if ( $parm <= $#argv ) then
+      if ( "$argv[$parm]" == "none" || "$argv[$parm]" == "text" ) then
+        if ($?VMDSPACEBALLPORT) then
+          unsetenv VMDSPACEBALLPORT
+        endif
+        if ($?DISPLAY) then
+          unsetenv DISPLAY
+        endif
+      endif
+    endif
+  endif
+end
+
+
+set MACHARCH=`uname -s`
+set VMDDEBUGGER="dbx"
+switch ($MACHARCH)
+case *IRIX*:
+  set MACHVER=`uname -r | cut -f1 -d.`
+  set VMD_WINTERM=/usr/bin/X11/xterm
+  set VMD_WINOPTS="-sb -sl 1000 -e"
+  if ("$MACHVER" == "6") then
+    set ARCH=IRIX6
+  else
+    echo "Error: Unknown or unsupported IRIX version $MACHVER"
+    exit 1
+  endif
+breaksw
+
+case *HP-UX*:
+  set MACHVER=`uname -r | cut -f2 -d.`
+  set VMD_WINTERM=xterm
+  set VMD_WINOPTS='-sb -sl 1000 -e'
+  if ( "$MACHVER" == "09" ) then
+    set ARCH=HPUX9
+  else if ( "$MACHVER" == "10" ) then
+    set ARCH=HPUX10
+  else if ( "$MACHVER" == "11" ) then
+    set ARCH=HPUX11
+  else
+    echo "Error: Unknown or unsupported HP-UX version $MACHVER"
+    exit 1
+  endif
+breaksw
+
+case *AIX*:
+  set VERSION=`uname -v`
+  set ARCH=AIX${VERSION}
+  set VMD_WINTERM=/usr/lpp/X11/bin/aixterm
+  set VMD_WINOPTS='-sb -sl 1000 -e'
+breaksw
+
+case *FreeBSD*:
+  # The standard options
+  if (`uname -m` == "i386") then
+    set ARCH=FREEBSD
+  endif
+  set VMD_WINTERM=xterm
+  set VMD_WINOPTS='-sb -sl 1000 -e'
+  set VMDDEBUGGER="gdb"
+breaksw
+
+case *Linux*:
+  # The standard options
+  if (`uname --machine` == "alpha") then
+    set ARCH=LINUXALPHA
+  else if (`uname --machine` == "x86_64") then
+    # Test to see if a 64-bit version of VMD exists
+    # in the installation directory, and use the 64-bit
+    # version if it is there.
+    if ( -e "${VMDDIR}/${vmdbasename}_LINUXAMD64" ) then
+      set ARCH=LINUXAMD64
+    else
+      set ARCH=LINUX
+    endif
+  else if (`uname --machine` == "ia64") then
+    set ARCH=LINUXIA64
+  else if (`uname --machine` == "ppc") then
+    set ARCH=LINUXPPC
+  else
+    set ARCH=LINUX
+  endif
+  set VMD_WINTERM=xterm
+  set VMD_WINOPTS='-sb -sl 1000 -e'
+  set VMDDEBUGGER="gdb"
+breaksw
+
+case *SunOS*:
+  # The standard options
+  if (`uname -p` == "sparc") then
+    set ARCH=SOLARIS2
+  else
+    set ARCH=SOLARISX86
+  endif
+
+  set VMD_WINTERM=/usr/openwin/bin/xterm
+  set VMD_WINOPTS='-sb -sl 1000 -e'
+breaksw
+
+case *OSF*:
+  set ARCH=TRU64
+  set VMD_WINTERM=xterm
+  set VMD_WINOPTS='-sb -sl 1000 -e'
+breaksw
+
+case *Rhapsody*:
+case *Darwin*:
+  if ($?TMPDIR == "0" ) then
+    setenv TMPDIR /tmp
+  endif
+  set ARCH=MACOSX
+  set VMD_WINTERM=xterm
+  set VMD_WINOPTS='-sb -sl 1000 -e'
+  ## Override default window size and position 
+  setenv VMDSCRPOS "400 200"
+  setenv VMDSCRSIZE "512 512"
+  set VMDDEBUGGER="gdb"
+breaksw
+
+case *:
+  echo "Unsupported architechture."
+  echo "Must be AIX, HP-UX, IRIX, Linux, SunOS, or TRU64."
+breaksw
+
+endsw
+
+if ( -e "${MASTERVMDDIR}/${vmdbasename}_${ARCH}_64" ) then
+  set ARCH=${ARCH}_64
+endif
+
+set execname="$vmdbasename"_$ARCH
+
+if ($?STRIDE_BIN == "0") then
+  if (-x "$MASTERVMDDIR/stride_$ARCH") then
+    setenv STRIDE_BIN "$VMDDIR/stride_$ARCH"
+  endif
+endif
+
+if ($?SURF_BIN == "0") then
+  if (-x "$MASTERVMDDIR/surf_$ARCH") then
+    setenv SURF_BIN "$VMDDIR/surf_$ARCH"
+  endif
+endif
+
+if ($?TACHYON_BIN == "0") then
+  if (-x "$MASTERVMDDIR/tachyon_$ARCH") then
+    setenv TACHYON_BIN "$VMDDIR/tachyon_$ARCH"
+  endif
+endif
+
+if ($?VMDCUSTOMIZESTARTUP) then
+  source $VMDCUSTOMIZESTARTUP
+endif
+
+if ("$VMDRUNDEBUGGER" == "1") then
+  echo "***"
+  echo "*** Running VMD in debugger, type 'run' at debugger prompt"
+  echo "***"
+  "$VMDDEBUGGER" "$MASTERVMDDIR/$execname"
+else if ($?VMDSLAVENODE) then
+  ##
+  ##if VMDSLAVENODE is set, then run on a Scyld/Clustermatic slave node
+  ##
+  ##
+  ## When running VMD on a cluster, you may have to add dynamic link libraries
+  ## on the local disks on the slave nodes for it to run.  If so, you may also
+  ## need to update the LD_LIBRARY_PATH variable for the location of these
+  ## libraries on the slave node filesystem
+  ##
+  ## setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH}:/scr1/johns/cluster/lib/shared
+  ##
+  echo "***" 
+  echo "*** Running VMD on cluster node $VMDSLAVENODE..."
+  echo "***"
+  bpsh $VMDSLAVENODE "$MASTERVMDDIR/$execname" $*
+else
+#  # if DISPLAY is set, spawn off a terminal, else use current terminal
+#  if ($?DISPLAY) then
+#    if ("$VMDWEBHELPER" == "1") then
+#      exec $VMD_WINTERM -T "vmd console" $VMD_WINGEOM $VMD_WINOPTS \
+#  		"$MASTERVMDDIR/$execname" $*
+#    else
+#      exec $VMD_WINTERM -T "vmd console" $VMD_WINGEOM $VMD_WINOPTS \
+#  		"$MASTERVMDDIR/$execname" $* &
+#    endif
+#  else
+    "$MASTERVMDDIR/$execname" $*
+#	endif
+endif
