@@ -1,4 +1,4 @@
-// File : Widgets.h
+// File : StereoWidget.h
 
 
 //	Copyright (C) 2007 David Suarez Pascal
@@ -21,21 +21,23 @@
 //
 
 
-#include <QStringList>
-#include "widgets/CommandLineWidget.h"
-#include "widgets/OutputWidget.h"
-#include "widgets/RotationWidget.h"
-#include "widgets/ScaleWidget.h"
-#include "widgets/RotaWidget.h"
-#include "widgets/MouseModeWidget.h"
-#include "widgets/AnimateWidget.h"
-#include "widgets/StereoWidget.h"
+#ifndef STEREOWIDGET_H
+#define STEREOWIDGET_H
 
+#include <QWidget>
+#include "ui_StereoWidget.h"
 
-class WidgetManager
+class StereoWidget : public QWidget, public Ui::StereoWidget
 {
-  QStringList widget_list;// This list contains names of all widget classes
+    Q_OBJECT
 public:
-  WidgetManager();
-  QWidget *createWidgetByName(QString);// This method returns a widget of the specified type
+    StereoWidget(QWidget *parent = 0);
+public slots:
+  void toggleStereo(bool);
+  void processOutput(QString) {}
+  void sendInitCode() { emit initCodeRequested(""); }
+signals:
+  void commandRaised(QString comm);
+  void initCodeRequested(QString code);
 };
+#endif

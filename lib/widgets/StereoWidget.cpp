@@ -1,4 +1,4 @@
-// File : Widgets.h
+// File : StereoWidget.cpp
 
 
 //	Copyright (C) 2007 David Suarez Pascal
@@ -21,21 +21,19 @@
 //
 
 
-#include <QStringList>
-#include "widgets/CommandLineWidget.h"
-#include "widgets/OutputWidget.h"
-#include "widgets/RotationWidget.h"
-#include "widgets/ScaleWidget.h"
-#include "widgets/RotaWidget.h"
-#include "widgets/MouseModeWidget.h"
-#include "widgets/AnimateWidget.h"
-#include "widgets/StereoWidget.h"
+#include <QtGui>
+#include "StereoWidget.h"
 
-
-class WidgetManager
+StereoWidget::StereoWidget(QWidget *parent) : QWidget(parent)
 {
-  QStringList widget_list;// This list contains names of all widget classes
-public:
-  WidgetManager();
-  QWidget *createWidgetByName(QString);// This method returns a widget of the specified type
-};
+  setupUi(this);
+  connect(stereo_button, SIGNAL(clicked(bool)), this, SLOT(toggleStereo(bool)));
+}
+
+void StereoWidget::toggleStereo(bool stereo)
+{
+  if (stereo)
+    emit commandRaised("display stereo CrystalEyes");
+  else
+    emit commandRaised("display stereo Off");
+}

@@ -32,6 +32,7 @@ WidgetManager::WidgetManager()
   widget_list <<  "Rota";
   widget_list <<  "MouseMode";
   widget_list <<  "Animate";
+  widget_list <<  "Stereo";
 }
 
 
@@ -61,6 +62,9 @@ QWidget *WidgetManager::createWidgetByName(QString name)
       break;
     case 6:
       widget = new AnimateWidget();
+      break;
+    case 7:
+      widget = new StereoWidget();
       break;
     }
   return widget;

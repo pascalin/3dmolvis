@@ -1,0 +1,36 @@
+<ui version="4.0" >
+ <class>StereoWidget</class>
+ <widget class="QWidget" name="StereoWidget" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>193</width>
+    <height>45</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" >
+   <item>
+    <widget class="QPushButton" name="stereo_button" >
+     <property name="toolTip" >
+      <string>Activa el despliegue en modo estereográfico</string>
+     </property>
+     <property name="statusTip" >
+      <string>Activa el despliegue en modo estereográfico</string>
+     </property>
+     <property name="text" >
+      <string>Activar/Desactivar estéreo</string>
+     </property>
+     <property name="checkable" >
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
