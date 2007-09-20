@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>186</width>
-    <height>125</height>
+    <width>250</width>
+    <height>135</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -43,12 +43,18 @@
        <property name="text" >
         <string>&amp;Decrementa</string>
        </property>
+       <property name="icon" >
+        <iconset resource="../../resource/default.qrc" >:/icons/default/icons/zoom_out.png</iconset>
+       </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pushButton_inc" >
        <property name="text" >
         <string>&amp;Incrementa</string>
+       </property>
+       <property name="icon" >
+        <iconset resource="../../resource/default.qrc" >:/icons/default/icons/zoom_in.png</iconset>
        </property>
       </widget>
      </item>
@@ -59,11 +65,16 @@
      <property name="text" >
       <string>&amp;Reset</string>
      </property>
+     <property name="icon" >
+      <iconset resource="../../resource/default.qrc" >:/icons/default/icons/arrow_rotate_anticlockwise.png</iconset>
+     </property>
     </widget>
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../resource/default.qrc" />
+ </resources>
  <connections>
   <connection>
    <sender>pushButton_inc</sender>
