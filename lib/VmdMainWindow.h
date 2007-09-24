@@ -66,6 +66,8 @@ private slots:
   void requestAction(QTreeWidgetItem *item, int column);
   void about(); // Muestra la ventana acerca de VMDGui
   void open(); // Maneja la apertura de un archivo de aplicacion
+  /* Se conecta con outputProduced de vmd_process para habilitar los widgets */
+  void enableWidgets(QString);
 //   void newFile();
 //   bool save();
 //   bool saveAs();

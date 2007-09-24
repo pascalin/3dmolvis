@@ -84,6 +84,7 @@ void VmdMainWindow::setWidgets(QStringList wl)
     }
   createWidgets();
   emit startupFinished();
+  appendToTclCommands("puts \"VMD Ready\"");
 }
 
 void VmdMainWindow::createWidgets()
@@ -121,6 +122,9 @@ void VmdMainWindow::createWidgets()
 	}
     }
   main_widget->setLayout(layout);
+  main_widget->setEnabled(false);
+  tree->setEnabled(false);
+  obox->setEnabled(false);
 }
 
 void VmdMainWindow::appendToTclCommands(QString code)
@@ -218,6 +222,9 @@ void VmdMainWindow::newVmdProcess()
   param << "-e";
   param << temp_file->fileName();
   vmd_process = new CommandProcess("./bin/vmd", "", "exit", param);
+  QObject::connect(vmd_process, SIGNAL(outputProduced(QString)),
+		   this, SLOT(enableWidgets(QString)));
+
 }
 
 void VmdMainWindow::createActions()
@@ -318,4 +325,15 @@ void VmdMainWindow::createToolBars()
 void VmdMainWindow::createStatusBar()
 {
   statusBar()->showMessage("Listo");
+}
+
+void VmdMainWindow::enableWidgets(QString output)
+{
+  if (output.contains("VMD Ready"))
+    {
+      main_widget->setEnabled(true);
+      tree->setEnabled(true);
+      obox->setEnabled(true);
+
+    }
 }
