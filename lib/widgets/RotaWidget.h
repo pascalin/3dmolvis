@@ -36,9 +36,9 @@ private:
 public:
     RotaWidget(QWidget *parent = 0);
 public slots:
-  void reset();
-  void rotaon();
-  void rotaoff();
+  //void reset();
+  void rota();
+  //void rotaoff();
   void processOutput(QString) {}
   void sendInitCode() { emit initCodeRequested(""); }
 signals:

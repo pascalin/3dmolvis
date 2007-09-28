@@ -1,4 +1,4 @@
-// File : RotaWidget.cpp
+// File : ResetWidget.cpp
 
 
 //	Copyright (C) 2007 Natalia Pérez Escutia
@@ -22,40 +22,29 @@
 
 
 #include <QtGui>
-#include "RotaWidget.h"
+#include "ResetWidget.h"
 
-RotaWidget::RotaWidget(QWidget *parent) : QWidget(parent)
+ResetWidget::ResetWidget(QWidget *parent) : QWidget(parent)
 {
   setupUi(this);
-  connect(radioButton, SIGNAL(clicked()), this, SLOT(rota()));
+  //connect(pushButton_on, SIGNAL(clicked()), this, SLOT(rotaon()));
   //connect(pushButton_off, SIGNAL(clicked()), this, SLOT(rotaoff()));
-  //connect(pushButton_res, SIGNAL(clicked()), this, SLOT(reset()));
+  connect(pushButton_res, SIGNAL(clicked()), this, SLOT(reset()));
 }
 
-//void RotaWidget::reset()
+void ResetWidget::reset()
+{
+  std::ostringstream command;
+  command << "display resetview";
+  emit commandRaised(QString(command.str().c_str()));
+}
+
+//void RotaWidget::rotaon()
 //{
   //std::ostringstream command;
-  //command << "display resetview";
+  //command << "rock Y by 0.02 20000";
   //emit commandRaised(QString(command.str().c_str()));
 //}
-
-
-void RotaWidget::rota()
-{
-  if(radioButton->isChecked())
-  {   
-    std::ostringstream command;
-    command << "rock Y by 0.05 20000";
-    emit commandRaised(QString(command.str().c_str()));
-  }
-  else 
-  {
-    std::ostringstream command;
-    command << "rock off";
-    emit commandRaised(QString(command.str().c_str()));
-  }
-}
-
 
 //void RotaWidget::rotaoff()
 //{

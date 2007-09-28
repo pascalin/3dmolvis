@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>186</width>
-    <height>114</height>
+    <width>169</width>
+    <height>41</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -14,43 +14,9 @@
   </property>
   <layout class="QVBoxLayout" >
    <item>
-    <widget class="QLabel" name="label" >
+    <widget class="QRadioButton" name="radioButton" >
      <property name="text" >
-      <string>Rotación</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" >
-     <item>
-      <widget class="QPushButton" name="pushButton_on" >
-       <property name="text" >
-        <string>&amp;Inicia</string>
-       </property>
-       <property name="icon" >
-        <iconset resource="../../resource/default.qrc" >:/icons/default/icons/control_play_blue.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_off" >
-       <property name="text" >
-        <string>&amp;Pausa</string>
-       </property>
-       <property name="icon" >
-        <iconset resource="../../resource/default.qrc" >:/icons/default/icons/control_pause_blue.png</iconset>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <widget class="QPushButton" name="pushButton_res" >
-     <property name="text" >
-      <string>&amp;Reset</string>
-     </property>
-     <property name="icon" >
-      <iconset resource="../../resource/default.qrc" >:/icons/default/icons/arrow_rotate_anticlockwise.png</iconset>
+      <string>Rotación Automatica</string>
      </property>
     </widget>
    </item>
@@ -59,5 +25,22 @@
  <resources>
   <include location="../../resource/default.qrc" />
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>radioButton</sender>
+   <signal></signal>
+   <receiver>radioButton</receiver>
+   <slot></slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>84</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>84</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

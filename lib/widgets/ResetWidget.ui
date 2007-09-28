@@ -1,0 +1,32 @@
+<ui version="4.0" >
+ <class>ResetWidget</class>
+ <widget class="QWidget" name="ResetWidget" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>127</width>
+    <height>50</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" >
+   <item>
+    <widget class="QPushButton" name="pushButton_res" >
+     <property name="text" >
+      <string> &amp;Reset View</string>
+     </property>
+     <property name="icon" >
+      <iconset resource="../../resource/default.qrc" >:/icons/default/icons/arrow_rotate_anticlockwise.png</iconset>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../../resource/default.qrc" />
+ </resources>
+ <connections/>
+</ui>

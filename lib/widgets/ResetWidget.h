@@ -1,7 +1,7 @@
-// File : Widgets.h
+// File : ResetWidget.h
 
 
-//	Copyright (C) 2007 David Suarez Pascal
+//	Copyright (C) 2007 Natalia Pérez Escutia
 //
 //	This file is part of VMDGui
 //
@@ -21,22 +21,28 @@
 //
 
 
-#include <QStringList>
-#include "widgets/CommandLineWidget.h"
-#include "widgets/OutputWidget.h"
-#include "widgets/RotationWidget.h"
-#include "widgets/ScaleWidget.h"
-#include "widgets/RotaWidget.h"
-#include "widgets/MouseModeWidget.h"
-#include "widgets/AnimateWidget.h"
-#include "widgets/StereoWidget.h"
-#include "widgets/ResetWidget.h"
+#ifndef RESETWIDGET_H
+#define RESETWIDGET_H
 
+#include <QWidget>
+#include <sstream>
+#include "ui_ResetWidget.h"
 
-class WidgetManager
+class ResetWidget : public QWidget, public Ui::ResetWidget
 {
-  QStringList widget_list;// This list contains names of all widget classes
+    Q_OBJECT
+private:
+    
 public:
-  WidgetManager();
-  QWidget *createWidgetByName(QString);// This method returns a widget of the specified type
+    ResetWidget(QWidget *parent = 0);
+public slots:
+  void reset();
+  //void rotaon();
+  //void rotaoff();
+  void processOutput(QString) {}
+  void sendInitCode() { emit initCodeRequested(""); }
+signals:
+  void commandRaised(QString comm);
+  void initCodeRequested(QString code);
 };
+#endif

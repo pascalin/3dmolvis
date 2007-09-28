@@ -26,13 +26,14 @@
 WidgetManager::WidgetManager()
 {
   widget_list << "CommandLine";
-  widget_list <<  "Output";
-  widget_list <<  "Rotation";
-  widget_list <<  "Scale";
-  widget_list <<  "Rota";
-  widget_list <<  "MouseMode";
-  widget_list <<  "Animate";
-  widget_list <<  "Stereo";
+  widget_list << "Output";
+  widget_list << "Rotation";
+  widget_list << "Scale";
+  widget_list << "Rota";
+  widget_list << "MouseMode";
+  widget_list << "Animate";
+  widget_list << "Stereo";
+  widget_list << "Reset";
 }
 
 
@@ -65,6 +66,9 @@ QWidget *WidgetManager::createWidgetByName(QString name)
       break;
     case 7:
       widget = new StereoWidget();
+      break;
+    case 8:
+      widget = new ResetWidget();
       break;
     }
   return widget;

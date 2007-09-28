@@ -122,6 +122,7 @@ void VmdMainWindow::createWidgets()
 	}
     }
   main_widget->setLayout(layout);
+  /* Deshabilita los tres elementos de control */
   main_widget->setEnabled(false);
   tree->setEnabled(false);
   obox->setEnabled(false);
@@ -331,6 +332,7 @@ void VmdMainWindow::enableWidgets(QString output)
 {
   if (output.contains("VMD Ready"))
     {
+      /* Habilita los tres elementos de control */
       main_widget->setEnabled(true);
       tree->setEnabled(true);
       obox->setEnabled(true);
