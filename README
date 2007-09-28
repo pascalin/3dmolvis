@@ -16,7 +16,7 @@ o superior.
 Para compilar VMDGui es necesario emplear el comando qmake de la
 siguiente manera:
 
-$ qmake -project;qmake
+$ qmake
 
 La ejecucion de estos dos comandos creara un Makefile con las
 instrucciones apropiadas para la construccion de VMDGui. Una vez
