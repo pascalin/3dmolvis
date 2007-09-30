@@ -58,12 +58,14 @@ public:
     QStringList getControlList();
     bool hasOptions();
     QString getOptions();
+    QString getProperty(QString);
 
 private:
     QStringList controls;
     QString tcl_code;
     QString current_text;
     QString error_str;
+    QMap<QString,QString> properties;
     QTreeWidget *tree_widget;
     OptionBox *obox_widget;
     QTreeWidgetItem *story_group, *story_item;

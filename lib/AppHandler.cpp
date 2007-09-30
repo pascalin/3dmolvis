@@ -42,7 +42,11 @@ bool AppHandler::startElement(const QString &namespaceURI,
 {
   OptionButton *ob;
 
-  if (namespaceURI == "http://vmdgui.sourceforge.net")
+  if (namespaceURI == "http://purl.org/dc/elements/1.1/")
+    {
+      current_text = "";
+    }
+  else if (namespaceURI == "http://vmdgui.sourceforge.net")
     {
       if (localName == "storyboard")
 	{
@@ -104,7 +108,18 @@ bool AppHandler::endElement(const QString & namespaceURI,
 {
   QWidget *wp;
 
-  if (namespaceURI == "http://vmdgui.sourceforge.net")
+  if (namespaceURI == "http://purl.org/dc/elements/1.1/")
+    {
+      if (localName == "title")
+	{
+	  properties["title"] = current_text;
+	}      
+      else if (localName == "publisher")
+	{
+	  properties["publisher"] = current_text;	  
+	}      
+    }
+  else if (namespaceURI == "http://vmdgui.sourceforge.net")
     {
       if (localName == "storyboard")
 	{
@@ -199,6 +214,11 @@ bool AppHandler::hasOptions()
 QString AppHandler::getOptions()
 {
   return "";
+}
+
+QString AppHandler::getProperty(QString name)
+{
+  return properties[name];
 }
 
 bool AppHandler::hasControls()

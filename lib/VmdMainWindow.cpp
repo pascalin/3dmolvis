@@ -155,9 +155,9 @@ void VmdMainWindow::requestAction(QTreeWidgetItem *item, int)
 void VmdMainWindow::open()
 {
     QString fileName = QFileDialog::getOpenFileName(this, "Abrir archivo de aplicacion", QDir::currentPath(), "Archivos vmd (*.vmd *.xml)");
-    if (fileName.isEmpty())
+    if (fileName.isEmpty() or !QFile::exists(fileName))
         return;
-
+    
     tree->clear();
     obox->clear();
     newVmdProcess();
@@ -189,6 +189,10 @@ void VmdMainWindow::open()
     if (handler.hasControls())
       setWidgets(handler.getControlList());
 
+    setWindowTitle(handler.getProperty("title"));
+
+    /* Cambia el directorio de trabajo al directorio que contiene al archivo de aplicacion e inicia VMD */
+    QDir::setCurrent(QDir::current().absoluteFilePath(fileName.left(fileName.lastIndexOf(QRegExp("[/\\\\]")))));
     vmd_process->startProcess();
 
     if (tree->topLevelItemCount() > 0)
@@ -222,7 +226,7 @@ void VmdMainWindow::newVmdProcess()
   tcl_out = new QTextStream(temp_file);
   param << "-e";
   param << temp_file->fileName();
-  vmd_process = new CommandProcess("./bin/vmd", "", "exit", param);
+  vmd_process = new CommandProcess(QApplication::applicationDirPath()+"/bin/vmd", "", "exit", param);
   QObject::connect(vmd_process, SIGNAL(outputProduced(QString)),
 		   this, SLOT(enableWidgets(QString)));
 
