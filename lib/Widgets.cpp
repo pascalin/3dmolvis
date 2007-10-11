@@ -34,6 +34,7 @@ WidgetManager::WidgetManager()
   widget_list << "Animate";
   widget_list << "Stereo";
   widget_list << "Reset";
+  widget_list << "GLShading";
 }
 
 
@@ -69,6 +70,9 @@ QWidget *WidgetManager::createWidgetByName(QString name)
       break;
     case 8:
       widget = new ResetWidget();
+      break;
+    case 9:
+      widget = new GLShadingWidget();
       break;
     }
   return widget;

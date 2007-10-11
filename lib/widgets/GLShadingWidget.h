@@ -1,4 +1,4 @@
-// File : Widgets.h
+// File : GLShadingWidget.h
 
 
 //	Copyright (C) 2007 David Suarez Pascal
@@ -21,23 +21,23 @@
 //
 
 
-#include <QStringList>
-#include "widgets/CommandLineWidget.h"
-#include "widgets/OutputWidget.h"
-#include "widgets/RotationWidget.h"
-#include "widgets/ScaleWidget.h"
-#include "widgets/RotaWidget.h"
-#include "widgets/MouseModeWidget.h"
-#include "widgets/AnimateWidget.h"
-#include "widgets/StereoWidget.h"
-#include "widgets/ResetWidget.h"
-#include "widgets/GLShadingWidget.h"
+#ifndef GLSHADINGWIDGET_H
+#define GLSHADINGWIDGET_H
 
+#include <QWidget>
+#include "ui_GLShadingWidget.h"
 
-class WidgetManager
+class GLShadingWidget : public QWidget, public Ui::GLShadingWidget
 {
-  QStringList widget_list;// This list contains names of all widget classes
+    Q_OBJECT
 public:
-  WidgetManager();
-  QWidget *createWidgetByName(QString);// This method returns a widget of the specified type
+  GLShadingWidget(QWidget *parent = 0);
+public slots:
+  void checkState(bool state);
+  void processOutput(QString);
+  void sendInitCode() {}
+signals:
+  void commandRaised(QString comm);
+  void initCodeRequested(QString code);
 };
+#endif

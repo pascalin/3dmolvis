@@ -1,4 +1,4 @@
-// File : Widgets.h
+// File : GLShadingWidget.cpp
 
 
 //	Copyright (C) 2007 David Suarez Pascal
@@ -21,23 +21,24 @@
 //
 
 
-#include <QStringList>
-#include "widgets/CommandLineWidget.h"
-#include "widgets/OutputWidget.h"
-#include "widgets/RotationWidget.h"
-#include "widgets/ScaleWidget.h"
-#include "widgets/RotaWidget.h"
-#include "widgets/MouseModeWidget.h"
-#include "widgets/AnimateWidget.h"
-#include "widgets/StereoWidget.h"
-#include "widgets/ResetWidget.h"
-#include "widgets/GLShadingWidget.h"
+#include "GLShadingWidget.h"
 
-
-class WidgetManager
+GLShadingWidget::GLShadingWidget(QWidget *parent) : QWidget(parent)
 {
-  QStringList widget_list;// This list contains names of all widget classes
-public:
-  WidgetManager();
-  QWidget *createWidgetByName(QString);// This method returns a widget of the specified type
-};
+  setupUi(this);
+  connect(push_button, SIGNAL(clicked(bool)), this, SLOT(checkState(bool)));
+}
+
+void GLShadingWidget::checkState(bool state)
+{
+  if (state)
+    emit commandRaised("display rendermode GLSL");
+  else
+    emit commandRaised("display rendermode Normal");
+}
+
+void GLShadingWidget::processOutput(QString output)
+{
+  if (output.contains("OpenGL Programmable Shading not available"))
+    setEnabled(false);
+}
