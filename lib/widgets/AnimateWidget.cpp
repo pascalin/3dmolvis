@@ -33,7 +33,7 @@ AnimateWidget::AnimateWidget(QWidget *parent) : QWidget(parent)
   connect(repeat_button, SIGNAL(clicked(bool)), this, SLOT(setRepeat(bool)));
   connect(reverse_button, SIGNAL(clicked()), this, SLOT(reverse()));
   connect(forward_button, SIGNAL(clicked()), this, SLOT(forward()));
-  connect(speed_slider, SIGNAL(valueChanged(int)), this, SLOT(setSpeed(int)));
+  connect(speed_box, SIGNAL(valueChanged(int)), this, SLOT(setSpeed(int)));
 }
 
 void AnimateWidget::gotoStart()
