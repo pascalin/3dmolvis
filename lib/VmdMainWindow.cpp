@@ -130,7 +130,7 @@ void VmdMainWindow::createWidgets()
 
 void VmdMainWindow::appendToTclCommands(QString code)
 {
-  (*tcl_out) << code;
+  (*tcl_out) << code << ";";
   tcl_out->flush();
 }
 

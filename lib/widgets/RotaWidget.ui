@@ -25,22 +25,5 @@
  <resources>
   <include location="../../resource/default.qrc" />
  </resources>
- <connections>
-  <connection>
-   <sender>radioButton</sender>
-   <signal></signal>
-   <receiver>radioButton</receiver>
-   <slot></slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>84</x>
-     <y>20</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>84</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
