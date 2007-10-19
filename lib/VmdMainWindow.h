@@ -91,6 +91,7 @@ private:
   QStringList param; // Lista de parametros
   QTemporaryFile *temp_file; // Archivo de inicializacion
   QTextStream *tcl_out; // Stream de inicializacion
+  QString vmd_path; // Ruta del ejecutable de VMD
 
   QStringList recentFiles; // Lista de archivos recientes
 

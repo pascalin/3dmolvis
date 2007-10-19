@@ -49,6 +49,7 @@ VmdMainWindow::VmdMainWindow()
   QObject::connect(tree, SIGNAL(itemActivated(QTreeWidgetItem *, int)),
 		   this, SLOT(requestAction(QTreeWidgetItem *, int)));
 
+  vmd_path = QApplication::applicationDirPath()+"/bin/vmd";
   vmd_process = NULL;
   temp_file = NULL;
   tcl_out = NULL;
@@ -226,7 +227,7 @@ void VmdMainWindow::newVmdProcess()
   tcl_out = new QTextStream(temp_file);
   param << "-e";
   param << temp_file->fileName();
-  vmd_process = new CommandProcess(QApplication::applicationDirPath()+"/bin/vmd", "", "exit", param);
+  vmd_process = new CommandProcess(vmd_path, "", "exit", param);
   QObject::connect(vmd_process, SIGNAL(outputProduced(QString)),
 		   this, SLOT(enableWidgets(QString)));
 
