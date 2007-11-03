@@ -52,7 +52,7 @@ public slots:
 	// Esta slot recibe la salida producida por VMD
 	void processOutput(QString) {}
   	// Esta slot envia el codigo de inicializacion de Tcl
-  	void sendInitCode() { emit initCodeRequested("");}
+  	void sendInitCode() { emit initCodeRequested("AutoIMD::startup;wm withdraw .autoimd");}
 	
 	
 signals:

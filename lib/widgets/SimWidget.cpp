@@ -31,7 +31,7 @@
 using namespace std;
 //Define si algunos botones estan disponibles.
 
-SimWidget::SimWidget(QWidget *)
+SimWidget::SimWidget(QWidget *parent) : QWidget(parent)
 {
  	setupUi(this);
 	t=2500;
@@ -46,7 +46,7 @@ SimWidget::SimWidget(QWidget *)
 	connect(stop, SIGNAL(clicked()),this, SLOT(stopSim()));
 	connect(discard, SIGNAL(clicked()),this, SLOT(discardSim()));
 	connect(pause, SIGNAL(clicked()),this, SLOT(pauseSim()));
-	QTimer::singleShot(t,this,SLOT(setNamd() ));	
+	//QTimer::singleShot(t,this,SLOT(setNamd() ));	
 }
 
 /*
@@ -96,7 +96,7 @@ void SimWidget::startSim()
 	//preparaba y arrancaba, pero en la pràctica se vio que teniamos que prepara antes y luego
 	// arrancar con el autoconnect
 				
-	emit commandRaised( QString("AutoIMD::submit \"all\" ") );
+	emit commandRaised( QString("AutoIMD::submit \"all\";AutoIMD::autoconnect") );
 		//debug msgs
 	//cout << "Inicio los parametros de simulacion\n";
 	//cout << "\tel tiempo que lleva corriendo es:" << tiempo.elapsed() << "\n";
@@ -109,9 +109,9 @@ void SimWidget::startSim()
 	start->setEnabled(pressed);
 
 	//Lanzamos un contador de tiempo para conectar.. en lo que se inician los parametros..
-	t=1500; // es para darle tiempo a ke prepare la simulacion (ms)
-	QTimer::singleShot(t,this,SLOT(connectSim() ));
-	emit commandRaised( QString("wm withdraw .autoimd") );
+// 	t=1500; // es para darle tiempo a ke prepare la simulacion (ms)
+// 	QTimer::singleShot(t,this,SLOT(connectSim() ));
+// 	emit commandRaised( QString("wm withdraw .autoimd") );
 }
 /*
 -----> el slot autoimd se volvio obsoleto
