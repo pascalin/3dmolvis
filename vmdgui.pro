@@ -22,7 +22,8 @@ HEADERS += lib/AppHandler.h \
            lib/widgets/RotationWidget.h \
            lib/widgets/RotaWidget.h \
            lib/widgets/ScaleWidget.h \
-           lib/widgets/StereoWidget.h
+           lib/widgets/StereoWidget.h \
+           lib/widgets/SimWidget.h
 FORMS += lib/widgets/AnimateWidget.ui \
          lib/widgets/CommandLineWidget.ui \
          lib/widgets/GLShadingWidget.ui \
@@ -32,7 +33,8 @@ FORMS += lib/widgets/AnimateWidget.ui \
          lib/widgets/RotationWidget.ui \
          lib/widgets/RotaWidget.ui \
          lib/widgets/ScaleWidget.ui \
-         lib/widgets/StereoWidget.ui
+         lib/widgets/StereoWidget.ui \
+         lib/widgets/SimWidget.ui
 SOURCES += main.cpp \
            lib/AppHandler.cpp \
            lib/CommandProcess.cpp \
@@ -48,6 +50,7 @@ SOURCES += main.cpp \
            lib/widgets/RotationWidget.cpp \
            lib/widgets/RotaWidget.cpp \
            lib/widgets/ScaleWidget.cpp \
-           lib/widgets/StereoWidget.cpp
+           lib/widgets/StereoWidget.cpp \
+           lib/widgets/SimWidget.cpp
 RESOURCES += resource/default.qrc
 QT += xml
