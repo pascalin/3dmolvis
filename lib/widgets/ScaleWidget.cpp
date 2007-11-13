@@ -23,44 +23,43 @@
 
 #include <QtGui>
 #include "ScaleWidget.h"
+#include <iostream>
+using namespace std;
 
 ScaleWidget::ScaleWidget(QWidget *parent) : QWidget(parent)
 {
   setupUi(this);
-  connect(Slider, SIGNAL(valueChanged(int)), this, SLOT(scale(int)));
-  connect(pushButton_res, SIGNAL(clicked()), this, SLOT(reset()));
-  //connect(pushButton_on, SIGNAL(clicked()), this, SLOT(rotaon()));
-  //connect(pushButton_off, SIGNAL(clicked()), this, SLOT(rotaoff()));
+  connect(Slider, SIGNAL(valueChanged(int)), this, SLOT(slider(int)));
 }
 
-void ScaleWidget::scale(int step)
+void ScaleWidget::slider(int size)
 {
-  std::ostringstream command;
-  command << "scale by " << step-size;
+ 
+  std::ostringstream command; 
+  //auxiliar=size;
+
+  //cout << "valor de size " << size << "\n";
+  //cout << "valor de value " << value << "\n";
+  //cout << "valor de final " << final << "\n";
+  //cout << "valor de aux " << auxiliar << "\n";
+  
+  	//if(auxiliar>size) //|| size==0)
+		//{
+			//final=size*0.1;
+			//final=(auxiliar*0.01)-0.01;
+			//cout << "valor de final disminuyendo" << final << "\n";
+		//}
+  	//else
+		//{
+			//final=size*0.01;
+			//cout << "valor de final aumentando " << final << "\n";
+		//}
+
+float valor=size*0.01;  
+command << "scale to " << valor;
+  	//command << "scale by " << auxiliar;
+  	//auxiliar=size;
+  	//cout << "valor de command " << command.str().c_str() << "\n";
   emit commandRaised(QString(command.str().c_str()));
-  size = step;
 }
-
-void ScaleWidget::reset()
-{
-  std::ostringstream command;
-  command << "display resetview";
-  emit commandRaised(QString(command.str().c_str()));
-}
-
-//void ScaleWidget::rotaon()
-//{
-  //std::ostringstream command;
-  //command << "rock Y by 0.02 20000";
-  //emit commandRaised(QString(command.str().c_str()));
-//}
-
-//void ScaleWidget::rotaoff()
-//{
-  //std::ostringstream command;
-  //command << "rock off";
-  //emit commandRaised(QString(command.str().c_str()));
-//}
-
-
 

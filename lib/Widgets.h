@@ -31,8 +31,10 @@
 #include "widgets/AnimateWidget.h"
 #include "widgets/StereoWidget.h"
 #include "widgets/ResetWidget.h"
+#include "widgets/PlanesWidget.h"
 #include "widgets/GLShadingWidget.h"
 #include "widgets/SimWidget.h"
+
 
 
 class WidgetManager

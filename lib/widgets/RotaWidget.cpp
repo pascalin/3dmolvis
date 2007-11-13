@@ -27,7 +27,7 @@
 RotaWidget::RotaWidget(QWidget *parent) : QWidget(parent)
 {
   setupUi(this);
-  connect(radioButton, SIGNAL(clicked()), this, SLOT(rota()));
+  connect(pushButton, SIGNAL(clicked()), this, SLOT(rota()));
   //connect(pushButton_off, SIGNAL(clicked()), this, SLOT(rotaoff()));
   //connect(pushButton_res, SIGNAL(clicked()), this, SLOT(reset()));
 }
@@ -42,7 +42,7 @@ RotaWidget::RotaWidget(QWidget *parent) : QWidget(parent)
 
 void RotaWidget::rota()
 {
-  if(radioButton->isChecked())
+  if(pushButton->isChecked())
   {   
     std::ostringstream command;
     command << "rock Y by 0.05 20000";

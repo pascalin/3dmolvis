@@ -34,6 +34,7 @@ WidgetManager::WidgetManager()
   widget_list << "Animate";
   widget_list << "Stereo";
   widget_list << "Reset";
+  widget_list << "Planes";
   widget_list << "GLShading";
   widget_list << "Simulation";
 }
@@ -73,9 +74,12 @@ QWidget *WidgetManager::createWidgetByName(QString name)
       widget = new ResetWidget();
       break;
     case 9:
-      widget = new GLShadingWidget();
+      widget = new PlanesWidget();
       break;
     case 10:
+      widget = new GLShadingWidget();
+      break;
+    case 11:
       widget = new SimWidget();
       break;
     }

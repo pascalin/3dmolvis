@@ -1,4 +1,4 @@
-// File : ScaleWidget.h
+// File : PlanesWidget.cpp
 
 
 //	Copyright (C) 2007 Natalia Pérez Escutia
@@ -21,29 +21,18 @@
 //
 
 
-#ifndef SCALEWIDGET_H
-#define SCALEWIDGET_H
+#include <QtGui>
+#include "PlanesWidget.h"
 
-#include <QWidget>
-#include <sstream>
-#include "ui_ScaleWidget.h"
-
-class ScaleWidget : public QWidget, public Ui::ScaleWidget
+PlanesWidget::PlanesWidget(QWidget *parent) : QWidget(parent)
 {
-    Q_OBJECT
-private:
-    int size;
-    //float final;
-    //float auxiliar;
-    //int value;
-public:
-    ScaleWidget(QWidget *parent = 0);
-public slots:
-  void slider(int);
-  void processOutput(QString) {}
-  void sendInitCode() { emit initCodeRequested(""); }
-signals:
-  void commandRaised(QString comm);
-  void initCodeRequested(QString code);
-};
-#endif
+  setupUi(this);
+  connect(Slider, SIGNAL(valueChanged(int)), this, SLOT(cut(int)));
+}
+
+void PlanesWidget::cut(int size)
+{
+  emit commandRaised(QString("cortaplano %1").arg(size));
+}
+
+

@@ -1,11 +1,11 @@
 <ui version="4.0" >
- <class>ScaleWidget</class>
- <widget class="QWidget" name="ScaleWidget" >
+ <class>PlanesWidget</class>
+ <widget class="QWidget" name="PlanesWidget" >
   <property name="geometry" >
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>102</width>
+    <width>118</width>
     <height>57</height>
    </rect>
   </property>
@@ -16,20 +16,14 @@
    <item>
     <widget class="QLabel" name="label" >
      <property name="text" >
-      <string>Zoom</string>
+      <string>Planos de Corte</string>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QSlider" name="Slider" >
-     <property name="minimum" >
-      <number>0</number>
-     </property>
      <property name="maximum" >
-      <number>99</number>
-     </property>
-     <property name="sliderPosition" >
-      <number>0</number>
+      <number>100</number>
      </property>
      <property name="orientation" >
       <enum>Qt::Horizontal</enum>
@@ -38,8 +32,6 @@
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../../resource/default.qrc" />
- </resources>
+ <resources/>
  <connections/>
 </ui>

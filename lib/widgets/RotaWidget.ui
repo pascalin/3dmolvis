@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>169</width>
-    <height>41</height>
+    <width>185</width>
+    <height>50</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -14,9 +14,18 @@
   </property>
   <layout class="QVBoxLayout" >
    <item>
-    <widget class="QRadioButton" name="radioButton" >
+    <widget class="QPushButton" name="pushButton" >
      <property name="text" >
-      <string>Rotación Automatica</string>
+      <string>&amp;Rotación Automatica</string>
+     </property>
+     <property name="icon" >
+      <iconset resource="../../resource/default.qrc" >:/icons/default/icons/arrow_rotate_clockwise.png</iconset>
+     </property>
+     <property name="checkable" >
+      <bool>true</bool>
+     </property>
+     <property name="checked" >
+      <bool>false</bool>
      </property>
     </widget>
    </item>
