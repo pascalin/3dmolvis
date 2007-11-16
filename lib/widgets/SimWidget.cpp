@@ -102,6 +102,7 @@ void SimWidget::startSim()
 	//cout << "\tel tiempo que lleva corriendo es:" << tiempo.elapsed() << "\n";
 	// Habilitamos de nuevo los botones necesarios y otros los desactivamos
 	pressed=true;
+	paused=false;
 	pause->setEnabled(pressed);
 	discard->setEnabled(pressed);
 	stop->setEnabled(pressed);
@@ -138,6 +139,8 @@ void SimWidget::stopSim()
 	stop->setEnabled(pressed);
 	pressed=true;
 	start->setEnabled(pressed);
+	paused=false;
+	pause->setChecked ( paused );
 }
 /*
 -----> se usa para pausar la simulación, pero dejandola en el estado
@@ -146,8 +149,18 @@ recibe: nada	devuelve: nada
 */
 void SimWidget::pauseSim()
 {
-	
-	emit commandRaised( QString("imd pause toggle") );
+	if(!paused)
+	{
+		paused=true;
+		emit commandRaised( QString("imd pause toggle") );
+		pause->setChecked ( paused );
+	}
+	else
+	{
+		paused=false;
+		emit commandRaised( QString("imd pause toggle") );
+		pause->setChecked ( paused );
+	}
 }
 /*
 -----> se usa para detener la simulación, pero restaurandola al estado original
@@ -162,7 +175,9 @@ void SimWidget::discardSim()
 	discard->setEnabled(pressed);
 	stop->setEnabled(pressed);
 	pressed=true;
-	start->setEnabled(pressed);	
+	start->setEnabled(pressed);
+	paused=false;
+	pause->setChecked ( paused );
 }
 /*
 -----> Prepara la simulación para que se peuda iniciar

@@ -64,7 +64,7 @@ signals:
   	void initCodeRequested(QString code);
 private:
 	QStringList param;
-	bool pressed;
+	bool pressed,paused;
 	QTime tiempo;
 	int t;
 };
