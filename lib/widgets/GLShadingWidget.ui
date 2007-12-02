@@ -5,24 +5,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>98</width>
-    <height>45</height>
+    <width>137</width>
+    <height>49</height>
    </rect>
-  </property>
-  <property name="windowTitle" >
-   <string>Form</string>
   </property>
   <layout class="QVBoxLayout" >
    <item>
     <widget class="QPushButton" name="push_button" >
      <property name="toolTip" >
-      <string>Activa/Desactiva el sombreado programable</string>
+      <string>Programmable shading</string>
      </property>
      <property name="statusTip" >
-      <string>Activa/Desactiva el sombreado programable</string>
+      <string>Enable/disable programmable shading</string>
      </property>
      <property name="text" >
-      <string>So&amp;mbreado</string>
+      <string>Prog. Sha&amp;ding</string>
      </property>
      <property name="checkable" >
       <bool>true</bool>

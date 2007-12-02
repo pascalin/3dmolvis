@@ -5,31 +5,31 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>127</width>
-    <height>123</height>
+    <width>128</width>
+    <height>139</height>
    </rect>
-  </property>
-  <property name="windowTitle" >
-   <string>Form</string>
   </property>
   <layout class="QVBoxLayout" >
    <item>
     <widget class="QLabel" name="label" >
      <property name="text" >
-      <string>Función del ratón</string>
+      <string>Mouse mode</string>
+     </property>
+     <property name="alignment" >
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QRadioButton" name="radio_rotate" >
      <property name="toolTip" >
-      <string/>
+      <string>Rotate</string>
      </property>
      <property name="statusTip" >
-      <string>Permite rotar los objetos con el ratón</string>
+      <string>Enables rotation of objects with the mouse</string>
      </property>
      <property name="text" >
-      <string>&amp;Rotar</string>
+      <string>&amp;Rotate</string>
      </property>
      <property name="checked" >
       <bool>true</bool>
@@ -38,21 +38,27 @@
    </item>
    <item>
     <widget class="QRadioButton" name="radio_scale" >
+     <property name="toolTip" >
+      <string>Zoom</string>
+     </property>
      <property name="statusTip" >
-      <string>Permite hacer cambios de escala con el ratón</string>
+      <string>Enables zooming of objects with the mouse</string>
      </property>
      <property name="text" >
-      <string>E&amp;scalar</string>
+      <string>&amp;Zoom</string>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QRadioButton" name="radio_translate" >
+     <property name="toolTip" >
+      <string>Translate</string>
+     </property>
      <property name="statusTip" >
-      <string>Permite cambiar la posición de los objetos en pantalla</string>
+      <string>Enables movement of the objects in the window with the mouse</string>
      </property>
      <property name="text" >
-      <string>&amp;Transladar</string>
+      <string>&amp;Translate</string>
      </property>
     </widget>
    </item>

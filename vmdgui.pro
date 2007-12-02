@@ -56,5 +56,6 @@ SOURCES += main.cpp \
            lib/widgets/StereoWidget.cpp \
            lib/widgets/SimWidget.cpp
 RESOURCES += resource/default.qrc
+TRANSLATIONS += i18n/es/vmdgui_es.ts
 QT += xml
 

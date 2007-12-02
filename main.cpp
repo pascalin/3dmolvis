@@ -37,6 +37,23 @@ int main(int argc, char* argv[])
   QFile *tcl_file = NULL;
   QApplication vmdguiapp(argc,argv);
   VmdMainWindow *window = new VmdMainWindow();
+
+  
+  QTranslator qtTranslator;
+  QTranslator appTranslator;
+
+  /* Obtiene el locale de pais usado por el usuario */
+  QString lang = QLocale::system().name();
+  lang.truncate(2);
+
+  /* Agrega las traducciones de Qt */
+  qtTranslator.load("i18n/" + lang + "qt_" + lang);
+  vmdguiapp.installTranslator(&qtTranslator);
+
+  /* Agrega las traducciones de VMDGui */
+  appTranslator.load("i18n/" + lang + "/vmdgui_" + lang);
+  vmdguiapp.installTranslator(&appTranslator);
+
 //   QWidget *main_widget = new QWidget();/* This will contain all widgets requested */
 //   QVBoxLayout *layout = new QVBoxLayout;
 

@@ -6,22 +6,28 @@
     <x>0</x>
     <y>0</y>
     <width>102</width>
-    <height>57</height>
+    <height>61</height>
    </rect>
-  </property>
-  <property name="windowTitle" >
-   <string>Form</string>
   </property>
   <layout class="QVBoxLayout" >
    <item>
     <widget class="QLabel" name="label" >
      <property name="text" >
-      <string>Zoom</string>
+      <string>&amp;Zoom</string>
+     </property>
+     <property name="buddy" >
+      <cstring>Slider</cstring>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QSlider" name="Slider" >
+     <property name="toolTip" >
+      <string>Zoom</string>
+     </property>
+     <property name="statusTip" >
+      <string>Zooms objects in the window</string>
+     </property>
      <property name="minimum" >
       <number>0</number>
      </property>

@@ -6,22 +6,25 @@
     <x>0</x>
     <y>0</y>
     <width>118</width>
-    <height>57</height>
+    <height>61</height>
    </rect>
-  </property>
-  <property name="windowTitle" >
-   <string>Form</string>
   </property>
   <layout class="QVBoxLayout" >
    <item>
     <widget class="QLabel" name="label" >
      <property name="text" >
-      <string>Planos de Corte</string>
+      <string>Clip plane</string>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QSlider" name="Slider" >
+     <property name="toolTip" >
+      <string>Clip plane position</string>
+     </property>
+     <property name="statusTip" >
+      <string>Translates the clip plane position</string>
+     </property>
      <property name="maximum" >
       <number>100</number>
      </property>

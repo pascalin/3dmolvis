@@ -9,19 +9,16 @@
     <height>144</height>
    </rect>
   </property>
-  <property name="windowTitle" >
-   <string>Form</string>
-  </property>
   <layout class="QHBoxLayout" >
    <item>
     <layout class="QVBoxLayout" >
      <item>
       <widget class="QDial" name="x_dial" >
        <property name="toolTip" >
-        <string>Rotación sobre X</string>
+        <string>Rotate about X</string>
        </property>
        <property name="statusTip" >
-        <string>Rotar la aguja para girar el objeto sobre el eje X</string>
+        <string>Rotates objects about X axis</string>
        </property>
        <property name="maximum" >
         <number>359</number>
@@ -60,10 +57,10 @@
      <item>
       <widget class="QDial" name="y_dial" >
        <property name="toolTip" >
-        <string>Rotación sobre Y</string>
+        <string>Rotate about Y</string>
        </property>
        <property name="statusTip" >
-        <string>Rotar la aguja para girar el objeto sobre el eje Y</string>
+        <string>Rotates objects about Y axis</string>
        </property>
        <property name="maximum" >
         <number>359</number>
@@ -102,10 +99,10 @@
      <item>
       <widget class="QDial" name="z_dial" >
        <property name="toolTip" >
-        <string>Rotación sobre Z</string>
+        <string>Rotate about Z</string>
        </property>
        <property name="statusTip" >
-        <string>Rotar la aguja para girar el objeto sobre el eje Z</string>
+        <string>Rotates objects about Z axis</string>
        </property>
        <property name="maximum" >
         <number>359</number>

@@ -9,19 +9,16 @@
     <height>92</height>
    </rect>
   </property>
-  <property name="windowTitle" >
-   <string>Form</string>
-  </property>
   <layout class="QVBoxLayout" >
    <item>
     <layout class="QHBoxLayout" >
      <item>
       <widget class="QPushButton" name="start_button" >
        <property name="toolTip" >
-        <string>Rebobinar</string>
+        <string>Go to start</string>
        </property>
        <property name="statusTip" >
-        <string>Retrocede hasta el primer cuadro de la animación</string>
+        <string>Backs until the first animation frame</string>
        </property>
        <property name="text" >
         <string/>
@@ -37,10 +34,10 @@
      <item>
       <widget class="QPushButton" name="reverse_button" >
        <property name="toolTip" >
-        <string>Retroceder</string>
+        <string>Reverse</string>
        </property>
        <property name="statusTip" >
-        <string>Reproduce la animación hacia atras</string>
+        <string>Animate reverse</string>
        </property>
        <property name="text" >
         <string/>
@@ -53,10 +50,10 @@
      <item>
       <widget class="QPushButton" name="pause_button" >
        <property name="toolTip" >
-        <string>Pausar</string>
+        <string>Pause</string>
        </property>
        <property name="statusTip" >
-        <string>Detiene una animación en curso</string>
+        <string>Pauses the current animation</string>
        </property>
        <property name="text" >
         <string/>
@@ -78,10 +75,10 @@
      <item>
       <widget class="QPushButton" name="forward_button" >
        <property name="toolTip" >
-        <string>Avanzar</string>
+        <string>Forward</string>
        </property>
        <property name="statusTip" >
-        <string>Reproduce la animación hacia adelante</string>
+        <string>Animate forward</string>
        </property>
        <property name="text" >
         <string/>
@@ -94,10 +91,10 @@
      <item>
       <widget class="QPushButton" name="end_button" >
        <property name="toolTip" >
-        <string>Adelantar</string>
+        <string>Go to end</string>
        </property>
        <property name="statusTip" >
-        <string>Avanza al último cuadro de la animación</string>
+        <string>Forwards until the last animation frame</string>
        </property>
        <property name="text" >
         <string/>
@@ -117,10 +114,10 @@
      <item>
       <widget class="QPushButton" name="repeat_button" >
        <property name="toolTip" >
-        <string>Repetir</string>
+        <string>Repeat</string>
        </property>
        <property name="statusTip" >
-        <string>La animación volverá a iniciar al llegar al final</string>
+        <string>Enable/disable looping of animation</string>
        </property>
        <property name="text" >
         <string/>
@@ -136,7 +133,10 @@
      <item>
       <widget class="QLabel" name="label" >
        <property name="text" >
-        <string>&amp;Velocidad:</string>
+        <string>S&amp;peed</string>
+       </property>
+       <property name="alignment" >
+        <set>Qt::AlignCenter</set>
        </property>
        <property name="buddy" >
         <cstring>speed_box</cstring>
@@ -146,10 +146,10 @@
      <item>
       <widget class="QSpinBox" name="speed_box" >
        <property name="toolTip" >
-        <string>Velocidad de animación</string>
+        <string>Speed</string>
        </property>
        <property name="statusTip" >
-        <string>Estalece la velocidad a la que se repoduce la animación</string>
+        <string>Sets the speed of the animation</string>
        </property>
        <property name="alignment" >
         <set>Qt::AlignCenter</set>

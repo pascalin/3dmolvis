@@ -9,9 +9,6 @@
     <height>300</height>
    </rect>
   </property>
-  <property name="windowTitle" >
-   <string>Form</string>
-  </property>
   <layout class="QVBoxLayout" >
    <property name="spacing" >
     <number>6</number>
@@ -48,7 +45,7 @@
      <item>
       <widget class="QLabel" name="label" >
        <property name="text" >
-        <string>Registr&amp;o:</string>
+        <string>&amp;Output:</string>
        </property>
        <property name="buddy" >
         <cstring>textEdit</cstring>
@@ -58,48 +55,48 @@
      <item>
       <widget class="QPushButton" name="zoomInButton" >
        <property name="toolTip" >
-        <string>Aumentar</string>
+        <string>Zoom in</string>
        </property>
        <property name="statusTip" >
-        <string>Aumenta el tamaño del texto</string>
+        <string>Increments text size of the output</string>
        </property>
        <property name="text" >
-        <string/>
+        <string>Zoom &amp;in</string>
        </property>
        <property name="icon" >
-        <iconset resource="../resource/default.qrc" >:/icons/default/icons/zoom_in.png</iconset>
+        <iconset resource="../../resource/default.qrc" >:/icons/default/icons/magnifier_zoom_in.png</iconset>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="zoomOutButton" >
        <property name="toolTip" >
-        <string>Reducir</string>
+        <string>Zoom out</string>
        </property>
        <property name="statusTip" >
-        <string>Reduce el tamaño del texto</string>
+        <string>Reduces text size of the output</string>
        </property>
        <property name="text" >
-        <string/>
+        <string>Zoom o&amp;ut</string>
        </property>
        <property name="icon" >
-        <iconset resource="../resource/default.qrc" >:/icons/default/icons/zoom_out.png</iconset>
+        <iconset resource="../../resource/default.qrc" >:/icons/default/icons/magifier_zoom_out.png</iconset>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="clearButton" >
        <property name="toolTip" >
-        <string>Limpiar</string>
+        <string>Clear</string>
        </property>
        <property name="statusTip" >
-        <string>Borra todo el registro</string>
+        <string>Erases all text in the output</string>
        </property>
        <property name="text" >
-        <string/>
+        <string>C&amp;lear</string>
        </property>
        <property name="icon" >
-        <iconset resource="../resource/default.qrc" >:/icons/default/icons/cancel.png</iconset>
+        <iconset resource="../../resource/default.qrc" >:/icons/default/icons/cancel.png</iconset>
        </property>
       </widget>
      </item>
@@ -124,7 +121,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../resource/default.qrc" />
+  <include location="../../resource/default.qrc" />
  </resources>
  <connections>
   <connection>

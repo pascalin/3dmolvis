@@ -5,24 +5,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>193</width>
-    <height>45</height>
+    <width>126</width>
+    <height>49</height>
    </rect>
-  </property>
-  <property name="windowTitle" >
-   <string>Form</string>
   </property>
   <layout class="QVBoxLayout" >
    <item>
     <widget class="QPushButton" name="stereo_button" >
      <property name="toolTip" >
-      <string>Activa el despliegue en modo estereográfico</string>
+      <string>Stereographic visualization</string>
      </property>
      <property name="statusTip" >
-      <string>Activa el despliegue en modo estereográfico</string>
+      <string>Enable/disable stereographic visualization</string>
      </property>
      <property name="text" >
-      <string>Activar/Desactivar estéreo</string>
+      <string>S&amp;tereo Mode</string>
      </property>
      <property name="checkable" >
       <bool>true</bool>
