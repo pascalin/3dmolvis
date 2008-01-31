@@ -67,6 +67,7 @@ SET(vmdgui_UIS
 	lib/widgets/ScaleWidget.ui
 	lib/widgets/SimWidget.ui
 	lib/widgets/StereoWidget.ui
+	lib/VmdMainWindow.ui
 )
 
 # Get list of UIC processed files
