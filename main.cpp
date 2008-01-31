@@ -36,7 +36,7 @@ int main(int argc, char* argv[])
   int exit_code=0;
   QFile *tcl_file = NULL;
   QApplication vmdguiapp(argc,argv);
-  VmdMainWindow *window = new VmdMainWindow();
+  VmdMainWindow *window;
 
   
   QTranslator qtTranslator;
@@ -53,6 +53,9 @@ int main(int argc, char* argv[])
   /* Agrega las traducciones de VMDGui */
   appTranslator.load("i18n/" + lang + "/vmdgui_" + lang);
   vmdguiapp.installTranslator(&appTranslator);
+
+  window = new VmdMainWindow();
+
 
 //   QWidget *main_widget = new QWidget();/* This will contain all widgets requested */
 //   QVBoxLayout *layout = new QVBoxLayout;

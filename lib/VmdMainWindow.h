@@ -39,6 +39,7 @@
 #include <QTemporaryFile>
 #include <QTextStream>
 #include <QCloseEvent>
+#include <QDirModel>
 #include <iostream>
 
 /* Componentes de VMDGui */
@@ -47,8 +48,11 @@
 #include "CommandProcess.h"
 #include "AppHandler.h"
 
+/* Archivo UI que implementa el dise~o de la ventana */
+#include "ui_VmdMainWindow.h"
+
 /* La clase VmdMainWindow */
-class VmdMainWindow : public QMainWindow
+class VmdMainWindow : public QMainWindow, Ui::VmdMainWindow
 {
   Q_OBJECT
 public:
@@ -65,7 +69,8 @@ private slots:
   /* Maneja la activacion de elementos del arbol de contenido */ 
   void requestAction(QTreeWidgetItem *item, int column);
   void about(); // Muestra la ventana acerca de VMDGui
-  void open(); // Maneja la apertura de un archivo de aplicacion
+  void openLesson(); // Maneja la apertura de un archivo de aplicacion
+  void closeLesson(); // Maneja el cierre de la leccion actual
   /* Se conecta con outputProduced de vmd_process para habilitar los widgets */
   void enableWidgets(QString);
 //   void newFile();
@@ -77,10 +82,11 @@ signals:
   void startupFinished(); // Indica el termino de la creacion de widgets
 private:
   /* Componentes principales que maneja la aplicacion */
-  QWidget *main_widget;
-  QTreeWidget *tree;
+//   QWidget *main_widget;
+//   QTreeWidget *tree;
   OptionBox *obox;
   CommandProcess *vmd_process;
+  QDirModel *dir_model;
 
   /* Manejo de widgets */
   WidgetManager wm;
@@ -97,10 +103,7 @@ private:
 
   void newVmdProcess(); // Crea un nuevo proceso de VMD
   void createWidgets(); // Crea los widgets indicados mediante setWidgets
-  void createActions(); // Crea las acciones de menu
-  void createMenus(); // Crea el menu
   //  void createContextMenu();
-  void createToolBars(); // Crea la barra de herramientas
   void createStatusBar(); // Crea la barra de estado
 //   void readSettings();
 //   void writeSettings();
@@ -114,23 +117,23 @@ private:
 //   QAction *recentFileActions[MaxRecentFiles];
 //   QAction *separatorAction;
 
-  QMenu *fileMenu;
+//   QMenu *fileMenu;
 //   QMenu *editMenu;
-  QMenu *helpMenu;
+//   QMenu *helpMenu;
 
-  QToolBar *fileToolBar;
+//    QToolBar *fileToolBar;
 //   QToolBar *editToolBar;
 
 //   QAction *newAction;
-  QAction *openAction;
+//   QAction *openAction;
 //   QAction *saveAction;
 //   QAction *saveAsAction;
-  QAction *exitAction;
+//   QAction *exitAction;
 //   QAction *cutAction;
 //   QAction *copyAction;
 //   QAction *pasteAction;
-  QAction *aboutAction;
-  QAction *aboutQtAction;
+//   QAction *aboutAction;
+//   QAction *aboutQtAction;
 
 };
 

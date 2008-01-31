@@ -25,29 +25,29 @@
 
 VmdMainWindow::VmdMainWindow()
 {
-  QSplitter *splitter1, *splitter2;
+  setupUi(this);
 
-  splitter1 = new QSplitter(Qt::Vertical);
-  splitter2 = new QSplitter(Qt::Horizontal);
-
-  tree = new QTreeWidget();
   obox = new OptionBox();
-  main_widget = new QWidget();
+  splitter_4->addWidget(obox);
 
-  splitter2->addWidget(tree);
-  splitter2->addWidget(main_widget);
-
-  splitter1->addWidget(splitter2);
-  splitter1->addWidget(obox);
-
-  setCentralWidget(splitter1);
-  
   obox->setHidden(true);
 
   tree->setHeaderLabel("Contenido");
   tree->setHidden(true);
-  QObject::connect(tree, SIGNAL(itemActivated(QTreeWidgetItem *, int)),
+
+  connect(tree, SIGNAL(itemActivated(QTreeWidgetItem *, int)),
 		   this, SLOT(requestAction(QTreeWidgetItem *, int)));
+
+  dir_model = new QDirModel;
+  explorer_view->setModel(dir_model);
+  explorer_view->setRootIndex(dir_model->index(QDir::currentPath()));
+  explorer_view->setHidden(true);
+  error_widget->setHidden(true);
+
+  connect(actionOpen, SIGNAL(triggered()), this, SLOT(openLesson()));
+  connect(actionClose, SIGNAL(triggered()), this, SLOT(closeLesson()));
+  connect(actionAbout, SIGNAL(triggered()), this, SLOT(about()));
+  connect(actionAboutQt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
 
   vmd_path = QApplication::applicationDirPath()+"/bin/vmd";
   vmd_process = NULL;
@@ -55,9 +55,9 @@ VmdMainWindow::VmdMainWindow()
   tcl_out = NULL;
   
   newVmdProcess();
-  createActions();
-  createMenus();
-  createToolBars();
+//   createActions();
+//   createMenus();
+//   createToolBars();
   createStatusBar();
 }
 
@@ -101,6 +101,13 @@ void VmdMainWindow::createWidgets()
       delete *w;
     }
   widgets.clear();
+
+  if (main_widget->layout()->indexOf(logo_label) != -1)
+    {
+      main_widget->layout()->removeWidget(logo_label);
+      logo_label->setHidden(true);
+    }
+
   delete main_widget->layout();
 
   /* Crea y conecta los widgets contenidos en widget_list */
@@ -153,7 +160,7 @@ void VmdMainWindow::requestAction(QTreeWidgetItem *item, int)
     vmd_process->sendCommand(item->data(0, Qt::UserRole+1).toString());
 }
 
-void VmdMainWindow::open()
+void VmdMainWindow::openLesson()
 {
     QString fileName = QFileDialog::getOpenFileName(this, "Abrir archivo de aplicacion", QDir::currentPath(), "Archivos vmd (*.vmd *.xml)");
     if (fileName.isEmpty() or !QFile::exists(fileName))
@@ -174,7 +181,7 @@ void VmdMainWindow::open()
     QFile file(fileName);
     if (!file.open(QFile::ReadOnly | QFile::Text)) {
         QMessageBox::warning(this, "VMDGui",
-                             tr("Imposible leer archivo %1:\n%2.")
+                             tr("Unable to read file %1:\n%2.")
                              .arg(fileName)
                              .arg(file.errorString()));
         return;
@@ -192,10 +199,6 @@ void VmdMainWindow::open()
 
     setWindowTitle(handler.getProperty("title"));
 
-    /* Cambia el directorio de trabajo al directorio que contiene al archivo de aplicacion e inicia VMD */
-    QDir::setCurrent(QDir::current().absoluteFilePath(fileName.left(fileName.lastIndexOf(QRegExp("[/\\\\]")))));
-    vmd_process->startProcess();
-
     if (tree->topLevelItemCount() > 0)
       tree->setHidden(false);
     else
@@ -205,6 +208,52 @@ void VmdMainWindow::open()
       obox->setHidden(false);
     else
       obox->setHidden(true);
+
+    main_widget->setEnabled(false);
+    tree->setEnabled(false);
+    obox->setEnabled(false);
+
+    main_widget->resize(1,1);
+
+    /* Cambia el directorio de trabajo al directorio que contiene al archivo de aplicacion e inicia VMD */
+    QDir::setCurrent(QDir::current().absoluteFilePath(fileName.left(fileName.lastIndexOf(QRegExp("[/\\\\]")))));
+    vmd_process->startProcess();
+
+    actionClose->setEnabled(true);
+}
+
+void VmdMainWindow::closeLesson()
+{
+  QList<QWidget*>::const_iterator w;
+
+  for (w=widgets.begin();w!=widgets.end();w++)
+    {
+      main_widget->layout()->removeWidget(*w);
+      delete *w;
+    }
+  widgets.clear();
+
+  tree->clear();
+  obox->clear();
+
+  obox->setHidden(true);
+  tree->setHidden(true);
+  explorer_view->setHidden(true);
+  error_widget->setHidden(true);
+
+  if (vmd_process && vmd_process->state() != QProcess::NotRunning)
+    {
+      vmd_process->endProcess();
+    }
+  if (temp_file && temp_file->isOpen())
+    temp_file->close();
+
+  main_widget->layout()->addWidget(logo_label);
+  logo_label->setHidden(false);
+
+  actionClose->setEnabled(false);
+
+  setWindowTitle(tr("VMDGui"));
 }
 
 void VmdMainWindow::about()
@@ -233,101 +282,6 @@ void VmdMainWindow::newVmdProcess()
 
 }
 
-void VmdMainWindow::createActions()
-{
-//   newAct = new QAction(QIcon(":/icons/default/icons/new.png"), "&Nuevo", this);
-//   newAct->setShortcut(tr("Ctrl+N"));
-//   newAct->setStatusTip(tr("Create a new file"));
-//   connect(newAct, SIGNAL(triggered()), this, SLOT(newFile()));
-
-  openAction = new QAction(QIcon(":/icons/default/icons/folder.png"), "&Abrir...", this);
-  openAction->setShortcut(tr("Ctrl+O"));
-  openAction->setStatusTip("Abre un archivo existente");
-  connect(openAction, SIGNAL(triggered()), this, SLOT(open()));
-
-//   saveAct = new QAction(QIcon(":/images/save.png"), tr("&Save"), this);
-//   saveAct->setShortcut(tr("Ctrl+S"));
-//   saveAct->setStatusTip(tr("Save the document to disk"));
-//   connect(saveAct, SIGNAL(triggered()), this, SLOT(save()));
-
-//   saveAsAct = new QAction(tr("Save &As..."), this);
-//   saveAsAct->setStatusTip(tr("Save the document under a new name"));
-//   connect(saveAsAct, SIGNAL(triggered()), this, SLOT(saveAs()));
-
-  exitAction = new QAction("Sa&lir", this);
-  exitAction->setShortcut(tr("Ctrl+Q"));
-  exitAction->setStatusTip("Sale de VMDGui");
-  connect(exitAction, SIGNAL(triggered()), this, SLOT(close()));
-
-//   cutAct = new QAction(QIcon(":/images/cut.png"), tr("Cu&t"), this);
-//   cutAct->setShortcut(tr("Ctrl+X"));
-//   cutAct->setStatusTip(tr("Cut the current selection's contents to the "
-// 			  "clipboard"));
-//   connect(cutAct, SIGNAL(triggered()), textEdit, SLOT(cut()));
-
-//   copyAct = new QAction(QIcon(":/images/copy.png"), tr("&Copy"), this);
-//   copyAct->setShortcut(tr("Ctrl+C"));
-//   copyAct->setStatusTip(tr("Copy the current selection's contents to the "
-// 			   "clipboard"));
-//   connect(copyAct, SIGNAL(triggered()), textEdit, SLOT(copy()));
-
-//   pasteAct = new QAction(QIcon(":/images/paste.png"), tr("&Paste"), this);
-//   pasteAct->setShortcut(tr("Ctrl+V"));
-//   pasteAct->setStatusTip(tr("Paste the clipboard's contents into the current "
-// 			    "selection"));
-//   connect(pasteAct, SIGNAL(triggered()), textEdit, SLOT(paste()));
-
-  aboutAction = new QAction("&Acerca de...", this);
-  aboutAction->setStatusTip("Muestra informacion sobre VMDGui");
-  connect(aboutAction, SIGNAL(triggered()), this, SLOT(about()));
-
-  aboutQtAction = new QAction("Acerca de &Qt", this);
-  aboutQtAction->setStatusTip("Muestra la informacion sobre la biblioteca Qt");
-  connect(aboutQtAction, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
-
-//   cutAct->setEnabled(false);
-//   copyAct->setEnabled(false);
-//   connect(textEdit, SIGNAL(copyAvailable(bool)),
-// 	  cutAct, SLOT(setEnabled(bool)));
-//   connect(textEdit, SIGNAL(copyAvailable(bool)),
-// 	  copyAct, SLOT(setEnabled(bool)));
-}
-
-void VmdMainWindow::createMenus()
-{
-  fileMenu = menuBar()->addMenu("&Archivo");
-//   fileMenu->addAction(newAct);
-  fileMenu->addAction(openAction);
-//   fileMenu->addAction(saveAct);
-//   fileMenu->addAction(saveAsAct);
-  fileMenu->addSeparator();
-  fileMenu->addAction(exitAction);
-
-//   editMenu = menuBar()->addMenu(tr("&Edit"));
-//   editMenu->addAction(cutAct);
-//   editMenu->addAction(copyAct);
-//   editMenu->addAction(pasteAct);
-
-  menuBar()->addSeparator();
-
-  helpMenu = menuBar()->addMenu("A&yuda");
-  helpMenu->addAction(aboutAction);
-  helpMenu->addAction(aboutQtAction);
-}
-
-void VmdMainWindow::createToolBars()
-{
-  fileToolBar = addToolBar(tr("File"));
-//   fileToolBar->addAction(newAct);
-  fileToolBar->addAction(openAction);
-//   fileToolBar->addAction(saveAct);
-
-//   editToolBar = addToolBar(tr("Edit"));
-//   editToolBar->addAction(cutAct);
-//   editToolBar->addAction(copyAct);
-//   editToolBar->addAction(pasteAct);
-}
-
 void VmdMainWindow::createStatusBar()
 {
   statusBar()->showMessage("Listo");
@@ -341,6 +295,8 @@ void VmdMainWindow::enableWidgets(QString output)
       main_widget->setEnabled(true);
       tree->setEnabled(true);
       obox->setEnabled(true);
-
+      /* Le da el foco a la ventana principal */
+      activateWindow();
+      raise();
     }
 }

@@ -449,25 +449,136 @@
 <context>
     <name>VmdMainWindow</name>
     <message>
-        <location filename="../../lib/VmdMainWindow.cpp" line="178"/>
-        <source>Imposible leer archivo %1:
-%2.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../lib/VmdMainWindow.cpp" line="244"/>
+        <location filename="../../lib/VmdMainWindow.ui" line="124"/>
         <source>Ctrl+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../../lib/VmdMainWindow.cpp" line="258"/>
+        <location filename="../../lib/VmdMainWindow.ui" line="165"/>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+X</translation>
     </message>
     <message>
-        <location filename="../../lib/VmdMainWindow.cpp" line="320"/>
-        <source>File</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../lib/VmdMainWindow.ui" line="13"/>
+        <source>VMDGui</source>
+        <translation>VMDGui</translation>
+    </message>
+    <message>
+        <location filename="../../lib/VmdMainWindow.ui" line="37"/>
+        <source>1</source>
+        <translation>1</translation>
+    </message>
+    <message>
+        <location filename="../../lib/VmdMainWindow.ui" line="88"/>
+        <source>&amp;File</source>
+        <translation>&amp;Archivo</translation>
+    </message>
+    <message>
+        <location filename="../../lib/VmdMainWindow.ui" line="98"/>
+        <source>&amp;Help</source>
+        <translation>A&amp;yuda</translation>
+    </message>
+    <message>
+        <location filename="../../lib/VmdMainWindow.ui" line="105"/>
+        <source>&amp;View</source>
+        <translation>&amp;Ver</translation>
+    </message>
+    <message>
+        <location filename="../../lib/VmdMainWindow.ui" line="118"/>
+        <source>&amp;Open...</source>
+        <translation>&amp;Abrir...</translation>
+    </message>
+    <message>
+        <location filename="../../lib/VmdMainWindow.ui" line="121"/>
+        <source>Opens an application file</source>
+        <translation>Abre un archivo de aplicación</translation>
+    </message>
+    <message>
+        <location filename="../../lib/VmdMainWindow.ui" line="129"/>
+        <source>A&amp;bout ...</source>
+        <translation>A&amp;cerca de ...</translation>
+    </message>
+    <message>
+        <location filename="../../lib/VmdMainWindow.ui" line="132"/>
+        <source>Shows info about VMDGui</source>
+        <translation>Muestra información sobre VMDGui</translation>
+    </message>
+    <message>
+        <location filename="../../lib/VmdMainWindow.ui" line="137"/>
+        <source>About &amp;Qt</source>
+        <translation>Acerda de &amp;Qt</translation>
+    </message>
+    <message>
+        <location filename="../../lib/VmdMainWindow.ui" line="140"/>
+        <source>Shows info about Qt</source>
+        <translation>Muestra información sobre Qt</translation>
+    </message>
+    <message>
+        <location filename="../../lib/VmdMainWindow.ui" line="148"/>
+        <source>&amp;Close</source>
+        <translation>&amp;Cerrar</translation>
+    </message>
+    <message>
+        <location filename="../../lib/VmdMainWindow.ui" line="151"/>
+        <source>Closes the currently opened application</source>
+        <translation>Cierra la aplicación abierta</translation>
+    </message>
+    <message>
+        <location filename="../../lib/VmdMainWindow.ui" line="154"/>
+        <source>Ctrl+W</source>
+        <translation>Ctrl+W</translation>
+    </message>
+    <message>
+        <location filename="../../lib/VmdMainWindow.ui" line="159"/>
+        <source>E&amp;xit</source>
+        <translation>Sa&amp;lir</translation>
+    </message>
+    <message>
+        <location filename="../../lib/VmdMainWindow.ui" line="162"/>
+        <source>Exits from VMDGui</source>
+        <translation>Sale de VMDGui</translation>
+    </message>
+    <message>
+        <location filename="../../lib/VmdMainWindow.ui" line="170"/>
+        <source>&amp;Recent</source>
+        <translation>&amp;Reciente</translation>
+    </message>
+    <message>
+        <location filename="../../lib/VmdMainWindow.ui" line="173"/>
+        <source>Open a recently used application</source>
+        <translation>Abre una aplicación usada recientemente</translation>
+    </message>
+    <message>
+        <location filename="../../lib/VmdMainWindow.ui" line="181"/>
+        <source>&amp;Error panel</source>
+        <translation>Panel de &amp;error</translation>
+    </message>
+    <message>
+        <location filename="../../lib/VmdMainWindow.ui" line="189"/>
+        <source>E&amp;xplorer</source>
+        <translation>E&amp;xplorador</translation>
+    </message>
+    <message>
+        <location filename="../../lib/VmdMainWindow.ui" line="192"/>
+        <source>F9</source>
+        <translation>F9</translation>
+    </message>
+    <message>
+        <location filename="../../lib/VmdMainWindow.ui" line="200"/>
+        <source>&amp;Workplace</source>
+        <translation>Area de &amp;trabajo</translation>
+    </message>
+    <message>
+        <location filename="../../lib/VmdMainWindow.cpp" line="185"/>
+        <source>Unable to read file %1:
+%2.</source>
+        <translation>Imposible leer el archivo %1:
+%2.</translation>
+    </message>
+    <message>
+        <location filename="../../lib/VmdMainWindow.ui" line="211"/>
+        <source>Status &amp;bar</source>
+        <translation>&amp;Barra de estado</translation>
     </message>
 </context>
 </TS>

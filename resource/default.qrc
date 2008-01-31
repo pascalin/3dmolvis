@@ -1001,4 +1001,9 @@
         <file>default/icons/zoom_in.png</file>
         <file>default/icons/zoom_out.png</file>
     </qresource>
+    <qresource prefix="/images" >
+        <file>default/images/logo.png</file>
+        <file>default/images/logo.svg</file>
+        <file>default/images/logo_small.png</file>
+    </qresource>
 </RCC>

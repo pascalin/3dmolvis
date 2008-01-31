@@ -36,7 +36,8 @@ FORMS += lib/widgets/AnimateWidget.ui \
          lib/widgets/RotaWidget.ui \
          lib/widgets/ScaleWidget.ui \
          lib/widgets/StereoWidget.ui \
-         lib/widgets/SimWidget.ui
+         lib/widgets/SimWidget.ui \
+         lib/VmdMainWindow.ui
 SOURCES += main.cpp \
            lib/AppHandler.cpp \
            lib/CommandProcess.cpp \
