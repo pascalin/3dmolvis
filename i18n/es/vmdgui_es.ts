@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="es">
+<defaultcodec></defaultcodec>
 <context>
     <name>AnimateWidget</name>
     <message>
@@ -506,7 +507,7 @@
     <message>
         <location filename="../../lib/VmdMainWindow.ui" line="137"/>
         <source>About &amp;Qt</source>
-        <translation>Acerda de &amp;Qt</translation>
+        <translation>Acerca de &amp;Qt</translation>
     </message>
     <message>
         <location filename="../../lib/VmdMainWindow.ui" line="140"/>
