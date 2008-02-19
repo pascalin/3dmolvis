@@ -25,13 +25,13 @@
 //
 #ifndef SIMWIDGET_H
 #define SIMWIDGET_H
-#include <QWidget>
+#include "GenericWidget.h"
 #include <QTimer>
 #include <QTime>
 #include "ui_SimWidget.h"
 
 class SimWidget;
-class SimWidget : public QWidget, public Ui::SimWidget
+class SimWidget : public GenericWidget, public Ui::SimWidget
 { 
 	Q_OBJECT
 public:		

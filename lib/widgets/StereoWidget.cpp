@@ -24,8 +24,10 @@
 #include <QtGui>
 #include "StereoWidget.h"
 
-StereoWidget::StereoWidget(QWidget *parent) : QWidget(parent)
+StereoWidget::StereoWidget(QWidget *parent)
 {
+  if (parent)
+    setParent(parent);
   setupUi(this);
   connect(stereo_button, SIGNAL(clicked(bool)), this, SLOT(toggleStereo(bool)));
 }

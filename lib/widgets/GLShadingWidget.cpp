@@ -23,8 +23,10 @@
 
 #include "GLShadingWidget.h"
 
-GLShadingWidget::GLShadingWidget(QWidget *parent) : QWidget(parent)
+GLShadingWidget::GLShadingWidget(QWidget *parent)
 {
+  if (parent)
+    setParent(parent);
   setupUi(this);
   connect(push_button, SIGNAL(clicked(bool)), this, SLOT(checkState(bool)));
 }

@@ -24,14 +24,14 @@
 #ifndef STEREOWIDGET_H
 #define STEREOWIDGET_H
 
-#include <QWidget>
+#include "GenericWidget.h"
 #include "ui_StereoWidget.h"
 
-class StereoWidget : public QWidget, public Ui::StereoWidget
+class StereoWidget : public GenericWidget, public Ui::StereoWidget
 {
     Q_OBJECT
 public:
-    StereoWidget(QWidget *parent = 0);
+  StereoWidget(QWidget *parent = 0);
 public slots:
   void toggleStereo(bool);
   void processOutput(QString) {}

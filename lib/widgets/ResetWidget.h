@@ -24,11 +24,11 @@
 #ifndef RESETWIDGET_H
 #define RESETWIDGET_H
 
-#include <QWidget>
+#include "GenericWidget.h"
 #include <sstream>
 #include "ui_ResetWidget.h"
 
-class ResetWidget : public QWidget, public Ui::ResetWidget
+class ResetWidget : public GenericWidget, public Ui::ResetWidget
 {
     Q_OBJECT
 private:

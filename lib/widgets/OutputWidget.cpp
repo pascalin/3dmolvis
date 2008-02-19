@@ -24,8 +24,10 @@
 #include <QtGui>
 #include "OutputWidget.h"
 
-OutputWidget::OutputWidget(QWidget *parent) : QWidget(parent)
+OutputWidget::OutputWidget(QWidget *parent)
 {
+  if (parent)
+    setParent(parent);
   setupUi(this);
 }
 

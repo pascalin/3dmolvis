@@ -31,8 +31,10 @@
 using namespace std;
 //Define si algunos botones estan disponibles.
 
-SimWidget::SimWidget(QWidget *parent) : QWidget(parent)
+SimWidget::SimWidget(QWidget *parent)
 {
+  if (parent)
+    setParent(parent);
  	setupUi(this);
 	t=2500;
 	//CommandProcess *namd2process = new CommandProcess("./bin/namd2", "", "exit", param);

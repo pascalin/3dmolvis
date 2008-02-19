@@ -22,6 +22,7 @@
 
 
 #include <QStringList>
+#include "widgets/GenericWidget.h"
 #include "widgets/CommandLineWidget.h"
 #include "widgets/OutputWidget.h"
 #include "widgets/RotationWidget.h"
@@ -39,8 +40,16 @@
 
 class WidgetManager
 {
-  QStringList widget_list;// This list contains names of all widget classes
+  // Contains names of all widget classes
+  QStringList widget_list;
 public:
   WidgetManager();
-  QWidget *createWidgetByName(QString);// This method returns a widget of the specified type
+  // Returns a widget of the specified type
+  GenericWidget *createWidgetByName(QString);
+  // Returns a QStringList containing the names of all registered widgets
+  QStringList getWidgetList();
+  // Returns title of specified widget
+  QString getTitleByName(QString);
+  // Returns decription of specified widget
+  QString getDescriptionByName(QString);
 };

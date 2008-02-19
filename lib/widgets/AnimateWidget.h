@@ -24,10 +24,10 @@
 #ifndef ANIMATEWIDGET_H
 #define ANIMATEWIDGET_H
 
-#include <QWidget>
+#include "GenericWidget.h"
 #include "ui_AnimateWidget.h"
 
-class AnimateWidget : public QWidget, public Ui::AnimateWidget
+class AnimateWidget : public GenericWidget, public Ui::AnimateWidget
 {
     Q_OBJECT
 public:

@@ -24,8 +24,10 @@
 #include <QtGui>
 #include "PlanesWidget.h"
 
-PlanesWidget::PlanesWidget(QWidget *parent) : QWidget(parent)
+PlanesWidget::PlanesWidget(QWidget *parent)
 {
+  if (parent)
+    setParent(parent);
   setupUi(this);
   connect(Slider, SIGNAL(valueChanged(int)), this, SLOT(cut(int)));
 }

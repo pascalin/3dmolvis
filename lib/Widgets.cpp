@@ -40,10 +40,10 @@ WidgetManager::WidgetManager()
 }
 
 
-QWidget *WidgetManager::createWidgetByName(QString name)
+GenericWidget *WidgetManager::createWidgetByName(QString name)
 {
   int index = widget_list.indexOf(name);
-  QWidget* widget=NULL;
+  GenericWidget* widget=NULL;
   switch (index)
     {
     case 0:
@@ -84,4 +84,21 @@ QWidget *WidgetManager::createWidgetByName(QString name)
       break;
     }
   return widget;
+}
+
+QStringList WidgetManager::getWidgetList()
+{
+  return widget_list;
+}
+
+QString WidgetManager::getTitleByName(QString name)
+{
+  GenericWidget* widget=createWidgetByName(name);
+  return widget->getTitle();
+}
+
+QString WidgetManager::getDescriptionByName(QString name)
+{
+  GenericWidget* widget=createWidgetByName(name);
+  return widget->getDescription();
 }

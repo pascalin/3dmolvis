@@ -1,4 +1,4 @@
-// File : MouseModeWidget.h
+// File : GenericWidget.cpp
 
 
 //	Copyright (C) 2007 David Suarez Pascal
@@ -21,26 +21,29 @@
 //
 
 
-#ifndef MOUSEMODEWIDGET_H
-#define MOUSEMODEWIDGET_H
-
 #include "GenericWidget.h"
-#include "ui_MouseModeWidget.h"
 
-class MouseModeWidget : public GenericWidget, public Ui::MouseModeWidget
+// GenericWidget::GenericWidget(QWidget *parent) : QWidget(parent)
+// {
+
+// }
+
+void GenericWidget::processOutput(QString output)
 {
-    Q_OBJECT
-public:
-    MouseModeWidget(QWidget *parent = 0);
-private slots:
-  void enableRotateMode();
-  void enableScaleMode();
-  void enableTranslateMode();
-public slots:
-  void processOutput(QString) {}
-  void sendInitCode() { emit initCodeRequested(""); }
-signals:
-  void commandRaised(QString comm);
-  void initCodeRequested(QString code);
-};
-#endif
+  
+}
+
+QString GenericWidget::getTitle()
+{
+  return title;
+}
+
+QString GenericWidget::getDescription()
+{
+  return description;
+}
+
+QString GenericWidget::getInitCode()
+{
+  return init_code;
+}

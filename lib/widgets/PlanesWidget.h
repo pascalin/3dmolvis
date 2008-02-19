@@ -24,11 +24,11 @@
 #ifndef PLANESWIDGET_H
 #define PLANESWIDGET_H
 
-#include <QWidget>
+#include "GenericWidget.h"
 #include <sstream>
 #include "ui_PlanesWidget.h"
 
-class PlanesWidget : public QWidget, public Ui::PlanesWidget
+class PlanesWidget : public GenericWidget, public Ui::PlanesWidget
 {
     Q_OBJECT
 private:

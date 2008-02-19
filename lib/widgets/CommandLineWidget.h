@@ -24,10 +24,10 @@
 #ifndef COMMANDLINEWIDGET_H
 #define COMMANDLINEWIDGET_H
 
-#include <QWidget>
+#include "GenericWidget.h"
 #include "ui_CommandLineWidget.h"
 
-class CommandLineWidget : public QWidget, public Ui::CommandLineWidget
+class CommandLineWidget : public GenericWidget, public Ui::CommandLineWidget
 {
     Q_OBJECT
 public:

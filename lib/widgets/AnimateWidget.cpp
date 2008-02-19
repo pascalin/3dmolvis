@@ -23,8 +23,10 @@
 
 #include "AnimateWidget.h"
 
-AnimateWidget::AnimateWidget(QWidget *parent) : QWidget(parent)
+AnimateWidget::AnimateWidget(QWidget *parent)
 {
+  if (parent)
+    setParent(parent);
   setupUi(this);
   fw_dir = true;
   connect(start_button, SIGNAL(clicked()), this, SLOT(gotoStart()));

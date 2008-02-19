@@ -25,8 +25,10 @@
 #include "RotationWidget.h"
 
 /* El constructor de la clase principal */
-RotationWidget::RotationWidget(QWidget *parent) : QWidget(parent)
+RotationWidget::RotationWidget(QWidget *parent)
 {
+  if (parent)
+    setParent(parent);
   setupUi(this); // Llama la funcion Ui::RotationWidget::setupUi que agrega todas las propiedades definidas en el designer
   /* Conecta el control QDial para rotacion sobre X,Y y Z con el slot rotateX , rotateY y rotateZ, segun corresponda*/
   connect(x_dial, SIGNAL(valueChanged(int)), this, SLOT(rotateX(int)));

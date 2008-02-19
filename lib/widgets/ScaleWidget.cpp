@@ -26,8 +26,10 @@
 #include <iostream>
 using namespace std;
 
-ScaleWidget::ScaleWidget(QWidget *parent) : QWidget(parent)
+ScaleWidget::ScaleWidget(QWidget *parent)
 {
+  if (parent)
+    setParent(parent);
   setupUi(this);
   connect(Slider, SIGNAL(valueChanged(int)), this, SLOT(slider(int)));
 }

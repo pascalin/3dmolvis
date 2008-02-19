@@ -23,8 +23,10 @@
 
 #include "MouseModeWidget.h"
 
-MouseModeWidget::MouseModeWidget(QWidget *parent) : QWidget(parent)
+MouseModeWidget::MouseModeWidget(QWidget *parent)
 {
+  if (parent)
+    setParent(parent);
   setupUi(this);
   connect(radio_rotate, SIGNAL(clicked()), this, SLOT(enableRotateMode()));
   connect(radio_scale, SIGNAL(clicked()), this, SLOT(enableScaleMode()));

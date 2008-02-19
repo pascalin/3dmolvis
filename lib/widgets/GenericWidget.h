@@ -1,7 +1,7 @@
-// File : MouseModeWidget.h
+// File : GenericWidget.h
 
 
-//	Copyright (C) 2007 David Suarez Pascal
+//	Copyright (C) 2008 David Suarez Pascal
 //
 //	This file is part of VMDGui
 //
@@ -20,27 +20,31 @@
 //	59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 //
 
+/* GenericWidget is intended to be the parent class of all widgets. It
+   has three static methods employed by class WidgetManager to get a
+   static info about the widget class.
+*/
 
-#ifndef MOUSEMODEWIDGET_H
-#define MOUSEMODEWIDGET_H
+#ifndef GENERICWIDGET_H
+#define GENERICWIDGET_H
 
-#include "GenericWidget.h"
-#include "ui_MouseModeWidget.h"
+#include <QWidget>
 
-class MouseModeWidget : public GenericWidget, public Ui::MouseModeWidget
+class GenericWidget : public QWidget
 {
     Q_OBJECT
+private:
+  QString init_code;
+  QString title;
+  QString description;
 public:
-    MouseModeWidget(QWidget *parent = 0);
-private slots:
-  void enableRotateMode();
-  void enableScaleMode();
-  void enableTranslateMode();
+//   GenericWidget(QWidget *parent=0);
+  QString getInitCode();
+  QString getTitle();
+  QString getDescription();
 public slots:
-  void processOutput(QString) {}
-  void sendInitCode() { emit initCodeRequested(""); }
+  void processOutput(QString output);
 signals:
-  void commandRaised(QString comm);
-  void initCodeRequested(QString code);
+  void commandRaised(QString command);
 };
 #endif

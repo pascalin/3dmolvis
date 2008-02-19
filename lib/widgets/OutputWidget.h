@@ -24,10 +24,10 @@
 #ifndef OUTPUTWIDGET_H
 #define OUTPUTWIDGET_H
 
-#include <QWidget>
+#include "GenericWidget.h"
 #include "ui_OutputWidget.h"
 
-class OutputWidget : public QWidget, public Ui::OutputWidget
+class OutputWidget : public GenericWidget, public Ui::OutputWidget
 {
     Q_OBJECT
 public:

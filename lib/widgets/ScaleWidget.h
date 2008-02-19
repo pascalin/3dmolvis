@@ -24,11 +24,11 @@
 #ifndef SCALEWIDGET_H
 #define SCALEWIDGET_H
 
-#include <QWidget>
+#include "GenericWidget.h"
 #include <sstream>
 #include "ui_ScaleWidget.h"
 
-class ScaleWidget : public QWidget, public Ui::ScaleWidget
+class ScaleWidget : public GenericWidget, public Ui::ScaleWidget
 {
     Q_OBJECT
 private:

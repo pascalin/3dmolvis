@@ -24,8 +24,10 @@
 #include <QtGui>
 #include "CommandLineWidget.h"
 
-CommandLineWidget::CommandLineWidget(QWidget *parent) : QWidget(parent)
+CommandLineWidget::CommandLineWidget(QWidget *parent)
 {
+  if (parent)
+    setParent(parent);
   setupUi(this);
   connect(lineEdit, SIGNAL(returnPressed()), this, SLOT(inputReceived()));
   connect(pushButton, SIGNAL(clicked()), this, SLOT(inputReceived()));

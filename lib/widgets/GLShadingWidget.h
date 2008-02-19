@@ -24,10 +24,10 @@
 #ifndef GLSHADINGWIDGET_H
 #define GLSHADINGWIDGET_H
 
-#include <QWidget>
+#include "GenericWidget.h"
 #include "ui_GLShadingWidget.h"
 
-class GLShadingWidget : public QWidget, public Ui::GLShadingWidget
+class GLShadingWidget : public GenericWidget, public Ui::GLShadingWidget
 {
     Q_OBJECT
 public:

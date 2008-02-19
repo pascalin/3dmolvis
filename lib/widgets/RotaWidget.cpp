@@ -24,8 +24,10 @@
 #include <QtGui>
 #include "RotaWidget.h"
 
-RotaWidget::RotaWidget(QWidget *parent) : QWidget(parent)
+RotaWidget::RotaWidget(QWidget *parent)
 {
+  if (parent)
+    setParent(parent);
   setupUi(this);
   connect(pushButton, SIGNAL(clicked()), this, SLOT(rota()));
   //connect(pushButton_off, SIGNAL(clicked()), this, SLOT(rotaoff()));

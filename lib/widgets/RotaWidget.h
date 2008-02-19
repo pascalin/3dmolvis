@@ -24,11 +24,11 @@
 #ifndef ROTAWIDGET_H
 #define ROTAWIDGET_H
 
-#include <QWidget>
+#include "GenericWidget.h"
 #include <sstream>
 #include "ui_RotaWidget.h"
 
-class RotaWidget : public QWidget, public Ui::RotaWidget
+class RotaWidget : public GenericWidget, public Ui::RotaWidget
 {
     Q_OBJECT
 private:

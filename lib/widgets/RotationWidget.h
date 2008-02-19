@@ -35,12 +35,12 @@
 #ifndef ROTATIONWIDGET_H
 #define ROTATIONWIDGET_H
 
-#include <QWidget>
+#include "GenericWidget.h"
 #include <sstream>
 #include "ui_RotationWidget.h"
 
 /* Clase que implementa las funciones del widget de rotacion  */
-class RotationWidget : public QWidget, public Ui::RotationWidget // Utiliza herencia multiple de QWidget y Ui::RotationWidget
+class RotationWidget : public GenericWidget, public Ui::RotationWidget // Utiliza herencia multiple de GenericWidget y Ui::RotationWidget
 {
   Q_OBJECT // Macro que introduce los miembros requeridos por todo objeto de Qt
 private:

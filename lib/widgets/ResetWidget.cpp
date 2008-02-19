@@ -24,8 +24,10 @@
 #include <QtGui>
 #include "ResetWidget.h"
 
-ResetWidget::ResetWidget(QWidget *parent) : QWidget(parent)
+ResetWidget::ResetWidget(QWidget *parent)
 {
+  if (parent)
+    setParent(parent);
   setupUi(this);
   //connect(pushButton_on, SIGNAL(clicked()), this, SLOT(rotaon()));
   //connect(pushButton_off, SIGNAL(clicked()), this, SLOT(rotaoff()));
