@@ -25,6 +25,9 @@
 
 AnimateWidget::AnimateWidget(QWidget *parent)
 {
+  title = tr("Animation");
+  description = tr("Allows users controlling of animations (play, pause, stop, repeat, etc.)");
+  init_code = "";
   if (parent)
     setParent(parent);
   setupUi(this);

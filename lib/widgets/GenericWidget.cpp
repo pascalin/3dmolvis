@@ -23,11 +23,6 @@
 
 #include "GenericWidget.h"
 
-// GenericWidget::GenericWidget(QWidget *parent) : QWidget(parent)
-// {
-
-// }
-
 void GenericWidget::processOutput(QString output)
 {
   

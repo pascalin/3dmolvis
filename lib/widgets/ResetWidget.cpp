@@ -26,6 +26,9 @@
 
 ResetWidget::ResetWidget(QWidget *parent)
 {
+  title = tr("Reset View");
+  description = tr("With this control users can restore original display settings (zoom, camera, stereo, etc.)");
+  init_code = "";
   if (parent)
     setParent(parent);
   setupUi(this);

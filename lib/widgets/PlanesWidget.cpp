@@ -26,6 +26,9 @@
 
 PlanesWidget::PlanesWidget(QWidget *parent)
 {
+  title = tr("Cut Planes");
+  description = tr("With this control, users can display a cut plane and change its position to enable inspection of a section of displayed objects.");
+  init_code = "";
   if (parent)
     setParent(parent);
   setupUi(this);

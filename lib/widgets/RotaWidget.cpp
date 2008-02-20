@@ -26,6 +26,9 @@
 
 RotaWidget::RotaWidget(QWidget *parent)
 {
+  title = tr("Autorotate");
+  description = tr("This control allows users to enable/disable autorotation of displayed objects.");
+  init_code = "";
   if (parent)
     setParent(parent);
   setupUi(this);

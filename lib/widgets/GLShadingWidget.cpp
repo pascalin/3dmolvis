@@ -25,6 +25,9 @@
 
 GLShadingWidget::GLShadingWidget(QWidget *parent)
 {
+  title = tr("Programmable Shading");
+  description = tr("This control allows users to enable/disable OpenGL Programmable Shading if it is available.");
+  init_code = "";
   if (parent)
     setParent(parent);
   setupUi(this);

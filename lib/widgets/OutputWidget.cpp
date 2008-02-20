@@ -26,6 +26,9 @@
 
 OutputWidget::OutputWidget(QWidget *parent)
 {
+  title = tr("Log");
+  description = tr("This controls enables displaying of VMD messages. Useful for debugging of new lessons or controls.");
+  init_code = "";
   if (parent)
     setParent(parent);
   setupUi(this);

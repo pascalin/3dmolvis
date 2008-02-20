@@ -33,6 +33,9 @@ using namespace std;
 
 SimWidget::SimWidget(QWidget *parent)
 {
+  title = tr("Simulation");
+  description = tr("With this control users can start/finish an interactive simulation session.");
+  init_code = "";
   if (parent)
     setParent(parent);
  	setupUi(this);

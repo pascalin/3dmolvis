@@ -28,6 +28,9 @@ using namespace std;
 
 ScaleWidget::ScaleWidget(QWidget *parent)
 {
+  title = tr("Zoom");
+  description = tr("This control allows users to zoom into or out of visualized objects.");
+  init_code = "";
   if (parent)
     setParent(parent);
   setupUi(this);

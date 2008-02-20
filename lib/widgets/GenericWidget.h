@@ -33,12 +33,11 @@
 class GenericWidget : public QWidget
 {
     Q_OBJECT
-private:
+protected:
   QString init_code;
   QString title;
   QString description;
 public:
-//   GenericWidget(QWidget *parent=0);
   QString getInitCode();
   QString getTitle();
   QString getDescription();

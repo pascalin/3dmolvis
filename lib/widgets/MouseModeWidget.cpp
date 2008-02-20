@@ -25,6 +25,9 @@
 
 MouseModeWidget::MouseModeWidget(QWidget *parent)
 {
+  title = tr("Mouse Mode");
+  description = tr("With this control users can switch between several mouse interaction modes.");
+  init_code = "";
   if (parent)
     setParent(parent);
   setupUi(this);

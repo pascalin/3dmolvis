@@ -26,6 +26,9 @@
 
 CommandLineWidget::CommandLineWidget(QWidget *parent)
 {
+  title = tr("Command Line");
+  description = tr("This controls allows users to send text commands directly to VMD. Useful for testing.");
+  init_code = "";
   if (parent)
     setParent(parent);
   setupUi(this);

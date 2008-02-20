@@ -26,6 +26,9 @@
 
 StereoWidget::StereoWidget(QWidget *parent)
 {
+  title = tr("Stereo");
+  description = tr("With this control users can turn on/off stereographic visualization.");
+  init_code = "";
   if (parent)
     setParent(parent);
   setupUi(this);

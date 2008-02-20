@@ -27,6 +27,9 @@
 /* El constructor de la clase principal */
 RotationWidget::RotationWidget(QWidget *parent)
 {
+  title = tr("Rotation");
+  description = tr("With this control users can rotate displayed object upon itself around any axis.");
+  init_code = "";
   if (parent)
     setParent(parent);
   setupUi(this); // Llama la funcion Ui::RotationWidget::setupUi que agrega todas las propiedades definidas en el designer
