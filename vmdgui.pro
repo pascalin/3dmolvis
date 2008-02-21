@@ -13,6 +13,7 @@ HEADERS += lib/AppHandler.h \
            lib/OptionBox.h \
            lib/VmdMainWindow.h \
            lib/Widgets.h \
+           lib/widgets/GenericWidget.h \
            lib/widgets/AnimateWidget.h \
            lib/widgets/CommandLineWidget.h \
            lib/widgets/GLShadingWidget.h \
@@ -44,6 +45,7 @@ SOURCES += main.cpp \
            lib/OptionBox.cpp \
            lib/VmdMainWindow.cpp \
            lib/Widgets.cpp \
+           lib/widgets/GenericWidget.cpp \
            lib/widgets/AnimateWidget.cpp \
            lib/widgets/CommandLineWidget.cpp \
            lib/widgets/GLShadingWidget.cpp \
