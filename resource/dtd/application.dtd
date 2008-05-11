@@ -1,0 +1,83 @@
+<!-- application.dtd - 3DMolVis Project (http://tdmolvis.sourceforge.net) -->
+<!-- Author: David Suarez Pascal [david.suarez@yahoo.com] -->
+<!-- Version: 1.0 -->
+
+<!-- 
+     application element contains:
+     * a description based on RDF and Dublin Core elements
+     * a list of controls (widgets) setting specific interactions for
+     users,
+     * an optional options block linking groups of user visible
+     options with specific VMD actions,
+     * an optional storyboard element containing a hierarchical list
+     of user-selectable actions and
+     * a block containing TCL code for VMD setup
+-->
+<!ELEMENT application (rdf:Description, controls, options?, storyboard?, tclcode)>
+<!ATTLIST application
+	xmlns:rdf CDATA #FIXED "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:dc CDATA #FIXED "http://purl.org/dc/elements/1.1/"
+	xmlns CDATA #FIXED "http://tdmolvis.sourceforge.net/application/1.0/"
+	version CDATA #REQUIRED
+>
+
+<!--
+    Controls sets a list of widgets to be included on application
+ -->
+<!ELEMENT controls (control+)>
+<!ELEMENT control EMPTY>
+<!-- Widget class name as defined on source code -->
+<!ATTLIST control
+	name CDATA #REQUIRED
+>
+
+<!--
+    Description of application based on Dublin Core elements
+-->
+<!ELEMENT rdf:Description (dc:title, dc:creator, dc:contributor?,
+    dc:publisher?, dc:subject?, dc:description?, dc:date,
+    dc:identifier?)>
+<!ELEMENT dc:title (#PCDATA)>
+<!ELEMENT dc:creator (#PCDATA)>
+<!ELEMENT dc:contributor (#PCDATA)>
+<!ELEMENT dc:publisher (#PCDATA)>
+<!ELEMENT dc:subject (#PCDATA)>
+<!ELEMENT dc:description (#PCDATA)>
+<!ELEMENT dc:date (#PCDATA)>
+<!ELEMENT dc:identifier (#PCDATA)>
+
+<!--
+    Options lists a set of switches enabling particular representations
+-->
+<!ELEMENT optgroup (option+)>
+<!ATTLIST optgroup
+	title CDATA #REQUIRED
+>
+<!ELEMENT option EMPTY>
+<!ATTLIST option
+	name CDATA #REQUIRED
+	command CDATA #REQUIRED
+	default (on | off) #REQUIRED
+>
+<!ELEMENT options (optgroup+)>
+
+<!--
+    Storyboard defines a hierarchical set of actions, it is intended
+    to create sets of topics
+-->
+<!ELEMENT storyboard (group+)>
+<!ELEMENT group (group+ | action+)>
+<!ATTLIST group
+	name CDATA #REQUIRED
+>
+<!ELEMENT action EMPTY>
+<!ATTLIST action
+	command CDATA #REQUIRED
+	title CDATA #REQUIRED
+>
+
+<!--
+    This element contains generic Tcl code used for setting some VMD
+    parameters
+-->
+<!ELEMENT tclcode (#PCDATA)>
