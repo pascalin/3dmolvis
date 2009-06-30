@@ -93,6 +93,16 @@
         <source>Sets the speed of the animation</source>
         <translation>Establece la velocidad de la animación</translation>
     </message>
+    <message>
+        <location filename="../../lib/widgets/AnimateWidget.cpp" line="28"/>
+        <source>Animation</source>
+        <translation>Animacion</translation>
+    </message>
+    <message>
+        <location filename="../../lib/widgets/AnimateWidget.cpp" line="29"/>
+        <source>Allows users controlling of animations (play, pause, stop, repeat, etc.)</source>
+        <translation>Permite a los usuarios controlar las animaciones</translation>
+    </message>
 </context>
 <context>
     <name>CommandLineWidget</name>
@@ -105,6 +115,16 @@
         <location filename="../../lib/widgets/CommandLineWidget.ui" line="38"/>
         <source>Se&amp;nd</source>
         <translation>E&amp;nviar</translation>
+    </message>
+    <message>
+        <location filename="../../lib/widgets/CommandLineWidget.cpp" line="29"/>
+        <source>Command Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../lib/widgets/CommandLineWidget.cpp" line="30"/>
+        <source>This controls allows users to send text commands directly to VMD. Useful for testing.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -123,6 +143,16 @@
         <location filename="../../lib/widgets/GLShadingWidget.ui" line="22"/>
         <source>Prog. Sha&amp;ding</source>
         <translation>S. pro&amp;gramable</translation>
+    </message>
+    <message>
+        <location filename="../../lib/widgets/GLShadingWidget.cpp" line="28"/>
+        <source>Programmable Shading</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../lib/widgets/GLShadingWidget.cpp" line="29"/>
+        <source>This control allows users to enable/disable OpenGL Programmable Shading if it is available.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -182,6 +212,16 @@
         <source>Enables rotation of objects with the mouse</source>
         <translation>Activa la rotación de objetos con el ratón</translation>
     </message>
+    <message>
+        <location filename="../../lib/widgets/MouseModeWidget.cpp" line="28"/>
+        <source>Mouse Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../lib/widgets/MouseModeWidget.cpp" line="29"/>
+        <source>With this control users can switch between several mouse interaction modes.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>OutputWidget</name>
@@ -235,6 +275,16 @@
         <source>C&amp;lear</source>
         <translation>Li&amp;mpiar</translation>
     </message>
+    <message>
+        <location filename="../../lib/widgets/OutputWidget.cpp" line="29"/>
+        <source>Log</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../lib/widgets/OutputWidget.cpp" line="30"/>
+        <source>This controls enables displaying of VMD messages. Useful for debugging of new lessons or controls.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PlanesWidget</name>
@@ -252,6 +302,16 @@
         <location filename="../../lib/widgets/PlanesWidget.ui" line="26"/>
         <source>Translates the clip plane position</source>
         <translation>Desplaza la posición del plano de corte</translation>
+    </message>
+    <message>
+        <location filename="../../lib/widgets/PlanesWidget.cpp" line="29"/>
+        <source>Cut Planes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../lib/widgets/PlanesWidget.cpp" line="30"/>
+        <source>With this control, users can display a cut plane and change its position to enable inspection of a section of displayed objects.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -286,6 +346,16 @@
         <source>&amp;Reset Display</source>
         <translation>&amp;Reiniciar vista</translation>
     </message>
+    <message>
+        <location filename="../../lib/widgets/ResetWidget.cpp" line="29"/>
+        <source>Reset View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../lib/widgets/ResetWidget.cpp" line="30"/>
+        <source>With this control users can restore original display settings (zoom, camera, stereo, etc.)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RotaWidget</name>
@@ -303,6 +373,16 @@
         <location filename="../../lib/widgets/RotaWidget.ui" line="22"/>
         <source>Automatic &amp;Rotation</source>
         <translation>Rotación a&amp;utomática</translation>
+    </message>
+    <message>
+        <location filename="../../lib/widgets/RotaWidget.cpp" line="29"/>
+        <source>Autorotate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../lib/widgets/RotaWidget.cpp" line="30"/>
+        <source>This control allows users to enable/disable autorotation of displayed objects.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -352,6 +432,16 @@
         <source>&amp;Z</source>
         <translation>&amp;Z</translation>
     </message>
+    <message>
+        <location filename="../../lib/widgets/RotationWidget.cpp" line="30"/>
+        <source>Rotation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../lib/widgets/RotationWidget.cpp" line="31"/>
+        <source>With this control users can rotate displayed object upon itself around any axis.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ScaleWidget</name>
@@ -369,6 +459,11 @@
         <location filename="../../lib/widgets/ScaleWidget.ui" line="29"/>
         <source>Zooms objects in the window</source>
         <translation>Cambia la escala de los objetos en la ventana</translation>
+    </message>
+    <message>
+        <location filename="../../lib/widgets/ScaleWidget.cpp" line="32"/>
+        <source>This control allows users to zoom into or out of visualized objects.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -428,6 +523,16 @@
         <source>Discard</source>
         <translation>Descartar</translation>
     </message>
+    <message>
+        <location filename="../../lib/widgets/SimWidget.cpp" line="36"/>
+        <source>Simulation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../lib/widgets/SimWidget.cpp" line="37"/>
+        <source>With this control users can start/finish an interactive simulation session.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>StereoWidget</name>
@@ -445,6 +550,16 @@
         <location filename="../../lib/widgets/StereoWidget.ui" line="22"/>
         <source>S&amp;tereo Mode</source>
         <translation>Modo es&amp;téreo</translation>
+    </message>
+    <message>
+        <location filename="../../lib/widgets/StereoWidget.cpp" line="29"/>
+        <source>Stereo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../lib/widgets/StereoWidget.cpp" line="30"/>
+        <source>With this control users can turn on/off stereographic visualization.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
