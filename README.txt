@@ -1,4 +1,4 @@
-3DMolVis
+3DMolVis 0.9
 Interface for the management of visualization sessions with VMD.
 
 DESCRIPTION
