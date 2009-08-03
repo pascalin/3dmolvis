@@ -1,4 +1,4 @@
-3DMolVis 0.9
+3DMolVis 1.0
 Una interfaz para el manejo de sesiones de visualizacion con VMD.
 
 DESCRIPCION

@@ -24,6 +24,14 @@ SET(vmdgui_SRCS
     lib/widgets/StereoWidget.cpp
     lib/widgets/ResetWidget.cpp
     lib/widgets/PlanesWidget.cpp
+    lib/wizards/lesson/MRoleStringListModel.cpp
+    lib/wizards/lesson/GeneralData.cpp
+    lib/wizards/lesson/Introduction.cpp
+    lib/wizards/lesson/OriginData.cpp
+    lib/wizards/lesson/SaveLesson.cpp
+    lib/wizards/lesson/WidgetSelect.cpp
+    lib/wizards/lesson/LessonWizard.cpp
+    lib/wizards/lesson/SelRep.cpp
     lib/AppHandler.cpp
     lib/CommandProcess.cpp
     lib/OptionBox.cpp
@@ -47,6 +55,14 @@ SET(vmdgui_MOC_HDRS
     lib/widgets/StereoWidget.h
     lib/widgets/ResetWidget.h
     lib/widgets/PlanesWidget.h
+    lib/wizards/lesson/MRoleStringListModel.h
+    lib/wizards/lesson/SelRep.h
+    lib/wizards/lesson/GeneralData.h
+    lib/wizards/lesson/Introduction.h
+    lib/wizards/lesson/OriginData.h
+    lib/wizards/lesson/SaveLesson.h
+    lib/wizards/lesson/WidgetSelect.h
+    lib/wizards/lesson/LessonWizard.h
     lib/CommandProcess.h
     lib/OptionBox.h
     lib/VmdMainWindow.h
@@ -69,6 +85,12 @@ SET(vmdgui_UIS
 	lib/widgets/ScaleWidget.ui
 	lib/widgets/SimWidget.ui
 	lib/widgets/StereoWidget.ui
+	lib/wizards/lesson/SelRep.ui
+	lib/wizards/lesson/GeneralData.ui
+	lib/wizards/lesson/Introduction.ui
+	lib/wizards/lesson/OriginData.ui
+	lib/wizards/lesson/SaveLesson.ui
+	lib/wizards/lesson/WidgetSelect.ui
 	lib/VmdMainWindow.ui
 )
 

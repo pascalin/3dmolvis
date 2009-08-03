@@ -4,8 +4,8 @@
 
 TEMPLATE = app
 TARGET = 
-DEPENDPATH += . lib resource lib/widgets
-INCLUDEPATH += . lib lib/widgets
+DEPENDPATH += . lib resource lib/widgets lib/wizards/lesson
+INCLUDEPATH += . lib lib/widgets lib/wizards/lesson
 
 # Input
 HEADERS += lib/version.h \
@@ -26,7 +26,15 @@ HEADERS += lib/version.h \
            lib/widgets/RotaWidget.h \
            lib/widgets/ScaleWidget.h \
            lib/widgets/StereoWidget.h \
-           lib/widgets/SimWidget.h
+           lib/widgets/SimWidget.h \
+           lib/wizards/lesson/GeneralData.h \
+           lib/wizards/lesson/Introduction.h \
+           lib/wizards/lesson/LessonWizard.h \
+           lib/wizards/lesson/MRoleStringListModel.h \
+           lib/wizards/lesson/OriginData.h \
+           lib/wizards/lesson/SaveLesson.h \
+           lib/wizards/lesson/SelRep.h \
+           lib/wizards/lesson/WidgetSelect.h
 FORMS += lib/widgets/AnimateWidget.ui \
          lib/widgets/CommandLineWidget.ui \
          lib/widgets/GLShadingWidget.ui \
@@ -39,6 +47,12 @@ FORMS += lib/widgets/AnimateWidget.ui \
          lib/widgets/ScaleWidget.ui \
          lib/widgets/StereoWidget.ui \
          lib/widgets/SimWidget.ui \
+         lib/wizards/lesson/GeneralData.ui \
+         lib/wizards/lesson/Introduction.ui \
+         lib/wizards/lesson/OriginData.ui \
+         lib/wizards/lesson/SaveLesson.ui \
+         lib/wizards/lesson/SelRep.ui \
+         lib/wizards/lesson/WidgetSelect.ui \
          lib/VmdMainWindow.ui
 SOURCES += main.cpp \
            lib/AppHandler.cpp \
@@ -58,7 +72,15 @@ SOURCES += main.cpp \
            lib/widgets/RotaWidget.cpp \
            lib/widgets/ScaleWidget.cpp \
            lib/widgets/StereoWidget.cpp \
-           lib/widgets/SimWidget.cpp
+           lib/widgets/SimWidget.cpp \
+           lib/wizards/lesson/GeneralData.cpp \
+           lib/wizards/lesson/Introduction.cpp \
+           lib/wizards/lesson/LessonWizard.cpp \
+           lib/wizards/lesson/MRoleStringListModel.cpp \
+           lib/wizards/lesson/OriginData.cpp \
+           lib/wizards/lesson/SaveLesson.cpp \
+           lib/wizards/lesson/SelRep.cpp \
+           lib/wizards/lesson/WidgetSelect.cpp
 RESOURCES += resource/default.qrc
 TRANSLATIONS += i18n/es/vmdgui_es.ts
 QT += xml

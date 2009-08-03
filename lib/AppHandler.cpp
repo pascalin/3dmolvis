@@ -46,7 +46,7 @@ bool AppHandler::startElement(const QString &namespaceURI,
     {
       current_text = "";
     }
-  else if (namespaceURI == "http://vmdgui.sourceforge.net")
+  else if (namespaceURI == "http://tdmolvis.sourceforge.net/application/1.0/")
     {
       if (localName == "storyboard")
 	{
@@ -119,7 +119,7 @@ bool AppHandler::endElement(const QString & namespaceURI,
 	  properties["publisher"] = current_text;	  
 	}      
     }
-  else if (namespaceURI == "http://vmdgui.sourceforge.net")
+  else if (namespaceURI == "http://tdmolvis.sourceforge.net/application/1.0/")
     {
       if (localName == "storyboard")
 	{

@@ -1,7 +1,12 @@
-// File : version.h
+/*
+ *  GeneralData.h
+ *  wizard
+ *
+ *  Created by Alejandro Mata Sánchez on 31/12/07.
+ *  Copyright 2007  All rights reserved.
+ *
+ */
 
-
-//	Copyright (C) 2009 David Suarez Pascal
 //
 //	This file is part of VMDGui
 //
@@ -19,16 +24,21 @@
 //	along with VMDGui; if not, write to the Free Software Foundation, Inc.,
 //	59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 //
+#ifndef GENERALDATA_H
+#define GENERALDATA_H
 
-#ifndef VERSION_H
-#define VERSION_H
 
-namespace tdmolvis {
+#include <QWizardPage>
+#include <QtGui>
+#include "ui_GeneralData.h"
 
-  const QString version = "1.0b";
-  const int version_major = 1;
-  const int version_minor = 0;
-  const QString version_status = "b";
 
-}
+class  GeneralData : public QWizardPage, public Ui::GeneralData
+{
+    Q_OBJECT
+public:
+	GeneralData(QWidget *parent = 0);
+
+
+};
 #endif

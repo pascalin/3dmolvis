@@ -23,6 +23,7 @@
 
 #include "VmdMainWindow.h"
 
+/* VmdMainWindow contructor */
 VmdMainWindow::VmdMainWindow()
 {
   setupUi(this);
@@ -46,6 +47,9 @@ VmdMainWindow::VmdMainWindow()
 
   connect(actionOpen, SIGNAL(triggered()), this, SLOT(openLesson()));
   connect(actionClose, SIGNAL(triggered()), this, SLOT(closeLesson()));
+
+  connect(actionLessonWizard, SIGNAL(triggered()), this, SLOT(startLessonWizard()));
+
   connect(actionAbout, SIGNAL(triggered()), this, SLOT(about()));
   connect(actionAboutQt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
 
@@ -53,7 +57,9 @@ VmdMainWindow::VmdMainWindow()
   vmd_process = NULL;
   temp_file = NULL;
   tcl_out = NULL;
-  
+
+  wiz = NULL;
+
   newVmdProcess();
 //   createActions();
 //   createMenus();
@@ -93,7 +99,7 @@ void VmdMainWindow::createWidgets()
   QVBoxLayout *layout = new QVBoxLayout;
   QWidget *wp;
   QList<QWidget*>::const_iterator w;
-  
+
   /* Borra los widgets existentes */
   for (w=widgets.begin();w!=widgets.end();w++)
     {
@@ -165,7 +171,7 @@ void VmdMainWindow::openLesson()
     QString fileName = QFileDialog::getOpenFileName(this, "Abrir archivo de aplicacion", QDir::currentPath(), "Archivos vmd (*.vmd *.xml)");
     if (fileName.isEmpty() or !QFile::exists(fileName))
         return;
-    
+
     tree->clear();
     obox->clear();
     newVmdProcess();
@@ -180,7 +186,7 @@ void VmdMainWindow::openLesson()
 
     QFile file(fileName);
     if (!file.open(QFile::ReadOnly | QFile::Text)) {
-        QMessageBox::warning(this, "VMDGui",
+        QMessageBox::warning(this, "3DMolvis",
                              tr("Unable to read file %1:\n%2.")
                              .arg(fileName)
                              .arg(file.errorString()));
@@ -253,13 +259,13 @@ void VmdMainWindow::closeLesson()
 
   actionClose->setEnabled(false);
 
-  setWindowTitle(tr("VMDGui"));
+  setWindowTitle(tr("3DMolvis"));
 }
 
 void VmdMainWindow::about()
 {
-  QMessageBox::about(this, "Acerca de VMDGui",
-		     "<b>VMDGui</b> es una interfaz para el uso del sistema de visualizacion molecular VMD");
+  QMessageBox::about(this, "Acerca de 3DMolvis",
+                     "<b>3DMolvis</b> es una interfaz para el uso del sistema de visualizacion molecular VMD");
 }
 
 void VmdMainWindow::newVmdProcess()
@@ -299,4 +305,24 @@ void VmdMainWindow::enableWidgets(QString output)
       activateWindow();
       raise();
     }
+}
+
+void VmdMainWindow :: startLessonWizard()
+{
+  wiz = new LessonWizard();
+  wiz->setWindowModality(Qt::ApplicationModal);
+  wiz->show();
+  QObject::connect(wiz, SIGNAL(finished(int)),
+                   this, SLOT(endLessonWizard(int)));
+  //wiz->setAttribute(Qt::WA_DeleteOnClose);
+  return ;
+}
+
+void VmdMainWindow :: endLessonWizard(int result)
+{
+	if(result==QDialog::Accepted){
+		LessonWizard* less_wiz = dynamic_cast<LessonWizard*> (wiz);
+		less_wiz->writeLesson();
+		statusBar()->showMessage(tr("Lesson was successfully saved"), 3000);
+	}
 }

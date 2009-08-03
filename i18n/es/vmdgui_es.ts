@@ -96,12 +96,12 @@
     <message>
         <location filename="../../lib/widgets/AnimateWidget.cpp" line="28"/>
         <source>Animation</source>
-        <translation>Animacion</translation>
+        <translation>Animación</translation>
     </message>
     <message>
         <location filename="../../lib/widgets/AnimateWidget.cpp" line="29"/>
         <source>Allows users controlling of animations (play, pause, stop, repeat, etc.)</source>
-        <translation>Permite a los usuarios controlar las animaciones</translation>
+        <translation>Permite a los usuarios controlar las animaciones (reproducir, pausa, detener, repetir, etc.)</translation>
     </message>
 </context>
 <context>
@@ -119,12 +119,12 @@
     <message>
         <location filename="../../lib/widgets/CommandLineWidget.cpp" line="29"/>
         <source>Command Line</source>
-        <translation type="unfinished"></translation>
+        <translation>Línea de comandos</translation>
     </message>
     <message>
         <location filename="../../lib/widgets/CommandLineWidget.cpp" line="30"/>
         <source>This controls allows users to send text commands directly to VMD. Useful for testing.</source>
-        <translation type="unfinished"></translation>
+        <translation>Este control le permite a los usuarios enviar comandos de texto directamente a VMD. Útil para hacer pruebas.</translation>
     </message>
 </context>
 <context>
@@ -147,12 +147,12 @@
     <message>
         <location filename="../../lib/widgets/GLShadingWidget.cpp" line="28"/>
         <source>Programmable Shading</source>
-        <translation type="unfinished"></translation>
+        <translation>Sombreado programable</translation>
     </message>
     <message>
         <location filename="../../lib/widgets/GLShadingWidget.cpp" line="29"/>
         <source>This control allows users to enable/disable OpenGL Programmable Shading if it is available.</source>
-        <translation type="unfinished"></translation>
+        <translation>Este control le permite a los usuarios activar/desactivar el sombreado programable de OpenGL si está disponible.</translation>
     </message>
 </context>
 <context>
@@ -215,12 +215,12 @@
     <message>
         <location filename="../../lib/widgets/MouseModeWidget.cpp" line="28"/>
         <source>Mouse Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Modo del ratón</translation>
     </message>
     <message>
         <location filename="../../lib/widgets/MouseModeWidget.cpp" line="29"/>
         <source>With this control users can switch between several mouse interaction modes.</source>
-        <translation type="unfinished"></translation>
+        <translation>Con este control los usuarios pueden alternar entre varios modos de interacción con el ratón.</translation>
     </message>
 </context>
 <context>
@@ -278,12 +278,12 @@
     <message>
         <location filename="../../lib/widgets/OutputWidget.cpp" line="29"/>
         <source>Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Registro</translation>
     </message>
     <message>
         <location filename="../../lib/widgets/OutputWidget.cpp" line="30"/>
         <source>This controls enables displaying of VMD messages. Useful for debugging of new lessons or controls.</source>
-        <translation type="unfinished"></translation>
+        <translation>Este control despliega los mensajes emitidos por VMD. Es útil para depurar nuevas lecciones o controles.</translation>
     </message>
 </context>
 <context>
@@ -306,12 +306,12 @@
     <message>
         <location filename="../../lib/widgets/PlanesWidget.cpp" line="29"/>
         <source>Cut Planes</source>
-        <translation type="unfinished"></translation>
+        <translation>Planos de corte</translation>
     </message>
     <message>
         <location filename="../../lib/widgets/PlanesWidget.cpp" line="30"/>
         <source>With this control, users can display a cut plane and change its position to enable inspection of a section of displayed objects.</source>
-        <translation type="unfinished"></translation>
+        <translation>Con este control los usuarios puede desplegar un plano de corte y cambiar su posición para permitir la inspección de secciones de los objetos desplegados.</translation>
     </message>
 </context>
 <context>
@@ -565,12 +565,12 @@
 <context>
     <name>VmdMainWindow</name>
     <message>
-        <location filename="../../lib/VmdMainWindow.ui" line="124"/>
+        <location filename="../../lib/VmdMainWindow.ui" line="131"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../../lib/VmdMainWindow.ui" line="165"/>
+        <location filename="../../lib/VmdMainWindow.ui" line="172"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+X</translation>
     </message>
@@ -600,101 +600,116 @@
         <translation>&amp;Ver</translation>
     </message>
     <message>
-        <location filename="../../lib/VmdMainWindow.ui" line="118"/>
+        <location filename="../../lib/VmdMainWindow.ui" line="125"/>
         <source>&amp;Open...</source>
         <translation>&amp;Abrir...</translation>
     </message>
     <message>
-        <location filename="../../lib/VmdMainWindow.ui" line="121"/>
+        <location filename="../../lib/VmdMainWindow.ui" line="128"/>
         <source>Opens an application file</source>
         <translation>Abre un archivo de aplicación</translation>
     </message>
     <message>
-        <location filename="../../lib/VmdMainWindow.ui" line="129"/>
+        <location filename="../../lib/VmdMainWindow.ui" line="136"/>
         <source>A&amp;bout ...</source>
         <translation>A&amp;cerca de ...</translation>
     </message>
     <message>
-        <location filename="../../lib/VmdMainWindow.ui" line="132"/>
+        <location filename="../../lib/VmdMainWindow.ui" line="139"/>
         <source>Shows info about VMDGui</source>
         <translation>Muestra información sobre VMDGui</translation>
     </message>
     <message>
-        <location filename="../../lib/VmdMainWindow.ui" line="137"/>
+        <location filename="../../lib/VmdMainWindow.ui" line="144"/>
         <source>About &amp;Qt</source>
         <translation>Acerca de &amp;Qt</translation>
     </message>
     <message>
-        <location filename="../../lib/VmdMainWindow.ui" line="140"/>
+        <location filename="../../lib/VmdMainWindow.ui" line="147"/>
         <source>Shows info about Qt</source>
         <translation>Muestra información sobre Qt</translation>
     </message>
     <message>
-        <location filename="../../lib/VmdMainWindow.ui" line="148"/>
+        <location filename="../../lib/VmdMainWindow.ui" line="155"/>
         <source>&amp;Close</source>
         <translation>&amp;Cerrar</translation>
     </message>
     <message>
-        <location filename="../../lib/VmdMainWindow.ui" line="151"/>
+        <location filename="../../lib/VmdMainWindow.ui" line="158"/>
         <source>Closes the currently opened application</source>
         <translation>Cierra la aplicación abierta</translation>
     </message>
     <message>
-        <location filename="../../lib/VmdMainWindow.ui" line="154"/>
+        <location filename="../../lib/VmdMainWindow.ui" line="161"/>
         <source>Ctrl+W</source>
         <translation>Ctrl+W</translation>
     </message>
     <message>
-        <location filename="../../lib/VmdMainWindow.ui" line="159"/>
+        <location filename="../../lib/VmdMainWindow.ui" line="166"/>
         <source>E&amp;xit</source>
         <translation>Sa&amp;lir</translation>
     </message>
     <message>
-        <location filename="../../lib/VmdMainWindow.ui" line="162"/>
+        <location filename="../../lib/VmdMainWindow.ui" line="169"/>
         <source>Exits from VMDGui</source>
         <translation>Sale de VMDGui</translation>
     </message>
     <message>
-        <location filename="../../lib/VmdMainWindow.ui" line="170"/>
+        <location filename="../../lib/VmdMainWindow.ui" line="177"/>
         <source>&amp;Recent</source>
         <translation>&amp;Reciente</translation>
     </message>
     <message>
-        <location filename="../../lib/VmdMainWindow.ui" line="173"/>
+        <location filename="../../lib/VmdMainWindow.ui" line="180"/>
         <source>Open a recently used application</source>
         <translation>Abre una aplicación usada recientemente</translation>
     </message>
     <message>
-        <location filename="../../lib/VmdMainWindow.ui" line="181"/>
+        <location filename="../../lib/VmdMainWindow.ui" line="188"/>
         <source>&amp;Error panel</source>
         <translation>Panel de &amp;error</translation>
     </message>
     <message>
-        <location filename="../../lib/VmdMainWindow.ui" line="189"/>
+        <location filename="../../lib/VmdMainWindow.ui" line="196"/>
         <source>E&amp;xplorer</source>
         <translation>E&amp;xplorador</translation>
     </message>
     <message>
-        <location filename="../../lib/VmdMainWindow.ui" line="192"/>
+        <location filename="../../lib/VmdMainWindow.ui" line="199"/>
         <source>F9</source>
         <translation>F9</translation>
     </message>
     <message>
-        <location filename="../../lib/VmdMainWindow.ui" line="200"/>
+        <location filename="../../lib/VmdMainWindow.ui" line="207"/>
         <source>&amp;Workplace</source>
         <translation>Area de &amp;trabajo</translation>
     </message>
     <message>
-        <location filename="../../lib/VmdMainWindow.cpp" line="185"/>
+        <location filename="../../lib/VmdMainWindow.cpp" line="191"/>
         <source>Unable to read file %1:
 %2.</source>
         <translation>Imposible leer el archivo %1:
 %2.</translation>
     </message>
     <message>
-        <location filename="../../lib/VmdMainWindow.ui" line="211"/>
+        <location filename="../../lib/VmdMainWindow.ui" line="218"/>
         <source>Status &amp;bar</source>
         <translation>&amp;Barra de estado</translation>
+    </message>
+    <message>
+        <location filename="../../lib/VmdMainWindow.ui" line="113"/>
+        <source>&amp;Tools</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../lib/VmdMainWindow.ui" line="223"/>
+        <source>&amp;Lesson wizard...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../lib/VmdMainWindow.ui" line="226"/>
+        <source>Edit or create a new lesson</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

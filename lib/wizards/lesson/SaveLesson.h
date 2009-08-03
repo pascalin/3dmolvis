@@ -1,7 +1,11 @@
-// File : version.h
-
-
-//	Copyright (C) 2009 David Suarez Pascal
+/*
+ *  SaveLesson.h
+ *  wizard
+ *
+ *  Created by Alejandro Mata Sánchez on 31/12/07.
+ *  Copyright 2007  All rights reserved.
+ *
+ */
 //
 //	This file is part of VMDGui
 //
@@ -19,16 +23,25 @@
 //	along with VMDGui; if not, write to the Free Software Foundation, Inc.,
 //	59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 //
+#ifndef SAVELESSON_H
+#define SAVELESSON_H
 
-#ifndef VERSION_H
-#define VERSION_H
 
-namespace tdmolvis {
+#include <QWizardPage>
+#include <QtGui>
+#include <QFileDialog>
+#include <QDir>
+#include "ui_SaveLesson.h"
 
-  const QString version = "1.0b";
-  const int version_major = 1;
-  const int version_minor = 0;
-  const QString version_status = "b";
 
-}
+class  SaveLesson : public QWizardPage, public Ui::SaveLesson
+{
+    Q_OBJECT
+public:
+	SaveLesson(QWidget *parent = 0);
+public slots:
+	QString destinationDir();
+private:
+	QString destDir;
+};
 #endif

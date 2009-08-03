@@ -49,6 +49,9 @@
 #include "CommandProcess.h"
 #include "AppHandler.h"
 
+/* Wizards */
+#include "wizards/lesson/LessonWizard.h"
+
 /* Archivo UI que implementa el dise~o de la ventana */
 #include "ui_VmdMainWindow.h"
 
@@ -74,6 +77,8 @@ private slots:
   void closeLesson(); // Maneja el cierre de la leccion actual
   /* Se conecta con outputProduced de vmd_process para habilitar los widgets */
   void enableWidgets(QString);
+  void startLessonWizard();
+  void endLessonWizard(int result);
 //   void newFile();
 //   bool save();
 //   bool saveAs();
@@ -93,6 +98,9 @@ private:
   WidgetManager wm;
   QList<QWidget*> widgets;
   QStringList widget_list;
+
+  /* Manejo de wizards */
+  QWizard *wiz;
 
   /* Auxiliares en el manejo del proceso de vmd */
   QStringList param; // Lista de parametros

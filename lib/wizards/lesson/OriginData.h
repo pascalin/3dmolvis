@@ -1,7 +1,12 @@
-// File : version.h
+/*
+ *  OriginData.h
+ *  wizard
+ *
+ *  Created by Alejandro Mata Sánchez on 31/12/07.
+ *  Copyright 2007  All rights reserved.
+ *
+ */
 
-
-//	Copyright (C) 2009 David Suarez Pascal
 //
 //	This file is part of VMDGui
 //
@@ -19,16 +24,29 @@
 //	along with VMDGui; if not, write to the Free Software Foundation, Inc.,
 //	59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 //
+#ifndef ORIGINDATA_H
+#define ORIGINLDATA_H
 
-#ifndef VERSION_H
-#define VERSION_H
 
-namespace tdmolvis {
+#include <QWizardPage>
+#include <QtGui>
+#include <QFile>
+#include <QFileDialog>
+#include "ui_OriginData.h"
 
-  const QString version = "1.0b";
-  const int version_major = 1;
-  const int version_minor = 0;
-  const QString version_status = "b";
 
-}
+class  OriginData : public QWizardPage, public Ui::OriginData
+{
+    Q_OBJECT
+public:
+	OriginData(QWidget *parent = 0);
+private:
+	QStringList File;
+public slots:
+	QStringList FileDialog();
+	/**TODO:*
+	 * Es necesario que regrese algo FileDialog? Donde se utiliza ese QStringList?
+	 */
+
+};
 #endif

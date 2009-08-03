@@ -19,7 +19,8 @@
 //	along with VMDGui; if not, write to the Free Software Foundation, Inc.,
 //	59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 //
-
+#ifndef WIDGETS_H
+#define WIDGETS_H
 
 #include <QStringList>
 #include "widgets/GenericWidget.h"
@@ -53,3 +54,4 @@ public:
   // Returns decription of specified widget
   QString getDescriptionByName(QString);
 };
+#endif

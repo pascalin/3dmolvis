@@ -1,0 +1,439 @@
+<ui version="4.0" >
+ <class>SelRep</class>
+ <widget class="QWidget" name="SelRep" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>567</width>
+    <height>360</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Dialog</string>
+  </property>
+  <layout class="QHBoxLayout" >
+   <item>
+    <layout class="QVBoxLayout" >
+     <item>
+      <widget class="QLabel" name="label_3" >
+       <property name="text" >
+        <string>Select a pdb file.</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="fileSel" />
+     </item>
+     <item>
+      <widget class="QLabel" name="label" >
+       <property name="text" >
+        <string>Select the representation(s) as you wish disign your lesson.</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer>
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" >
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" >
+       <item>
+        <widget class="QComboBox" name="reps" >
+         <item>
+          <property name="text" >
+           <string>lines</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>bonds</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>DynamicBonds</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>HBonds</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>Points</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>VDW</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>CPK</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>Licorice</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>trace</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>tube</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>Ribbons</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>NewRibbons</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>Cartoon</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>NewCartoon</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>MSMS</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>surf</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>VolumeSlice</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>Isosurface</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>FieldLines</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>Beads</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>Dotted</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>Solvent</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="colors" >
+         <item>
+          <property name="text" >
+           <string>name</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>type</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>Element</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>ResName</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>ResType</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>ResID</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>Chain</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>SegName</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>Conformation</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>Molecule</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>Structure</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>ColorID</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>Beta</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>Occupancy</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>Mass</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>Charge</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>Pos</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>User</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>Index</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>Backbone</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>Throb</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>Timestep</string>
+          </property>
+         </item>
+         <item>
+          <property name="text" >
+           <string>Volume</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" >
+         <item>
+          <widget class="QPushButton" name="add" >
+           <property name="text" >
+            <string>Add</string>
+           </property>
+           <property name="icon" >
+            <iconset/>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="del" >
+           <property name="text" >
+            <string>Delete</string>
+           </property>
+           <property name="icon" >
+            <iconset/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QListWidget" name="listWidget" >
+         <property name="minimumSize" >
+          <size>
+           <width>150</width>
+           <height>180</height>
+          </size>
+         </property>
+         <property name="layoutDirection" >
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="sortingEnabled" >
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <spacer>
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" >
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" >
+       <item>
+        <widget class="QLabel" name="label_2" >
+         <property name="text" >
+          <string>Selection</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEdit" >
+         <property name="text" >
+          <string>all</string>
+         </property>
+         <property name="maxLength" >
+          <number>50</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>colors</tabstop>
+  <tabstop>lineEdit</tabstop>
+  <tabstop>add</tabstop>
+  <tabstop>listWidget</tabstop>
+  <tabstop>del</tabstop>
+ </tabstops>
+ <resources>
+  <include location="../../../resource/default.qrc" />
+ </resources>
+ <connections>
+  <connection>
+   <sender>reps</sender>
+   <signal>activated(QString)</signal>
+   <receiver>colors</receiver>
+   <slot>setFocus()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>75</x>
+     <y>163</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>204</x>
+     <y>163</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>colors</sender>
+   <signal>activated(QString)</signal>
+   <receiver>lineEdit</receiver>
+   <slot>setFocus()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>204</x>
+     <y>163</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>271</x>
+     <y>311</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lineEdit</sender>
+   <signal>returnPressed()</signal>
+   <receiver>add</receiver>
+   <slot>animateClick()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>271</x>
+     <y>311</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>324</x>
+     <y>126</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>fileSel</sender>
+   <signal>activated(QString)</signal>
+   <receiver>reps</receiver>
+   <slot>setFocus()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>283</x>
+     <y>49</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>88</x>
+     <y>203</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

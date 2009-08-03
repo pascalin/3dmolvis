@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<application xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://vmdgui.sourceforge.net">
+<application xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://tdmolvis.sourceforge.net/application/1.0/">
   <rdf:Description>
     <dc:title>Aminoácidos</dc:title>
     <dc:publisher>Luis Rosales</dc:publisher>
