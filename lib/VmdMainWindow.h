@@ -1,7 +1,7 @@
 // File : VmdMainWindow.h
 
 
-//	Copyright (C) 2007 David Suarez Pascal
+//	Copyright (C) 2009 David Suarez Pascal
 //
 //	This file is part of VMDGui
 //
@@ -43,6 +43,7 @@
 #include <iostream>
 
 /* Componentes de VMDGui */
+#include "version.h"
 #include "Widgets.h"
 #include "OptionBox.h"
 #include "CommandProcess.h"

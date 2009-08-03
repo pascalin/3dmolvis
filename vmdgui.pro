@@ -8,7 +8,8 @@ DEPENDPATH += . lib resource lib/widgets
 INCLUDEPATH += . lib lib/widgets
 
 # Input
-HEADERS += lib/AppHandler.h \
+HEADERS += lib/version.h \
+           lib/AppHandler.h \
            lib/CommandProcess.h \
            lib/OptionBox.h \
            lib/VmdMainWindow.h \

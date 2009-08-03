@@ -1,7 +1,7 @@
 // File : main.cpp
 
 
-//	Copyright (C) 2007 David Suarez Pascal
+//	Copyright (C) 2009 David Suarez Pascal
 //
 //	This file is part of VMDGui
 //
@@ -28,6 +28,7 @@
 #include <QMainWindow>
 #include <QFile>
 #include <iostream>
+#include "lib/version.h"
 #include "lib/VmdMainWindow.h"
 
 
