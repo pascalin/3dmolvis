@@ -1,36 +1,42 @@
-VMDGui
-Una interfaz para el manejo de sesiones de visualizacion con VMD.
+3DMolVis
+Interface for the management of visualization sessions with VMD.
 
-DESCRIPCION
-VMDGui es una aplicacion que facilita la creacion de sesiones de
-visualizacion con VMD mediante una interfaz destinada a proveer
-unicamente los controles mas apropiados para permitir una interaccion
-agil e intuitiva de los usuarios.
-VMDGui es especialmente apropiada para su uso en aplicaciones de
-docencia.
+DESCRIPTION
+3DMolVis is a program that makes easy design of visualization sessions
+with VMD by means of an interface targetted on providing only the
+essential interactive controls delivering easy and fast interaction to
+the users.
+3DMolVis is specially targeted on CAI audiences.
 
-INSTALACION
-VMDGui emplea las bibliotecas de Qt para la mayor parte de sus
-funciones, por lo que su compilacion requiere la instalacion de Qt 4.3
-o superior.
-Para compilar VMDGui es necesario emplear el comando qmake de la
-siguiente manera:
+INSTALL
+3DMolVis is programmed almost fully with Qt libraries, and it requires
+to compile Qt 4.3 or greater on your system. Also, for running,
+3DMolVis requires a recent version of VMD installed on your system.
+To build 3DMolVis all you need to do is to run the qmake command
+inside the top folder containing the source code of 3DMolVis:
 
 $ qmake
 
-La ejecucion de estos dos comandos creara un Makefile con las
-instrucciones apropiadas para la construccion de VMDGui. Una vez
-creado este Makefile, bastara con invocar el comando:
+This will create a Makefile which contains instructions for building
+3DMolVis. After running qmake you will need to run make in the same
+folder as qmake:
 
 $ make
 
-Una vez compilado exitosamente, bastara con ejecutar el siguiente
-comando desde el directorio donde se compilo VMDGui:
+After building 3DMolVis, you will need to run the following script in
+order to set a link to VMD and to compile translations of 3DMolVis:
+
+$ ./bin/setvmdgui.sh
+
+Once this last command finish successfully, you will find the vmdgui
+program in the same folder. To run 3DMolVis just run:
 
 $ ./vmdgui
 
-ACERCA DE VMDGui
+ABOUT 3DMolVis
 
-El desarrollo de VMDGui forma parte del proyecto Programa de fortalecimiento de
-la docencia a traves del observatorio de visualizacion de la UNAM,
-Ixtli.
+3DMolVis project is developed on the Universidad Nacional Autonoma de
+Mexico, and is sponsored by the Program for Teaching Enpowerment of
+Ixtli visualization laboratory.
+
+Project page: http://tdmolvis.sourceforge.net

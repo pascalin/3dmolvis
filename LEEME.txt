@@ -1,0 +1,44 @@
+3DMolVis
+Una interfaz para el manejo de sesiones de visualizacion con VMD.
+
+DESCRIPCION
+3DMolVis es una aplicacion que facilita la creacion de sesiones de
+visualizacion con VMD mediante una interfaz destinada a proveer
+unicamente los controles mas apropiados para permitir una interaccion
+agil e intuitiva de los usuarios.
+3DMolVis es especialmente apropiado para su uso en aplicaciones de
+docencia.
+
+INSTALACION
+3DMolVis emplea las bibliotecas de Qt para la mayor parte de sus
+funciones, por lo que su compilacion requiere la instalacion de Qt 4.3
+o superior. Para ejecutarse, 3DMolVis requiere tambien que una version
+reciente de VMD este instalada en el sistema.
+Para compilar 3DMolVis es necesario emplear el comando qmake de la
+siguiente manera:
+
+$ qmake
+
+La ejecucion de estos dos comandos creara un Makefile con las
+instrucciones apropiadas para la construccion de 3DMolVis. Una vez
+creado este Makefile, bastara con invocar el comando:
+
+$ make
+
+Una vez compilado exitosamente, sera necesario ejecutar el siguiente
+programa a fin de vincular VMD y compilar las traducciones:
+
+$ ./bin/setvmdgui.sh
+
+Para ejecutar 3DMolVis bastara con ejecutar el siguiente comando desde
+el directorio donde se compilo 3DMolVis:
+
+$ ./vmdgui
+
+ACERCA DE 3DMolVis
+
+El desarrollo de 3DMolVis forma parte del proyecto Programa de
+fortalecimiento de la docencia a traves del observatorio de
+visualizacion de la UNAM, Ixtli.
+
+Pagina del proyecto: http://tdmolvis.sourceforge.net
