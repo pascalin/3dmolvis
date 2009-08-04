@@ -87,14 +87,18 @@ void WidgetSelect::addSelectedItem(){
   int row = selected_widget_model->rowCount();
   //Set origin and destination indexes
   QModelIndex origin_index = widget_model->index(widgetList->currentIndex()),
-    dest_index = widget_model->index(row);
+    dest_index;
 
   //Insert new row at the end of selected_widget_model and copy data
   selected_widget_model->insertRows(row, 1);
+  dest_index = selected_widget_model->index(row);
   selected_widget_model->setData(dest_index, widget_model->data(origin_index, Qt::EditRole), Qt::EditRole);
   selected_widget_model->setData(dest_index, widget_model->data(origin_index, Qt::DisplayRole), Qt::DisplayRole);
   selected_widget_model->setData(dest_index, widget_model->data(origin_index, Qt::ToolTipRole), Qt::ToolTipRole);
   selected_widget_model->setData(dest_index, widget_model->data(origin_index, Qt::WhatsThisRole), Qt::WhatsThisRole);
+
+  //Set selection to the row just inserted
+  finalList->setCurrentIndex(dest_index);
 }
 
 //Remove selected item from list of selected items

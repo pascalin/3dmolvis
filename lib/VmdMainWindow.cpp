@@ -264,8 +264,8 @@ void VmdMainWindow::closeLesson()
 
 void VmdMainWindow::about()
 {
-  QMessageBox::about(this, "Acerca de 3DMolvis",
-                     "<b>3DMolvis</b> es una interfaz para el uso del sistema de visualizacion molecular VMD");
+  QMessageBox::about(this, tr("About 3DMolvis"),
+                     tr("<b>3DMolvis (version %1)</b><br/>A project designed for teaching and learning biochemistry<br/><a href='http://tdmolvis.sourceforge.net'>Home Page</a>").arg(tdmolvis::version));
 }
 
 void VmdMainWindow::newVmdProcess()
