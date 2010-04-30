@@ -99,14 +99,8 @@
        </item>
        <item>
         <widget class="QListView" name="finalList">
-         <property name="acceptDrops">
-          <bool>true</bool>
-         </property>
          <property name="editTriggers">
           <set>QAbstractItemView::NoEditTriggers</set>
-         </property>
-         <property name="alternatingRowColors">
-          <bool>false</bool>
          </property>
          <property name="movement">
           <enum>QListView::Free</enum>

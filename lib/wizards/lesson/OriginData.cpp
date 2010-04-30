@@ -34,26 +34,97 @@ OriginData::OriginData(QWidget *parent) : QWizardPage(parent)
 	setTitle(tr("Select Molecules for your lesson"));
 	setSubTitle(tr("Select the molecule file"));
 	registerField("files*", lineEdit);
-	connect(pushButton,SIGNAL(clicked()),this,SLOT(FileDialog()));
+        lineEdit->hide();
+
+	data_model = new MRoleStringListModel();
+	dataList->setModel(data_model);
+
+        connect(data_model, SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(updateFileList()));
+        connect(data_model, SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(updateFileList()));
+        connect(data_model, SIGNAL(layoutChanged()), this, SLOT(updateFileList()));
+        connect(pushButton,SIGNAL(clicked()),this,SLOT(addNewItem()));
+        connect(delData, SIGNAL(clicked()), this, SLOT(removeSelectedItem()));
+        connect(upButton, SIGNAL(clicked()), this, SLOT(moveUpSelectedItem()));
+        connect(downButton, SIGNAL(clicked()), this, SLOT(moveDownSelectedItem()));
 }
+
 // FUncion Obten nombres de archivos, para copiarlos posteriormente al directorio seleccionado y generar la leccion
 //Recibe: nada	Devuleve: Lista de Archivos (QStringList)
-QStringList OriginData::FileDialog()
+void OriginData::addNewItem()
 {
-	File = QFileDialog::getOpenFileNames(this,"Select VMD molecules Files",QDir::homePath(),"VMD Files(*.pdb *.psf)");
-	lineEdit->setText("");
-	
-//	QListIterator<QString> i(File);
-//	while(i.hasNext()){
-//		QFile arch(i.next());
-//		if(!arch.exists())
-//			return QStringList("");
-//		else
-//		{
-//			lineEdit->insert(File.join(" "));
-//			return File;
-//		}
-//	}
-	lineEdit->insert(File.join(" "));
-	return File;
+  QStringList file_list = QFileDialog::getOpenFileNames(this,tr("Select VMD molecules Files"),QDir::homePath(),tr("VMD Files(*.pdb *.psf)"));
+  QStringList::const_iterator file_i;
+  int row;
+  //lineEdit->setText("");
+  
+  for (file_i=file_list.begin();file_i!=file_list.end();file_i++) {
+    QFile arch(*file_i);
+    if(arch.exists())
+      {
+	//Insert new row at the end of data_model and copy data
+        row = data_model->rowCount();
+        if ( data_model->insertRows(row, 1) == true ) {
+            QModelIndex index = data_model->index(row);
+            data_model->setData(index, *file_i, Qt::EditRole);
+            data_model->setData(index, *file_i, Qt::DisplayRole);
+            data_model->setData(index, *file_i, Qt::ToolTipRole);
+            data_model->setData(index, *file_i, Qt::WhatsThisRole);
+
+            //Set selection to the row just inserted
+            dataList->setCurrentIndex(index);
+        }
+      }
+  }
+}
+
+//Remove selected item from list of selected items
+void OriginData::removeSelectedItem(){
+  data_model->removeRows(dataList->currentIndex().row(), 1);
+}
+
+/* Move the selected item one position up or down according to
+   boolean move_up flag. Insert a new row on the desired
+   position, copy data, remove the old row and set the new
+   position as currentIndex at finalList QListView.
+*/
+void OriginData::moveSelectedItem(bool move_up){
+  QModelIndex origin_index;
+  int row = dataList->currentIndex().row();
+
+  if (data_model->moveRow(row, move_up))
+    {
+      //Erase old row and set currentIndex to new row
+      if (move_up)
+	{
+	  dataList->setCurrentIndex(data_model->index(row-1));
+	}
+      else
+	{
+	  dataList->setCurrentIndex(data_model->index(row+1));
+	}
+    }
+}
+
+//Move selected item upside
+void OriginData::moveUpSelectedItem(){
+  moveSelectedItem(true);
+}
+
+//Move selected item downside
+void OriginData::moveDownSelectedItem(){
+  moveSelectedItem(false);
+}
+
+void OriginData::updateFileList() {
+  QString files;
+  QModelIndex index;
+  int rows = data_model->rowCount();
+  for (int i=0;i<rows;i++)
+    {
+      if (i>0)
+	files.append(";");
+      index = data_model->index(i);
+      files.append(data_model->data(index, Qt::EditRole).toString());
+    }
+  lineEdit->setText(files);
 }

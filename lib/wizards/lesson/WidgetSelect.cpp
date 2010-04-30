@@ -78,6 +78,9 @@ WidgetSelect::WidgetSelect(QWidget *parent) : QWizardPage(parent)
 	connect(addWidget, SIGNAL(clicked()), this, SLOT(addSelectedItem()));
 	connect(upButton, SIGNAL(clicked()), this, SLOT(moveUpSelectedItem()));
 	connect(downButton, SIGNAL(clicked()), this, SLOT(moveDownSelectedItem()));
+
+        //Display description of current selected widget
+        changeWidgetDescription(0);
 }
 
 //Copy selected item on widgetList QComboBox from widget_model to

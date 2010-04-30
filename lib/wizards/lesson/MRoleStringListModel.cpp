@@ -118,6 +118,8 @@ bool MRoleStringListModel::moveRow(int row, bool move_up)
     dest_pos = row+1;
   }
 
+  layoutAboutToBeChanged();
+
   //Copy destination item to temporary variable
   temp = lst.at(dest_pos);
 
@@ -125,6 +127,7 @@ bool MRoleStringListModel::moveRow(int row, bool move_up)
   lst.replace(dest_pos, lst.at(orig_pos));
   lst.replace(orig_pos, temp);
 
+  layoutChanged();
   //Inform views about the change
   reset();
 

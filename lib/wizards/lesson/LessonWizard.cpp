@@ -89,7 +89,7 @@ void LessonWizard::writeLesson()
         QDomComment comment;
 
         QString dest_file,files=field("files").toString();
-        QStringList origin_files =files.split(" ");
+        QStringList origin_files =files.split(";");
 
         int pos=0;
 

@@ -4,7 +4,7 @@
  *
  *  Created by Alejandro Mata Sánchez on 31/12/07.
  *  Copyright 2007  All rights reserved.
- *
+ *  Modified by David Suarez Pascal on 30/04/2010 *
  */
 
 //
@@ -25,7 +25,7 @@
 //	59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 //
 #ifndef ORIGINDATA_H
-#define ORIGINLDATA_H
+#define ORIGINDATA_H
 
 
 #include <QWizardPage>
@@ -33,6 +33,7 @@
 #include <QFile>
 #include <QFileDialog>
 #include "ui_OriginData.h"
+#include "MRoleStringListModel.h"
 
 
 class  OriginData : public QWizardPage, public Ui::OriginData
@@ -41,12 +42,14 @@ class  OriginData : public QWizardPage, public Ui::OriginData
 public:
 	OriginData(QWidget *parent = 0);
 private:
-	QStringList File;
+	MRoleStringListModel *data_model;
+	//QStringList files;
 public slots:
-	QStringList FileDialog();
-	/**TODO:*
-	 * Es necesario que regrese algo FileDialog? Donde se utiliza ese QStringList?
-	 */
-
+	void addNewItem();
+	void removeSelectedItem();
+	void moveUpSelectedItem();
+	void moveDownSelectedItem();
+	void moveSelectedItem(bool move_up);
+	void updateFileList();
 };
 #endif

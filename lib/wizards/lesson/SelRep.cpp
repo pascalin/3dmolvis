@@ -50,7 +50,7 @@ void SelRep::initializePage()
 {
 
 	QString files=field("files").toString();
-	QStringList origin_files =files.split(" ");
+        QStringList origin_files =files.split(";");
 	QListIterator<QString> i(origin_files);
 	int pos=0;
 	//La Expresion Regular filtra solo los nombres de archivo, para que peudan ser insertados en el comboBox 
