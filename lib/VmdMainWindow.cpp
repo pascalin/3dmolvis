@@ -290,7 +290,7 @@ void VmdMainWindow::newVmdProcess()
 
 void VmdMainWindow::createStatusBar()
 {
-  statusBar()->showMessage("Listo");
+  statusBar()->showMessage(tr("Ready"));
 }
 
 void VmdMainWindow::enableWidgets(QString output)

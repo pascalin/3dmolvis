@@ -6,63 +6,35 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>342</width>
-    <height>188</height>
+    <width>247</width>
+    <height>52</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <layout class="QHBoxLayout">
+  <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
-    <layout class="QVBoxLayout">
-     <item>
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Select the folder where you wish to store lesson. </string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <layout class="QHBoxLayout">
-       <item>
-        <widget class="QLineEdit" name="lineEdit">
-         <property name="maxLength">
-          <number>2000</number>
-         </property>
-         <property name="readOnly">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton">
-         <property name="text">
-          <string>Choose</string>
-         </property>
-         <property name="icon">
-          <iconset>
-           <normaloff/>
-          </iconset>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-    </layout>
+    <widget class="QLineEdit" name="lineEdit">
+     <property name="maxLength">
+      <number>2000</number>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="pushButton">
+     <property name="text">
+      <string>&amp;Choose</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff/>
+      </iconset>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

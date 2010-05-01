@@ -15,13 +15,6 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>Select the origin of data.(Files for the lesson *.pdb &amp; psf)</string>
-     </property>
-    </widget>
-   </item>
-   <item>
     <layout class="QHBoxLayout">
      <item>
       <widget class="QLineEdit" name="lineEdit">
@@ -41,6 +34,9 @@
      </item>
      <item>
       <widget class="QPushButton" name="pushButton">
+       <property name="toolTip">
+        <string>Opens the file selector to add data sources</string>
+       </property>
        <property name="text">
         <string>&amp;Add...</string>
        </property>
@@ -60,7 +56,7 @@
        <item>
         <widget class="QLabel" name="label_2">
          <property name="text">
-          <string>&amp;Selected datasets:</string>
+          <string>Data &amp;sources:</string>
          </property>
          <property name="buddy">
           <cstring>dataList</cstring>
@@ -86,7 +82,7 @@
        <item>
         <widget class="QPushButton" name="delData">
          <property name="toolTip">
-          <string>Remove selected widget</string>
+          <string>Remove selected source</string>
          </property>
          <property name="text">
           <string>&amp;Delete</string>
@@ -120,7 +116,7 @@
        <item>
         <widget class="QPushButton" name="upButton">
          <property name="toolTip">
-          <string>Moves up the selected widget</string>
+          <string>Moves up the selected source</string>
          </property>
          <property name="icon">
           <iconset resource="../../../resource/default.qrc">
@@ -147,7 +143,7 @@
        <item>
         <widget class="QPushButton" name="downButton">
          <property name="toolTip">
-          <string>Moves down the selected widget</string>
+          <string>Moves down the selected source</string>
          </property>
          <property name="icon">
           <iconset resource="../../../resource/default.qrc">

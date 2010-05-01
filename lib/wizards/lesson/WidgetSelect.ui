@@ -75,6 +75,9 @@
        <pointsize>8</pointsize>
       </font>
      </property>
+     <property name="text">
+      <string>Here goes the description of the currently selected widget</string>
+     </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>

@@ -1,7 +1,8 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>VmdMainWindow</class>
- <widget class="QMainWindow" name="VmdMainWindow" >
-  <property name="geometry" >
+ <widget class="QMainWindow" name="VmdMainWindow">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
@@ -9,47 +10,48 @@
     <height>505</height>
    </rect>
   </property>
-  <property name="windowTitle" >
-   <string>VMDGui</string>
+  <property name="windowTitle">
+   <string>3DMolVis</string>
   </property>
-  <property name="windowIcon" >
-   <iconset resource="../resource/default.qrc" >:/images/default/images/logo_small.png</iconset>
+  <property name="windowIcon">
+   <iconset resource="../resource/default.qrc">
+    <normaloff>:/images/default/images/logo_small.png</normaloff>:/images/default/images/logo_small.png</iconset>
   </property>
-  <widget class="QWidget" name="centralwidget" >
-   <layout class="QVBoxLayout" >
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout">
     <item>
-     <widget class="QSplitter" name="splitter_1" >
-      <property name="orientation" >
+     <widget class="QSplitter" name="splitter_1">
+      <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
-      <widget class="QTreeView" name="explorer_view" />
-      <widget class="QSplitter" name="splitter_2" >
-       <property name="orientation" >
+      <widget class="QTreeView" name="explorer_view"/>
+      <widget class="QSplitter" name="splitter_2">
+       <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>
-       <widget class="QSplitter" name="splitter_3" >
-        <property name="orientation" >
+       <widget class="QSplitter" name="splitter_3">
+        <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
-        <widget class="QTreeWidget" name="tree" >
+        <widget class="QTreeWidget" name="tree">
          <column>
-          <property name="text" >
+          <property name="text">
            <string>1</string>
           </property>
          </column>
         </widget>
-        <widget class="QSplitter" name="splitter_4" >
-         <property name="orientation" >
+        <widget class="QSplitter" name="splitter_4">
+         <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
-         <widget class="QWidget" native="1" name="main_widget" >
-          <layout class="QVBoxLayout" >
+         <widget class="QWidget" name="main_widget" native="true">
+          <layout class="QVBoxLayout">
            <item>
-            <widget class="QLabel" name="logo_label" >
-             <property name="pixmap" >
-              <pixmap resource="../resource/default.qrc" >:/images/default/images/logo.svg</pixmap>
+            <widget class="QLabel" name="logo_label">
+             <property name="pixmap">
+              <pixmap resource="../resource/default.qrc">:/images/default/images/logo.svg</pixmap>
              </property>
-             <property name="alignment" >
+             <property name="alignment">
               <set>Qt::AlignCenter</set>
              </property>
             </widget>
@@ -58,11 +60,11 @@
          </widget>
         </widget>
        </widget>
-       <widget class="QWidget" native="1" name="error_widget" >
-        <layout class="QVBoxLayout" >
+       <widget class="QWidget" name="error_widget" native="true">
+        <layout class="QVBoxLayout">
          <item>
-          <widget class="QTextEdit" name="error_box" >
-           <property name="readOnly" >
+          <widget class="QTextEdit" name="error_box">
+           <property name="readOnly">
             <bool>true</bool>
            </property>
           </widget>
@@ -74,161 +76,161 @@
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar" >
-   <property name="geometry" >
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>330</width>
-     <height>28</height>
+     <height>25</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuFile" >
-    <property name="title" >
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
      <string>&amp;File</string>
     </property>
-    <addaction name="actionOpen" />
-    <addaction name="actionRecent" />
-    <addaction name="actionClose" />
-    <addaction name="separator" />
-    <addaction name="actionExit" />
+    <addaction name="actionOpen"/>
+    <addaction name="actionRecent"/>
+    <addaction name="actionClose"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
    </widget>
-   <widget class="QMenu" name="menuHelp" >
-    <property name="title" >
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
      <string>&amp;Help</string>
     </property>
-    <addaction name="actionAbout" />
-    <addaction name="actionAboutQt" />
+    <addaction name="actionAbout"/>
+    <addaction name="actionAboutQt"/>
    </widget>
-   <widget class="QMenu" name="menuView" >
-    <property name="title" >
+   <widget class="QMenu" name="menuView">
+    <property name="title">
      <string>&amp;View</string>
     </property>
-    <addaction name="actionExplorer" />
-    <addaction name="actionError_panel" />
-    <addaction name="actionStatus_bar" />
+    <addaction name="actionExplorer"/>
+    <addaction name="actionError_panel"/>
+    <addaction name="actionStatus_bar"/>
    </widget>
-   <widget class="QMenu" name="menuTools" >
-    <property name="title" >
+   <widget class="QMenu" name="menuTools">
+    <property name="title">
      <string>&amp;Tools</string>
     </property>
-    <addaction name="actionLessonWizard" />
+    <addaction name="actionLessonWizard"/>
    </widget>
-   <addaction name="menuFile" />
-   <addaction name="menuView" />
-   <addaction name="menuTools" />
-   <addaction name="menuHelp" />
+   <addaction name="menuFile"/>
+   <addaction name="menuView"/>
+   <addaction name="menuTools"/>
+   <addaction name="menuHelp"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar" />
-  <action name="actionOpen" >
-   <property name="text" >
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionOpen">
+   <property name="text">
     <string>&amp;Open...</string>
    </property>
-   <property name="statusTip" >
+   <property name="statusTip">
     <string>Opens an application file</string>
    </property>
-   <property name="shortcut" >
+   <property name="shortcut">
     <string>Ctrl+O</string>
    </property>
   </action>
-  <action name="actionAbout" >
-   <property name="text" >
+  <action name="actionAbout">
+   <property name="text">
     <string>A&amp;bout ...</string>
    </property>
-   <property name="statusTip" >
+   <property name="statusTip">
     <string>Shows info about VMDGui</string>
    </property>
   </action>
-  <action name="actionAboutQt" >
-   <property name="text" >
+  <action name="actionAboutQt">
+   <property name="text">
     <string>About &amp;Qt</string>
    </property>
-   <property name="statusTip" >
+   <property name="statusTip">
     <string>Shows info about Qt</string>
    </property>
   </action>
-  <action name="actionClose" >
-   <property name="enabled" >
+  <action name="actionClose">
+   <property name="enabled">
     <bool>false</bool>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>&amp;Close</string>
    </property>
-   <property name="statusTip" >
+   <property name="statusTip">
     <string>Closes the currently opened application</string>
    </property>
-   <property name="shortcut" >
+   <property name="shortcut">
     <string>Ctrl+W</string>
    </property>
   </action>
-  <action name="actionExit" >
-   <property name="text" >
+  <action name="actionExit">
+   <property name="text">
     <string>E&amp;xit</string>
    </property>
-   <property name="statusTip" >
+   <property name="statusTip">
     <string>Exits from VMDGui</string>
    </property>
-   <property name="shortcut" >
+   <property name="shortcut">
     <string>Ctrl+Q</string>
    </property>
   </action>
-  <action name="actionRecent" >
-   <property name="text" >
+  <action name="actionRecent">
+   <property name="text">
     <string>&amp;Recent</string>
    </property>
-   <property name="statusTip" >
+   <property name="statusTip">
     <string>Open a recently used application</string>
    </property>
   </action>
-  <action name="actionError_panel" >
-   <property name="checkable" >
+  <action name="actionError_panel">
+   <property name="checkable">
     <bool>true</bool>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>&amp;Error panel</string>
    </property>
   </action>
-  <action name="actionExplorer" >
-   <property name="checkable" >
+  <action name="actionExplorer">
+   <property name="checkable">
     <bool>true</bool>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>E&amp;xplorer</string>
    </property>
-   <property name="shortcut" >
+   <property name="shortcut">
     <string>F9</string>
    </property>
   </action>
-  <action name="actionWorkplace" >
-   <property name="checkable" >
+  <action name="actionWorkplace">
+   <property name="checkable">
     <bool>true</bool>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>&amp;Workplace</string>
    </property>
   </action>
-  <action name="actionStatus_bar" >
-   <property name="checkable" >
+  <action name="actionStatus_bar">
+   <property name="checkable">
     <bool>true</bool>
    </property>
-   <property name="checked" >
+   <property name="checked">
     <bool>true</bool>
    </property>
-   <property name="text" >
+   <property name="text">
     <string>Status &amp;bar</string>
    </property>
   </action>
-  <action name="actionLessonWizard" >
-   <property name="text" >
+  <action name="actionLessonWizard">
+   <property name="text">
     <string>&amp;Lesson wizard...</string>
    </property>
-   <property name="statusTip" >
+   <property name="statusTip">
     <string>Edit or create a new lesson</string>
    </property>
   </action>
  </widget>
  <resources>
-  <include location="../resource/default.qrc" />
+  <include location="../resource/default.qrc"/>
  </resources>
  <connections>
   <connection>
@@ -237,11 +239,11 @@
    <receiver>VmdMainWindow</receiver>
    <slot>close()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>-1</x>
      <y>-1</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>306</x>
      <y>236</y>
     </hint>
@@ -253,11 +255,11 @@
    <receiver>error_widget</receiver>
    <slot>setVisible(bool)</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>-1</x>
      <y>-1</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>214</x>
      <y>358</y>
     </hint>
@@ -269,11 +271,11 @@
    <receiver>explorer_view</receiver>
    <slot>setVisible(bool)</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>-1</x>
      <y>-1</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>55</x>
      <y>253</y>
     </hint>
@@ -285,11 +287,11 @@
    <receiver>statusbar</receiver>
    <slot>setVisible(bool)</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>-1</x>
      <y>-1</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>164</x>
      <y>492</y>
     </hint>
